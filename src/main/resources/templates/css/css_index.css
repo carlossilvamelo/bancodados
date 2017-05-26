@@ -1,0 +1,68 @@
+@charset "UTF-8";
+/*
+    Estilos especificos para a pagin a de login "index"
+*/
+
+html {
+    height: 100%;
+}
+
+
+.divLogin{
+    padding: 10px;
+    background-color: rgba(255,255,255,.5);
+    border-radius: 50px;
+    box-shadow: 0px 0px 40px rgba(255,255,255,.9);
+    font-size: 40px;
+    font-family: "Comic Sans MS";
+    color: black;
+    float: left;
+
+}
+.itensForm{
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border-radius: 15px;
+}
+
+
+
+.fundo {
+    background-image: url(../imagens/candidato-2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    min-height: 100%;
+    background-position: 50% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+.fundo img{
+    width: 200px;
+}
+.fundo #divCentro:hover img{
+    width: 210px;
+    transition: width 0.6s;
+}
+
+
+.criarConta{
+     margin-top: 100px;
+     font-size: 30px;
+     padding: 20px;
+     margin-right: 70px;
+     float: right;
+     border-radius: 20px;
+
+ }
+.criarConta:hover{
+    transition: padding .5s;
+    padding: 25px;
+
+
+}
+.criarConta a{
+    color: white;
+}

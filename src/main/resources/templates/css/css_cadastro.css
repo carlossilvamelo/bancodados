@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+
+.corFundo{
+
+
+    /* Para Mozilla/Gecko (Firefox etc) */
+    background: -moz-linear-gradient(top, #59d259, rgba(98, 236, 98, 0.24)) repeat-X;
+
+    /* Para WebKit (Safari, Google Chrome etc) */
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(89, 210, 89, 0.83)), to(rgba(98, 236, 98, 0.24))) repeat-X;
+
+
+}
+.divDadosCadastro{
+    display: block;
+    float: left;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 400px;
+    height: 600px;
+
+}
+.formCadastro input, .formCadastro button,.formCadastro fieldset{
+    margin-top: 10px;
+}
+.formCadastro fieldset input{
+    margin-left: 40px;
+
+}
+
+.divInfoCadastro{
+    margin-top: -50px;
+    padding: 20px;
+}
+
+.divInfoCadastro p{
+    margin-top: 0px;
+    font-family: "Comic Sans MS";
+    font-size: large;
+    padding: 20px;
+    text-align: center;
+}

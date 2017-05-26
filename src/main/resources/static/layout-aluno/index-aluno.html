@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <meta name="description" content="identificação"/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="../imagens/favicon/favicon.ico"/>
+    <title>postAcad</title>
+
+    <link href="../css-bootstrap/bootstrap.css" rel="stylesheet"/>
+    <link href="../css/global.css" rel="stylesheet"/>
+    <link href="../css/css_index-aluno.css" rel="stylesheet"/>
+    <link href="../css/css_barra-navegacao-aluno.css" rel="stylesheet"/>
+    <link href="../css-bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+    <link href="../css-bootstrap/signin.css" rel="stylesheet"/>
+    <script src="../js-bootstrap/bootstrap.js"></script>
+    <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
+    <script src="../js/global.js"></script>
+
+
+
+</head>
+<body >
+
+
+        <nav  class="navegador col-md-12 navbar navbar-default navbar-fixed-top ">
+            <div id="menu" class="container-fluid">
+
+                <div id="imgLogoCabecalho" class="navbar-header ">
+                    <a class="navbar-brand" href="index-aluno.html">
+                        <img alt="Brand" src="../imagens/icone-brand.png"/>
+                    </a>
+                </div>
+                <h1>Post<wbr>Acad</h1>
+
+
+                <div id="dropdownPerfil" class="">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> olá usuário!</a>
+                        <ul>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </div>
+
+            </div>
+
+
+            <div id="barraNavegacao" class=" barraNavegacaoAluno span12 navbar-default nav-justified  ">
+                <a href="trabalhos-aluno.html"type="button" class="btn btn-default navbar-btn ">Gerenciar trabalhos</a>
+                <a href="gerenciar-contatos.html"type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
+                <a href="perfil-aluno.html"type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
+            </div>
+
+        </nav>
+
+        <div id="divConteudo" class="container-fluid col-sm-push-1 col-md-7 ">
+
+            <table class="timeLine">
+                <tr>
+                <td>
+                    <h2>Titulo</h2>
+                    <p>resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo
+                        resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo
+                        resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo
+                        resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo </p>
+
+                    <a  type="button" class="btn botaoCurtirComentar glyphicon glyphicon-thumbs-up"> Cutir</a>
+
+                    <a type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" onclick="fecharAbrirChat('divComentarios')"> Comentar</a>
+
+                    <a href=""type="button" class="botaoVisualizar btn btn-default navbar-btn">Visualizar</a>
+                    <br>
+                    <div id="divComentarios">
+                        <div  class="col-md-12 ">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <span class="glyphicon glyphicon-comment"></span> Comentários
+                                </div>
+                                <div >
+                                    <ul class="chat caixaComentarios">
+
+                                        <li class="chatTextLeft ">
+                                            <span>Nome:</span>
+                                            <p>Que legal o trabalho de vocês!</p>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+
+                                <div class="panel-footer">
+                                    <div class="input-group">
+                                        <input  type="text" class="form-control input-sm" placeholder="Mensagem.." />
+                                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" >
+                                Send</button>
+                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+                <tr>
+                    <td>
+                        <h2>Titulo</h2>
+                        <p>resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo
+                            resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo
+                            resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo
+                            resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo </p>
+
+                        <a  type="button" class="btn botaoCurtirComentar glyphicon glyphicon-thumbs-up"> Cutir</a>
+
+                        <a type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" onclick="fecharAbrirChat('divComentarios')"> Comentar</a>
+
+                        <a href=""type="button" class="botaoVisualizar btn btn-default navbar-btn">Visualizar</a>
+                        <br>
+                        <div id="divComentarios">
+                            <div  class="col-md-12 ">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <span class="glyphicon glyphicon-comment"></span> Comentários
+                                    </div>
+                                    <div >
+                                        <ul class="chat caixaComentarios">
+
+                                            <li class="chatTextLeft ">
+                                                <span>Nome:</span>
+                                                <p>Que legal o trabalho de vocês!</p>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+
+                                    <div class="panel-footer">
+                                        <div class="input-group">
+                                            <input  type="text" class="form-control input-sm" placeholder="Mensagem.." />
+                                            <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" >
+                                Send</button>
+                        </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+
+
+        <div id="divLadoDireito" class="col-md-3">
+
+         <div class="panel panel-primary">
+
+             <div class="panel-heading">
+                 <span class="glyphicon glyphicon-user"></span> contatos
+
+             </div>
+
+            <div class="listaContatos">
+                <table>
+                    <tr class="">
+                        <td><h4>contato 1</h4>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="Mudarestado('caixaDeChats')">Conversar</a>
+                        </td>
+
+                    </tr>
+                    <tr class="">
+                        <td><h4>contato 2</h4>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="Mudarestado('caixaDeChats')">Conversar</a>
+                        </td>
+
+
+
+                </table>
+
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+                <div id="caixaDeChats" class="col-md-5 navbar-fixed-top ">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-comment"></span> Chat
+                            <span onclick="fecharAbrirChat('caixaDeChats')" style="float: right" class=" glyphicon glyphicon-remove"></span>
+                        </div>
+                        <div class="caixaTextChat">
+                            <ul class="chat">
+
+
+                                <li class="chatTextLeft">
+                                        <p>Vamos marcar uma reunião?</p>
+                                </li>
+                                <li class="chatTextRight">
+                                    <p>Vamos!</p>
+                                </li>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Mensagem.." />
+                                <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat">
+                                Send</button>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+</body>
+</html>

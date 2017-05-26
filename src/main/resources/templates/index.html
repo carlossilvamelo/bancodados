@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <meta name="description" content="identificação"/>
+  <meta name="author" content=""/>
+  <link rel="icon" href="imagens/favicon/favicon.ico"/>
+
+  <title>postAcad</title>
+
+  <link href="css-bootstrap/bootstrap.min.css" rel="stylesheet"/>
+  <link href="css/css_index.css" rel="stylesheet"/>
+  <link href="css-bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+  <link href="css-bootstrap/signin.css" rel="stylesheet"/>
+  <script src="js-bootstrap/bootstrap.js"></script>
+  <script src="js-bootstrap/ie-emulation-modes-warning.js"></script>
+
+
+</head>
+
+<body class="fundo">
+
+
+<div id="divCentro" class="container divLogin col-sm-push-4 col-md-4">
+
+  <img class="img-responsive center-block" src="imagens/escudo.png"/>
+
+  <form class="form-signin"  th:action="@{/login}">
+    <h2 class="form-signin-heading text-center">Identifique-se</h2>
+    <label for="inputEmail" class="sr-only ">Email</label>
+    <input name="email" type="email" id="inputEmail" class="form-control itensForm" placeholder="Email"  />
+    <label for="inputPassword" class="sr-only">Senha</label>
+    <input name="senha" type="password" id="inputPassword" class="form-control itensForm" placeholder="Senha" />
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+
+
+  </form>
+
+</div> <!-- /container -->
+<a th:href="@{cadastro}" class="btn btn-primary criarConta">Criar nova conta</a>
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js-bootstrap/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

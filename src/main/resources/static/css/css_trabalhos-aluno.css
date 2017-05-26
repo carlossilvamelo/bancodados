@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/*
+    Estilos especificos da pagina de gerenciamento de trabalhos do aluno
+*/
+
+
+.divListaTrabalhos{
+
+    height: 450px;
+    display: block;
+    position: relative;
+    margin-top: 120px;
+    border-right: 3px solid var(--corCinza);
+    border-bottom: 3px solid var(--corCinza);
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+.divListaTrabalhos h1{
+    color: white;
+
+    background-color: var(--corCinza);
+    text-align: center;
+    border-radius: 50px;
+}
+.menuListaTrabalhos{
+    background-color: var(--alunoHover);
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: bolder;
+    color: black;
+    border: 1px solid rgba(0, 0, 0, 0.28);
+    border-radius: 50px;
+}
+.meusTrabalhos tr{
+    border-right: 2px solid var(--alunoHover);
+    border-bottom: 2px solid var(--alunoHover);
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+
+}
+.meusTrabalhos tr:hover{
+    transition:background-color .5s ;
+    background-color: var(--alunoHover);
+}
+
+
+/*botoes*/
+.buscarTrabalho{
+    margin-left: 750px;
+
+}
+.buscarTrabalho input{
+    padding: 5px;
+    border-radius: 5px;
+}
+.criarNovoTrabalho{
+    float: left;
+    margin-left: 50px;
+
+}
+.gerenciar{
+    float: right;
+    margin-right: 5px;
+}

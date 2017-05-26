@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+/*
+    Estilos especificos da pagina index-aluno
+*/
+
+
+/* div conteudo*/
+
+div#divConteudo{
+
+    display: block;
+    position: relative;
+    float:left;
+    /*posicinamento*/
+    margin-top: 120px;
+    padding: 5px;
+    height: 445px;
+    text-align: center;
+    overflow:auto;
+    word-wrap: break-word;
+    border-right: 3px solid var(--corCinza);
+    border-bottom: 3px solid var(--corCinza);
+    border-radius: 10px;
+
+
+
+}
+
+/*estilo para scroll*/
+
+
+.chatTextLeft{
+    text-align: left;
+}
+.chatTextLeft span{
+    text-decoration: blink;
+    font-weight: bold;
+}
+.chatTextRight p{
+    text-align: right;
+}
+#caixaDeChats{
+    display: none;
+    margin-left: 800px;
+    height: 200px;
+}
+.caixaTextChat{
+    padding: 2px;
+    height: 500px;
+    overflow:auto;
+}
+div#divLadoDireito{
+
+    display: block;
+    float: right;
+    margin-top: 120px;
+    margin-right: 0px;
+    height: 400px;
+    word-wrap: break-word;
+
+}
+.listaContatos{
+    height: 400px;
+    overflow:auto;
+}
+.listaContatos table tr td{
+    padding: 3px;
+    background-color: rgba(47, 197, 239, 0.26);
+    width: 400px;
+    height: 50px;
+    border-bottom: 1px solid rgba(0, 66, 104, 0.68);
+}
+.listaContatos table tr td:hover{
+    background-color: rgba(255, 255, 255, 0.54);
+}
+
+.listaContatos table tr td h4{
+    float: left;
+}
+.listaContatos table tr td a{
+    float: right;
+}
+
+
+
+.timeLine h2{
+    font-family: "Comic Sans MS";
+}
+
+.timeLine td{
+    margin-bottom: 10px;
+    padding: 5px;
+
+}
+.timeLine td:hover{
+    transition: background-color 1s;
+    background-color: var(--alunoHover);
+}
+.timeLine a{
+    font-size: large;
+    text-decoration: none;
+}
+.botaoCurtirComentar{
+    float: left;
+    margin: 20px;
+}
+.botaoVisualizar{
+    margin-right: 15px;
+    float: right;
+}
+
+
+
+div#divComentarios{
+    position: relative;
+    display: none;
+}
+
+.caixaComentarios{
+    max-height: 200px;
+    overflow-y: auto;
+}

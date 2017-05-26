@@ -1,0 +1,150 @@
+@charset "UTF-8";
+
+
+.abrirChat{
+    margin-left: 900px;
+    margin-top: 120px;
+    z-index: -1;
+}
+
+.chatGrupo{
+    display: none;
+    margin-left: 900px;
+    margin-top: 120px;
+}
+.caixaTextChat{
+    padding: 2px;
+    height: 360px;
+    overflow:auto;
+}
+
+.divGerenciarTrabalho{
+    margin-top: 120px;
+}
+
+.divGerenciarTrabalho div{
+    float: left;
+    margin: 3px;
+    height: 400px;
+    overflow-y: auto;
+    word-wrap: break-word;
+    border-radius: 5px;
+}
+.divGerenciarTrabalho h3{
+    text-align: center;
+}
+.divInfoTrabalho{
+    position: relative;
+    border-right: 3px solid var(--alunoAzul);
+    border-bottom: 3px solid var(--alunoAzul);
+    border-radius: 10px;
+    overflow-y: auto;
+    height: 400px;
+    word-wrap: break-word;
+}
+
+
+.divAtividades{
+    position: relative;
+    border-right: 3px solid var(--alunoAzul);
+    border-bottom: 3px solid var(--alunoAzul);
+    border-radius: 10px;
+}
+.divAtividades td{
+    padding: 10px;
+}
+.divAtividades tr:hover{
+    background-color: var(--alunoHover);
+}
+.botaoCriarAtividade{
+    margin-left: 42%;
+    margin-bottom: 20px;
+}
+#criarAtividade{
+    display: none;
+    border-right: 3px solid var(--alunoAzul);
+    border-bottom: 3px solid var(--alunoAzul);
+    height: 100px;
+    width: 100%;
+}
+
+
+
+.divIntegrantes{
+
+}
+.divIntegrantes td{
+    border-radius: 10px;
+    padding: 10px;
+}
+.divIntegrantes tr:hover{
+    transition: background-color .5s;
+    background-color: var(--alunoHover);
+}
+.divIntegrantes h3{
+    text-align: center;
+}
+
+
+
+#divEdicao{
+    display: none;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(27, 109, 133, 0.31);
+    float: right;
+    margin-top: 20px;
+}
+
+div#divInfoTrabalho{
+    position: relative;
+
+}
+div#divInfoTrabalho h2{
+    text-align: center;
+    margin-bottom: 70px;
+}
+div#divInfoTrabalho table{
+    width: 600px;
+    word-wrap: break-word;
+}
+
+div#divInfoTrabalho table tr td a{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    float: right;
+
+}
+div#divInfoTrabalho table tr td p{
+    font-weight: bold;
+}
+div#divInfoTrabalho table tr td span{
+    margin-left: 30px;
+}
+div#divInfoTrabalho table tr td{
+    padding: 10px;
+}
+div#divInfoTrabalho table tr td:hover {
+    background-color: var(--alunoHover);
+}
+
+.divAcoes{
+    width: 100px;
+    border: 1px solid var(--alunoAzul);
+    padding: 5px;
+}
+.divAcoes a{
+    width: 100%;
+}
+
+.divIntegrantes{
+    height: 400px;
+    float: right;
+    margin-top: 120px;
+    margin-right: 30px;
+    padding-right:50px;
+    border-right: 3px solid var(--alunoAzul);
+    border-bottom: 3px solid var(--alunoAzul);
+    border-radius: 10px;
+}
