@@ -18,7 +18,7 @@ public class ConnectionManager {
 		
 		if(connection == null){
 			try {
-				//Class.forName("org.postgresql.Driver");
+				
 				connection = DriverManager.
 						getConnection("jdbc:mysql://localhost/mydb"
 								,"root","root");

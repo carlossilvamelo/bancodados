@@ -1,12 +1,18 @@
 package com.bancodados.controller;
 
 
+import java.sql.Connection;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.bancodados.DAOs.ConnectionManager;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 
 @Controller
@@ -19,6 +25,10 @@ public class IndexController {
 		//ModelAndView mv = new ModelAndView("index");
 		ModelAndView mv = new ModelAndView("index");
 		
+		Connection con = ConnectionManager.getConnection();
+		if(con != null){
+			System.out.println("conectado");
+		}
 		return mv;
 	}
 	
