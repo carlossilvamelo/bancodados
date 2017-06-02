@@ -2,6 +2,7 @@ package com.bancodados.controller;
 
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +26,16 @@ public class IndexController {
 		//ModelAndView mv = new ModelAndView("index");
 		ModelAndView mv = new ModelAndView("index");
 		
-		Connection con = ConnectionManager.getConnection();
-		if(con != null){
-			System.out.println("conectado");
+		try {
+			Connection con = ConnectionManager.getConnection();
+			if(con != null){
+				System.out.println("conectado");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		return mv;
 	}
 	

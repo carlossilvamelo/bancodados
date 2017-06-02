@@ -3,7 +3,7 @@ package com.bancodados.dominio;
 
 public class Endereco {
 	
-	private Integer enderecoId;
+	private Integer idEndereco;
 	private String rua;
 	private Integer numero;
 	private Integer cep;
@@ -12,7 +12,6 @@ public class Endereco {
 
 	//Construtores
 	public Endereco(String rua, Integer numero, Integer cep, String estado) {
-		
 		this.rua = rua;
 		this.numero = numero;
 		this.cep = cep;
@@ -26,10 +25,10 @@ public class Endereco {
 	
 	//getters and setters
 	public Integer getId() {
-		return enderecoId;
+		return idEndereco;
 	}
 	public void setId(Integer id) {
-		this.enderecoId = id;
+		this.idEndereco = id;
 	}
 	public String getRua() {
 		return rua;

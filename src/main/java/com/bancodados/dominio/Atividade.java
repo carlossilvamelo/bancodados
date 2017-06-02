@@ -1,13 +1,31 @@
 package com.bancodados.dominio;
 
-
-import java.util.Date;
-
+import java.sql.Date;
 
 public class Atividade {
 
-	private Integer atividadeId;
+	private Integer IdAtividade;
+	private Integer idParticipante;
 	private Date prazo;
+	public Integer getIdAtividade() {
+		return IdAtividade;
+	}
+
+	public void setIdAtividade(Integer idAtividade) {
+		IdAtividade = idAtividade;
+	}
+
+	public Integer getIdParticipante() {
+		return idParticipante;
+	}
+
+	public void setIdParticipante(Integer idParticipante) {
+		this.idParticipante = idParticipante;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 	private Integer status; // vira um Enum
 	private String descricao;
 	private String observacao;
@@ -26,12 +44,7 @@ public class Atividade {
 	}
 	
 	//getters and setters
-	public Integer getId() {
-		return atividadeId;
-	}
-	public void setId(Integer id) {
-		this.atividadeId = id;
-	}
+	
 	public Date getPrazo() {
 		return prazo;
 	}

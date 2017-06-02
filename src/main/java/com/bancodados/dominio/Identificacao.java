@@ -4,7 +4,6 @@ package com.bancodados.dominio;
 
 public class Identificacao {
 	
-	private Integer identificacaoUsuarioid;
 	private String login;
 	private String senha;
 	
@@ -19,13 +18,6 @@ public class Identificacao {
 	
 	
 	//getters and setters
-	public Integer getId() {
-		return identificacaoUsuarioid;
-	}
-	
-	public void setId(Integer id) {
-		this.identificacaoUsuarioid = id;
-	}
 	public String getLogin() {
 		return login;
 	}

@@ -8,6 +8,7 @@ public class Discente extends Usuario{
 
 	
 	// pode virar um enum
+	private Integer idTrabalho;
 	private Long matricula;
 	private String reputacao;
 	
@@ -38,6 +39,14 @@ public class Discente extends Usuario{
 	}
 	public void setReputacao(String reputacao) {
 		this.reputacao = reputacao;
+	}
+
+	public Integer getIdTrabalho() {
+		return idTrabalho;
+	}
+
+	public void setIdTrabalho(Integer idTrabalho) {
+		this.idTrabalho = idTrabalho;
 	}
 	
 	

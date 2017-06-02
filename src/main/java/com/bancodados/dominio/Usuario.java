@@ -9,6 +9,7 @@ public class Usuario {
 	private Integer usuarioId;
 	private String nome;
 	private Integer idade;
+	private String tipo;
 	private Integer cpf;
 	private Endereco endereco;
 	private String email;
@@ -16,6 +17,8 @@ public class Usuario {
 	private Calendar dataNascimento;
 	private Identificacao identidicacao;
 	private List<String> areasConhecimentos;
+	private List<Mensagem> mensagens;
+	
 	
 	
 	
@@ -123,6 +126,32 @@ public class Usuario {
 	public void setAreasConhecimentos(List<String> areasConhecimentos) {
 		this.areasConhecimentos = areasConhecimentos;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public List<Mensagem> getMensagens() {
+		return mensagens;
+	}
+
+	public void setMensagens(List<Mensagem> mensagens) {
+		this.mensagens = mensagens;
+	}
+
+	public Integer getUsuarioId() {
+		return usuarioId;
+	}
+
+	public void setUsuarioId(Integer usuarioId) {
+		this.usuarioId = usuarioId;
+	}
+
+	
 	
 	//getters and setters
 	

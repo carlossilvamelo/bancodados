@@ -14,9 +14,9 @@ public class ConnectionManager {
 		
 	}
 
-	public synchronized static Connection getConnection(){
+	public synchronized static Connection getConnection() throws SQLException{
 		
-		if(connection == null){
+		if((connection == null)||(connection.isClosed())){
 			try {
 				
 				connection = DriverManager.

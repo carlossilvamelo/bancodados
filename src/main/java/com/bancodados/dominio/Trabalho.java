@@ -9,8 +9,13 @@ public class Trabalho {
 	private Integer trabalhoId;
 	private String titulo;
 	private List<String> areasConhecimento;
+	private List<String> palavrasChave;
 	private List<Usuario> participantes;
 	private String avaliacao;
+	private List<MensagemGrupo> mensagensGrupo;
+	private List<Arquivo> arquivos;
+	
+	
 	
 	//contrutores
 	public Trabalho(String titulo, List<String> areasCOnhecimento, List<Usuario> participantes,
@@ -66,6 +71,22 @@ public class Trabalho {
 
 	public void setAvaliacao(String avaliacao) {
 		this.avaliacao = avaliacao;
+	}
+
+	public List<MensagemGrupo> getMensagensGrupo() {
+		return mensagensGrupo;
+	}
+
+	public void setMensagensGrupo(List<MensagemGrupo> mensagensGrupo) {
+		this.mensagensGrupo = mensagensGrupo;
+	}
+
+	public List<String> getPalavrasChave() {
+		return palavrasChave;
+	}
+
+	public void setPalavrasChave(List<String> palavrasChave) {
+		this.palavrasChave = palavrasChave;
 	}
 	
 	
