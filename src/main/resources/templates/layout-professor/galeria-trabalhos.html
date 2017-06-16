@@ -22,41 +22,19 @@
     <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
     <script src="../js/global.js" type="text/javascript"></script>
 
-
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(function(){
+            $("#header").load("header-professor.html");
+        });
+    </script>
 
 
 </head>
 <body class="backColor">
 
 
-<nav  class="navegador col-md-12 navbar navbar-default navbar-fixed-top ">
-    <div id="menuProf" class="container-fluid">
-
-        <div id="imgLogoCabecalho" class="navbar-header ">
-            <a class="navbar-brand" href="index-professor.html">
-                <img alt="Brand" src="../imagens/icone-brand.png"/>
-            </a>
-        </div>
-        <h1>Post<wbr>Acad</h1>
-
-
-        <div id="dropdownPerfil" class="">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> olá usuário!</a>
-                <ul>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-            </li>
-        </div>
-
-    </div>
-
-
-    <div id="barraNavegacao" class=" barraNavegacaoProfessor span12 navbar-default nav-justified  ">
-        <a href="galeria-trabalhos.html" type="button" class="btn btn-default navbar-btn ">Galeria de trabalhos</a>
-        <a href="gerenciar-contatos.html" type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
-        <a href="perfil-professor.html" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
-    </div>
-
+<nav id="header">
 </nav>
 
 
@@ -64,7 +42,7 @@
     <h1>Galeria de trabalhos</h1>
 
     <div class="menuListaTrabalhos">
-        <a href=""type="button" class="criarNovoTrabalho btn btn-primary navbar-btn">Criar novo trabalho</a>
+
         <div class="buscarTrabalho">
 
             <input type="text" placeholder="Titulo/palavra chave" />
@@ -76,7 +54,7 @@
 
 
 
-    <br>
+    <br/>
     <table class="meusTrabalhos">
         <tr>
             <td>
@@ -87,10 +65,17 @@
                     resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo </p>
 
 
-                <a href=""type="button" class="gerenciar btn btn-primary navbar-btn">Gerenciar</a>
-                <br>
-
+                <a href="#" type="button" class="gerenciar btn btn-primary navbar-btn" onclick="fecharAbrirChat('divVisualizarTrabalho')">Visualizar</a>
+                <br/>
             </td>
+            <div id="divVisualizarTrabalho" class="visualizarTrabalho">
+                <span onclick="fecharAbrirChat('divVisualizarTrabalho')"  style="float: right" class=" glyphicon glyphicon-remove"></span>
+
+                <h4>Avaliação do professor</h4>
+                <textarea name="textoAvaliacao" cols="30" rows="10"></textarea>
+                <a href="#" type="button" class="gerenciar btn btn-primary navbar-btn" >Avaliar</a>
+
+            </div>
         </tr>
     </table>
 </div>

@@ -22,7 +22,12 @@
     <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
     <script src="../js/global.js"></script>
 
-
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(function(){
+            $("#header").load("header-aluno.html");
+        });
+    </script>
 
 </head>
 <body >
@@ -40,10 +45,9 @@
 
 
                 <div id="dropdownPerfil" class="">
-                    <li>
-                    <a href="#"><span class="glyphicon glyphicon-user"></span> olá usuário!</a>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> olá usuário!</a>
                         <ul>
-                            <li><a href="#logout">Logout</a></li>
+                            <li><a href="#">Logout</a></li>
                         </ul>
                     </li>
                 </div>
@@ -51,10 +55,10 @@
             </div>
 
 
-            <div id="barraNavegacao" class=" barraNavegacaoAluno span12 navbar-default nav-justified">
-                <a th:href="@{/layout-aluno/trabalhos-aluno}" type="button" class="btn btn-default navbar-btn ">Gerenciar trabalhos</a>
-                <a th:href="@{gerenciar-contatos}" type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
-                <a th:href="@{perfil-aluno}" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
+            <div id="barraNavegacao" class="barraNavegacaoAluno span12 navbar-default nav-justified  ">
+                <a href="trabalhos-aluno.html" type="button" class="btn btn-default navbar-btn ">Gerenciar trabalhos</a>
+                <a href="gerenciar-contatos.html" type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
+                <a href="perfil-aluno.html" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
             </div>
 
         </nav>
@@ -70,9 +74,9 @@
                         resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo
                         resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo </p>
 
-                    <a  type="button" class="btn botaoCurtirComentar glyphicon glyphicon-thumbs-up"> Cutir</a>
+                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon-thumbs-up"> Curtir</a>
 
-                    <a type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" onclick="fecharAbrirChat('divComentarios')"> Comentar</a>
+                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" onclick="fecharAbrirChat('divComentarios')"> Comentar</a>
 
                     <a href="#" type="button" class="botaoVisualizar btn btn-default navbar-btn">Visualizar</a>
                     <br/>
@@ -107,8 +111,10 @@
                         </div>
                     </div>
                 </td>
+
             </tr>
-                
+
+
             </table>
 
 
@@ -119,24 +125,46 @@
 
          <div class="panel panel-primary">
 
-             <div class="panel-heading">
+             <div class="panel-heading" style="background-color: var(--alunoAzul);">
                  <span class="glyphicon glyphicon-user"></span> contatos
 
              </div>
 
             <div class="listaContatos">
-                <table>
+                <table >
                     <tr class="">
                         <td><h4>contato 1</h4>
-                            <a  type="button" class="btn btn-default navbar-btn" onclick="Mudarestado('caixaDeChats')">Conversar</a>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
                         </td>
 
                     </tr>
+
                     <tr class="">
                         <td><h4>contato 2</h4>
-                            <a  type="button" class="btn btn-default navbar-btn" onclick="Mudarestado('caixaDeChats')">Conversar</a>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
                         </td>
-					</tr>
+                    </tr>
+                    <tr class="">
+                        <td><h4>contato 2</h4>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td><h4>contato 2</h4>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td><h4>contato 2</h4>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td><h4>contato 2</h4>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
+                        </td>
+                    </tr>
+
 
 
                 </table>
@@ -177,12 +205,11 @@
                                 <span class="input-group-btn">
                             <button class="btn btn-warning btn-sm" id="btn-chat">
                                 Send</button>
-                        		</span>
+                        </span>
                             </div>
                         </div>
                     </div>
                 </div>
-
 
 
 </body>

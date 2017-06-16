@@ -22,22 +22,17 @@
     <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
     <script src="../js/global.js" type="text/javascript"></script>
 
-
-
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(function(){
+            $("#header").load("header-aluno.html");
+        });
+    </script>
 
 </head>
-<body class="backColor">
 
-
-<nav  class="navegador col-md-12 navbar navbar-default navbar-fixed-top ">
-    <div id="menu" class="container-fluid">
-
-        <div id="imgLogoCabecalho" class="navbar-header ">
-            <a class="navbar-brand" href="index-aluno.html">
-                <img alt="Brand" src="../imagens/icone-brand.png"/>
-            </a>
-        </div>
-        <h1>Post<wbr/>Acad</h1>
+<body>
+<div id="header"></div>
 
 
         <div id="dropdownPerfil" class="">
@@ -52,10 +47,10 @@
 
 
     <div id="barraNavegacao" class=" barraNavegacaoAluno span12 navbar-default nav-justified  ">
-        <a th:href="@{/layout-aluno/trabalhos-aluno}" type="button" class="btn btn-default navbar-btn ">Gerenciar trabalhos</a>
-                <a th:href="@{gerenciar-contatos}" type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
-                <a th:href="@{perfil-aluno}" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
-            </div>
+        <a href="trabalhos-aluno.html"type="button" class="btn btn-default navbar-btn ">Gerenciar trabalhos</a>
+        <a href="gerenciar-contatos.html"type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
+        <a href="perfil-aluno.html"type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
+    </div>
 
 </nav>
 
@@ -68,7 +63,7 @@
         <div class="buscarTrabalho">
 
             <input type="text" placeholder="Titulo/palavra chave" />
-            <a href="#" type="button" class="btn btn-primary navbar-btn">Buscar</a>
+            <a href="#" type="button" class="  btn btn-primary navbar-btn">Buscar</a>
         </div>
 
     </div>
@@ -87,7 +82,7 @@
                     resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo </p>
 
 
-                <a href="" type="button" class="gerenciar btn btn-primary navbar-btn">Gerenciar</a>
+                <a href="#" type="button" class="gerenciar btn btn-primary navbar-btn">Gerenciar</a>
                 <br/>
 
             </td>

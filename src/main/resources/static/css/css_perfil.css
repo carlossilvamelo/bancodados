@@ -2,6 +2,13 @@
 
 
 
+div#divInfoPerfil::-webkit-scrollbar{
+    display: none;
+}
+div#divAreaConhecimento::-webkit-scrollbar{
+    display: none;
+}
+
 div#divInfoPerfil{
     position: relative;
     height: 450px;
@@ -10,9 +17,7 @@ div#divInfoPerfil{
     margin-left: 50px;
 
     background-color: rgba(255, 255, 255, 0.5);
-    border-right: 3px solid var(--corCinza);
-    border-bottom: 3px solid var(--corCinza);
-    border-radius: 10px;
+
 }
 div#divInfoPerfil h2{
     text-align: center;
@@ -66,9 +71,7 @@ div#divAreaConhecimento{
     height: 450px;
     background-color: rgba(255, 255, 255, 0.5);
     margin-top: 120px;
-    border-right: 3px solid var(--corCinza);
-    border-bottom: 3px solid var(--corCinza);
-    border-radius: 10px;
+
     float:right;
     margin-right: 30px;
     text-align: center;
@@ -97,5 +100,18 @@ div#divAreaConhecimento{
     float: right;
 }
 
+
+.addAreaConhecimento{
+    padding: 2px;
+    width: 80%;
+    margin-left: 10%;
+    border: 2px solid #c9c9c9;
+    border-radius: 50px;
+}
+.addAreaConhecimento select{
+    border-radius: 5px;
+    padding: 7px;
+    background-color: var(--alunoHover);
+}
 
 

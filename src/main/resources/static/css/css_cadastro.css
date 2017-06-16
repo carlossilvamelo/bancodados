@@ -1,28 +1,34 @@
 @charset "utf-8";
 
 
-.corFundo{
-
-
-    /* Para Mozilla/Gecko (Firefox etc) */
-    background: -moz-linear-gradient(top, #59d259, rgba(98, 236, 98, 0.24)) repeat-X;
-
-    /* Para WebKit (Safari, Google Chrome etc) */
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(89, 210, 89, 0.83)), to(rgba(98, 236, 98, 0.24))) repeat-X;
-
+.logo{
 
 }
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.fixLeft{
+    margin-top: 0px;
+    z-index: -1;
+    position:absolute;
+    width: 580px;
+    height: 500px;
+    left:0;
+    background: #66c4ff;
+}
+
 .divDadosCadastro{
     display: block;
     float: left;
     margin-top: 50px;
     margin-left: 200px;
     width: 400px;
-    height: 600px;
-
+    height: 500px;
 }
 .formCadastro input, .formCadastro button,.formCadastro fieldset{
     margin-top: 10px;
+
 }
 .formCadastro fieldset input{
     margin-left: 40px;
@@ -33,11 +39,17 @@
     margin-top: -50px;
     padding: 20px;
 }
+.imgLogo{
+    width: 200px;
+}
+.imgCoworking{
+
+}
 
 .divInfoCadastro p{
     margin-top: 0px;
-    font-family: "Comic Sans MS";
-    font-size: large;
+    font-size: medium;
     padding: 20px;
     text-align: center;
+    font-weight: bold;
 }

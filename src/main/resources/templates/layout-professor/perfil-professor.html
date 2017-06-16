@@ -22,45 +22,22 @@
     <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
     <script src="../js/global.js"></script>
     <link href="../css/css_perfil.css" rel="stylesheet"/>
-
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(function(){
+            $("#header").load("header-professor.html");
+        });
+    </script>
 
 
 </head>
 <body class="backColor">
 
 
-        <nav  class="navegador col-md-12 navbar navbar-default navbar-fixed-top ">
-            <div id="menuProf" class="container-fluid">
-
-                <div id="imgLogoCabecalho" class="navbar-header ">
-                    <a class="navbar-brand" href="index-professor.html">
-                        <img alt="Brand" src="../imagens/icone-brand.png"/>
-                    </a>
-                </div>
-                <h1>Post<wbr>Acad</h1>
+        <nav id="header"></nav>
 
 
-                <div id="dropdownPerfil" class="">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> olá usuário!</a>
-                        <ul>
-                            <li><a href="#">Logout</a></li>
-                        </ul>
-                    </li>
-                </div>
-
-            </div>
-
-
-            <div id="barraNavegacao" class="barraNavegacaoProfessor span12 navbar-default nav-justified  ">
-                <a href="galeria-trabalhos.html" type="button" class="btn btn-default navbar-btn ">Galeria de trabalhos</a>
-                <a href="gerenciar-contatos.html" type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
-                <a href="perfil-professor.html" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
-            </div>
-
-        </nav>
-
-
-        <div id="divInfoPerfil" class="container-fluid  col-md-7 ">
+        <div id="divInfoPerfil" class="container-fluid  col-md-6 ">
 
             <h2> Gerenciamento de informações de perfil</h2>
             <table >
@@ -68,10 +45,10 @@
                     <td>
                         <p>Nome:</p> <span></span>
                         <a type="button" class="btn btn-default " onclick="mudarEstado('divNome')">Editar</a>
-                        <br>
+                        <br/>
                         <div id="divNome" class="edicao">
-                            <input type="text" placeholder="Nome"/>
-                            <a href=""  class="btn btn-default "> Salvar</a>
+                            <input name="nome" type="text" placeholder="Nome"/>
+                            <a href="#"  class="btn btn-default "> Salvar</a>
                         </div>
                     </td>
                 </tr>
@@ -80,10 +57,10 @@
                     <td>
                         <p>Sobrenome:</p> <span></span>
                         <a type="button" class="btn btn-default " onclick="mudarEstado('divSobrenome')">Editar</a>
-                        <br>
+                        <br/>
                         <div id="divSobrenome" class="edicao">
-                            <input type="text" placeholder="SObrenome"/>
-                            <a href=""  class="btn btn-default "> Salvar</a>
+                            <input name="sobreNome" type="text" placeholder="Sobrenome"/>
+                            <a href="#"  class="btn btn-default "> Salvar</a>
                         </div>
                     </td>
                 </tr>
@@ -91,23 +68,11 @@
                 <tr>
                     <td>
                         <p>Email:</p> <span></span>
-                        <a type="button" class="btn btn-default " onclick="mudarEstado('divEmail')">Editar</a>
-                        <br>
+                        <a href="#" type="button" class="btn btn-default " onclick="mudarEstado('divEmail')">Editar</a>
+                        <br/>
                         <div id="divEmail" class="edicao">
-                            <input type="text" placeholder="Email"/>
-                            <a href=""  class="btn btn-default "> Salvar</a>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <p>Nome:</p> <span></span>
-                        <a type="button" class="btn btn-default " onclick="mudarEstado('divEdicao')">Editar</a>
-                        <br>
-                        <div id="divEdicao" class="edicao">
-                            <input type="text" placeholder="Nome"/>
-                            <a href=""  class="btn btn-default "> Salvar</a>
+                            <input name="email" type="text" placeholder="Email"/>
+                            <a href="#"  class="btn btn-default "> Salvar</a>
                         </div>
                     </td>
                 </tr>
@@ -116,9 +81,9 @@
                     <td>
                         <p>CPF:</p> <span></span>
                         <a type="button" class="btn btn-default " onclick="mudarEstado('divCPF')">Editar</a>
-                        <br>
+                        <br/>
                         <div id="divCPF" class="edicao">
-                            <input type="text" placeholder="CPF"/>
+                            <input name="cpf" type="text" placeholder="CPF"/>
                             <a href=""  class="btn btn-default "> Salvar</a>
                         </div>
                     </td>
@@ -128,10 +93,22 @@
                     <td>
                         <p>Data de nascimento:</p> <span></span>
                         <a type="button" class="btn btn-default " onclick="mudarEstado('divNascimento')">Editar</a>
-                        <br>
+                        <br/>
                         <div id="divNascimento" class="edicao">
-                            <input type="date" placeholder="Data de nascimento"/>
-                            <a href=""  class="btn btn-default "> Salvar</a>
+                            <input name="dataNascimento" type="date" placeholder="Data de nascimento"/>
+                            <a href="#"  class="btn btn-default "> Salvar</a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Currículo:</p> <span></span>
+                        <a type="button" class="btn btn-default " onclick="mudarEstado('divNascimento')">Editar</a>
+                        <br/>
+                        <div id="divCurriculo" class="edicao">
+                            <input name="curriculo" type="date" placeholder="Curriculo"/>
+                            <a href="#"  class="btn btn-default "> Salvar</a>
                         </div>
                     </td>
                 </tr>
@@ -140,10 +117,10 @@
                     <td>
                         <p>Login:</p> <span></span>
                         <a type="button" class="btn btn-default " onclick="mudarEstado('divLogin')">Editar</a>
-                        <br>
+                        <br/>
                         <div id="divLogin" class="edicao">
-                            <input type="text" placeholder="Login"/>
-                            <a href=""  class="btn btn-default "> Salvar</a>
+                            <input name="login" type="text" placeholder="Login"/>
+                            <a href="#"  class="btn btn-default "> Salvar</a>
                         </div>
                     </td>
                 </tr>
@@ -152,13 +129,53 @@
                     <td>
                         <p>Senha:</p> <span></span>
                         <a type="button" class="btn btn-default " onclick="mudarEstado('divSenha')">Editar</a>
-                        <br>
+                        <br/>
                         <div id="divSenha" class="edicao">
-                            <input type="text" placeholder="Senha"/>
-                            <a href=""  class="btn btn-default "> Salvar</a>
+                            <input name="senha" type="text" placeholder="Senha"/>
+                            <a href="#"  class="btn btn-default "> Salvar</a>
                         </div>
                     </td>
                 </tr>
+
+            </table>
+
+            <table class="container-fluid  col-md-6 ">
+                <h3 style="text-align: center">Endereço</h3>
+                <tr>
+                    <td>
+                        <p>Cep:</p> <span></span>
+                        <a type="button" class="btn btn-default " onclick="mudarEstado('divSenha')">Editar</a>
+                        <br/>
+                        <div id="divCep" class="edicao">
+                            <input name="cep" type="text" placeholder="cep"/>
+                            <a href="#"  class="btn btn-default "> Salvar</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Rua:</p> <span></span>
+                        <a type="button" class="btn btn-default " onclick="mudarEstado('divSenha')">Editar</a>
+                        <br/>
+                        <div id="divRua" class="edicao">
+                            <input name="rua" type="text" placeholder="Rua"/>
+                            <a href="#"  class="btn btn-default "> Salvar</a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Número:</p> <span></span>
+                        <a type="button" class="btn btn-default " onclick="mudarEstado('divSenha')">Editar</a>
+                        <br/>
+                        <div id="divNumero" class="edicao">
+                            <input name="numero" type="text" placeholder="Número"/>
+                            <a href="#"  class="btn btn-default "> Salvar</a>
+                        </div>
+                    </td>
+                </tr>
+
 
 
             </table>
@@ -166,7 +183,17 @@
         </div>
 
         <div id="divAreaConhecimento" class="col-md-4">
-            <h2>Áreas de conhecimento</h2>
+            <h2>Áreas de pesquisa</h2>
+
+            <div class="addAreaConhecimento">
+                <select id=x>
+                    <option value="" >Escolha uma área</option>
+                    <option value="usa" >Usa</option>
+                    <option value="ca" >Canada</option>
+                    <option value="me" >Mexico</option>
+                </select>
+                <a type="button" class="btn btn-primary ">Adicionar</a>
+            </div>
 
             <table class="col-md-12 itemArea">
                 <tr>

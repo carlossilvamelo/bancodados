@@ -7,6 +7,9 @@ html {
     height: 100%;
 }
 
+.heading-login{
+    font-size: 40px;
+}
 
 .divLogin{
     padding: 10px;
@@ -14,7 +17,7 @@ html {
     border-radius: 50px;
     box-shadow: 0px 0px 40px rgba(255,255,255,.9);
     font-size: 40px;
-    font-family: "Comic Sans MS";
+    font-weight: bold;
     color: black;
     float: left;
 
@@ -49,20 +52,14 @@ html {
 
 
 .criarConta{
-     margin-top: 100px;
-     font-size: 30px;
-     padding: 20px;
-     margin-right: 70px;
+     font-size: 20px;
+     padding: 10px;
+     margin-right: 3%;
      float: right;
-     border-radius: 20px;
+     display: block;
+     border-radius: 10px;
 
  }
-.criarConta:hover{
-    transition: padding .5s;
-    padding: 25px;
-
-
-}
 .criarConta a{
     color: white;
 }

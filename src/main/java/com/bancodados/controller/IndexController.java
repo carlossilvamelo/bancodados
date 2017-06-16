@@ -29,7 +29,7 @@ public class IndexController {
 	@RequestMapping(method= RequestMethod.GET)
 	public ModelAndView index(){
 		
-		//ModelAndView mv = new ModelAndView("index");
+		
 		ModelAndView mv = new ModelAndView("index");
 		
 		/*try {
@@ -42,15 +42,7 @@ public class IndexController {
 			e.printStackTrace();
 		}*/
 		
-		Endereco endereco = new Endereco();
-		endereco.setCep(52110000);
-		endereco.setId(10);
-		endereco.setNumero(340);
-		endereco.setEstado("pe");
-		endereco.setRua("rua");
-		
-	mv.addObject("endereco", endereco);
-		
+	
 		
 		
 		return mv;
@@ -62,11 +54,11 @@ public class IndexController {
 		System.out.println(email);
 		System.out.println(senha);
 		
-		//ModelAndView mv = new ModelAndView("index");
-		//ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("index");
 		
 		
-		return null;
+		
+		return mv;
 	}
 	
 	@GetMapping("/cadastro")

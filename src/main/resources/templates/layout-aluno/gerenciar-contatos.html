@@ -22,42 +22,17 @@
     <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
     <script src="../js/global.js" type="text/javascript"></script>
 
-
-
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(function(){
+            $("#header").load("header-aluno.html");
+        });
+    </script>
 
 </head>
-<body >
 
-
-<nav  class="navegador col-md-12 navbar navbar-default navbar-fixed-top ">
-    <div id="menu" class="container-fluid">
-
-        <div id="imgLogoCabecalho" class="navbar-header ">
-            <a class="navbar-brand" href="index-aluno.html">
-                <img alt="Brand" src="../imagens/icone-brand.png"/>
-            </a>
-        </div>
-        <h1>Post<wbr>Acad</h1>
-
-
-        <div id="dropdownPerfil" class="">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> olá usuário!</a>
-                <ul>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-            </li>
-        </div>
-
-    </div>
-
-
-    <div id="barraNavegacao" class=" barraNavegacaoAluno span12 navbar-default nav-justified  ">
-        <a href="trabalhos-aluno.html"type="button" class="btn btn-default navbar-btn ">Gerenciar trabalhos</a>
-        <a href="gerenciar-contatos.html"type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
-        <a href="perfil-aluno.html"type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
-    </div>
-
-</nav>
+<body>
+<div id="header"></div>
 
 
 <div  class="  divMeusContatos col-sm-push-1 col-md-5">
@@ -68,12 +43,12 @@
         <div class="buscarContato col-md-12">
 
             <input type="text" placeholder="filtrar" />
-            <a href=""type="button" class="  btn btn-primary navbar-btn">Filtrar</a>
+            <a href="#" type="button" class="  btn btn-primary navbar-btn">Filtrar</a>
         </div>
 
     </div>
 
-    <br>
+    <br/>
     <table class="listaContatos col-md-12">
 
         <tr>
@@ -87,7 +62,7 @@
 
             </td>
             <td>
-                <a href=""type="button" class="gerenciar btn btn-danger navbar-btn">Excluir</a>
+                <a href="#" type="button" class="gerenciar btn btn-danger navbar-btn">Excluir</a>
             </td>
 
         </tr>
@@ -102,7 +77,7 @@
 
             </td>
             <td>
-                <a href=""type="button" class="gerenciar btn btn-danger navbar-btn">Excluir</a>
+                <a href="#" type="button" class="gerenciar btn btn-danger navbar-btn">Excluir</a>
             </td>
 
         </tr>
@@ -115,12 +90,12 @@
         <div class="buscarContato col-md-12">
 
             <input type="text" placeholder="Buscar novo contato por email" />
-            <a href=""type="button" class="  btn btn-primary navbar-btn">Buscar</a>
+            <a href="#" type="button" class="  btn btn-primary navbar-btn">Buscar</a>
         </div>
 
     </div>
 
-    <br>
+    <br/>
     <table class="listaContatos col-md-12">
 
         <tr>
@@ -134,7 +109,7 @@
 
             </td>
             <td>
-                <a href=""type="button" class="gerenciar btn btn-primary navbar-btn">Adicionar</a>
+                <a href="" type="button" class="gerenciar btn btn-primary navbar-btn">Adicionar</a>
             </td>
 
         </tr>
@@ -149,15 +124,12 @@
 
             </td>
             <td>
-                <a href=""type="button" class="gerenciar btn btn-primary navbar-btn">Adicionar</a>
+                <a href="" type="button" class="gerenciar btn btn-primary navbar-btn">Adicionar</a>
             </td>
 
         </tr>
     </table>
 </div>
-
-
-
 
 
 </body>
