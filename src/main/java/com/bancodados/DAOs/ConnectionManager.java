@@ -9,15 +9,15 @@ public class ConnectionManager {
 	
 	private static Connection connection =  null;
 	
-	private ConnectionManager() {
+	private ConnectionManager(){
 		// TODO Auto-generated constructor stub
-		
+	
 	}
 
 	public synchronized static Connection getConnection() throws SQLException{
 		
 		if((connection == null)||(connection.isClosed())){
-			try {
+			try{
 				
 				connection = DriverManager.
 						getConnection("jdbc:mysql://localhost/mydb"

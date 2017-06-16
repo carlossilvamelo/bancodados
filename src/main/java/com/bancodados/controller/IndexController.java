@@ -4,6 +4,7 @@ package com.bancodados.controller;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bancodados.DAOs.ConnectionManager;
+import com.bancodados.DAOs.DocenteDao;
+import com.bancodados.DAOs.EnderecoDao;
+import com.bancodados.dominio.Endereco;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 
@@ -20,13 +24,15 @@ import ch.qos.logback.core.net.SyslogOutputStream;
 @RequestMapping("/")
 public class IndexController {
 
+	@Autowired
+	
 	@RequestMapping(method= RequestMethod.GET)
 	public ModelAndView index(){
 		
 		//ModelAndView mv = new ModelAndView("index");
 		ModelAndView mv = new ModelAndView("index");
 		
-		try {
+		/*try {
 			Connection con = ConnectionManager.getConnection();
 			if(con != null){
 				System.out.println("conectado");
@@ -34,7 +40,18 @@ public class IndexController {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		
+		Endereco endereco = new Endereco();
+		endereco.setCep(52110000);
+		endereco.setId(10);
+		endereco.setNumero(340);
+		endereco.setEstado("pe");
+		endereco.setRua("rua");
+		
+	mv.addObject("endereco", endereco);
+		
+		
 		
 		return mv;
 	}
@@ -47,6 +64,7 @@ public class IndexController {
 		
 		//ModelAndView mv = new ModelAndView("index");
 		//ModelAndView mv = new ModelAndView("index");
+		
 		
 		return null;
 	}
