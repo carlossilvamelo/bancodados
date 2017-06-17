@@ -30,7 +30,7 @@
 
     <div class="divDadosCadastro ">
 
-      <form class="formCadastro form-signin" method="post" th:action="@{/cadastrar}">
+      <form class="formCadastro form-signin" method="get" th:action="@{/cadastrar}">
         <h2 class="form-signin-heading text-center">Crie uma nova conta!</h2>
 
         <input name="nome" type="text" id="inputNome" placeholder="Nome" class="form-control itensForm"/>
@@ -41,8 +41,8 @@
         <input name="senha" type="password" id="inputPassword" class="form-control itensForm" placeholder="Senha" />
 
         <fieldset>
-          <input name="rTipo" id="rDocente" type="radio"/><label for="rDocente">Docente</label>
-          <input name="rTipo" id="rDiscente" type="radio"/><label for="rDiscente">Discente</label>
+          <input name="rTipo" id="rDocente" type="radio" value="doc" /><label for="rDocente">Docente</label>
+          <input name="rTipo" id="rDiscente" type="radio" value="dis" /><label for="rDiscente">Discente</label>
         </fieldset>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Criar nova conta</button>

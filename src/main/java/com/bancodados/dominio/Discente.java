@@ -13,13 +13,7 @@ public class Discente extends Usuario{
 	private String reputacao;
 	
 	//construtores
-	public Discente(String nome, Integer idade, Integer cpf, Endereco endereco, String email,
-			String curriculo, Calendar dataNascimento, Identificacao identidicacao,
-			List<String> areasConhecimento, Long matricula, String reputacao) {
-		super(nome, idade, cpf, endereco, email, curriculo, dataNascimento, identidicacao);
-		this.matricula = matricula;
-		this.reputacao = reputacao;
-	}
+	
 	
 	public Discente() {
 		// TODO Auto-generated constructor stub

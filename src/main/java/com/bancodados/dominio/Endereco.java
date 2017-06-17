@@ -6,17 +6,11 @@ public class Endereco {
 	private Integer idEndereco;
 	private String rua;
 	private Integer numero;
-	private Integer cep;
+	private String cep;
 	private String estado;
 	
 
-	//Construtores
-	public Endereco(String rua, Integer numero, Integer cep, String estado) {
-		this.rua = rua;
-		this.numero = numero;
-		this.cep = cep;
-		this.estado = estado;
-	}
+	
 	
 	public Endereco() {
 		// TODO Auto-generated constructor stub
@@ -42,10 +36,10 @@ public class Endereco {
 	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
-	public Integer getCep() {
+	public String getCep() {
 		return cep;
 	}
-	public void setCep(Integer cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 	public String getEstado() {

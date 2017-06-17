@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bancodados.DAOs.ConnectionManager;
 import com.bancodados.DAOs.DocenteDao;
 import com.bancodados.DAOs.EnderecoDao;
+import com.bancodados.dominio.Discente;
+import com.bancodados.dominio.Docente;
 import com.bancodados.dominio.Endereco;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
@@ -73,12 +75,32 @@ public class IndexController {
 	public ModelAndView cadastrar(String nome,String sobreNome, String email
 			, String senha, String rTipo){
 		
-		//System.out.println(nome);
-		//System.out.println(sobreNome);
-	//	System.out.println(email);
-		//System.out.println(senha);
-		System.out.println(rTipo);
-		//ModelAndView mv = new ModelAndView("cadastro");
+		if(rTipo == "dis"){
+			Discente discente = new Discente();
+			discente.setNome(nome);
+			discente.setSobreNome(sobreNome);
+			discente.setEmail(email);
+			discente.setSenha(senha);
+			discente.setTipo(rTipo);
+			
+			
+		}else{
+			Docente docente = new Docente();
+			docente.setNome(nome);
+			docente.setSobreNome(sobreNome);
+			docente.setEmail(email);
+			docente.setSenha(senha);
+			docente.setTipo(rTipo);
+			
+			DocenteDao docenteDao = new DocenteDao();
+			try {
+				docenteDao.inserirDocente(docente);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		
 		return null;
 	}

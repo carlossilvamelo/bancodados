@@ -33,6 +33,10 @@ public class ConnectionManager {
 		return connection; 
 	}
 	
+	public static void closeConnection() throws SQLException{
+		connection.close();
+	}
+	
 	public static void setConnection(Connection con) {
 		connection = con;
 	}
