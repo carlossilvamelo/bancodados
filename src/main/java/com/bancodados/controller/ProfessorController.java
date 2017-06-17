@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/layout-professor")
 public class ProfessorController {
 
-	@GetMapping("/indexProfessor")
+	@GetMapping("/index-professor")
 	public ModelAndView indexProfessor(){
 		
 		ModelAndView mv = new ModelAndView("index-professor");
@@ -19,29 +19,29 @@ public class ProfessorController {
 		
 	}
 	
-	@GetMapping("/perfil")
+	@GetMapping("/perfil-professor")
 	public ModelAndView perfilAluno(){
 		
-		ModelAndView mv = new ModelAndView("perfil-aluno");
+		ModelAndView mv = new ModelAndView("/layout-professor/perfil-professor");
 		
 		
 		return mv;
 		
 	}
-	@GetMapping("/galeriaTrabalhos")
+	@GetMapping("/galeria-trabalhos")
 	public ModelAndView galeriaTrabalhos(){
 		
-		ModelAndView mv = new ModelAndView("galeria-trabalhos");
+		ModelAndView mv = new ModelAndView("/layout-professor/galeria-trabalhos");
 		
 		
 		return mv;
 		
 	}
 	
-	@GetMapping("/gerenciarContatos")
+	@GetMapping("/gerenciar-contatos")
 	public ModelAndView gerenciarContatos(){
 		
-		ModelAndView mv = new ModelAndView("gerenciar-contatos");
+		ModelAndView mv = new ModelAndView("layout-professor/gerenciar-contatos");
 		
 		
 		return mv;

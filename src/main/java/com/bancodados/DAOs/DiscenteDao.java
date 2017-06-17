@@ -1,7 +1,9 @@
 package com.bancodados.DAOs;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
@@ -10,7 +12,7 @@ import com.bancodados.dominio.Docente;
 public class DiscenteDao {
 	
 	
-	public void inserirDiscente(Docente discente) throws SQLException{
+	public void inserirDiscente(Discente discente) throws SQLException{
 		 // conectando
        //Connection con = ConnectionManager.getConnection();
 
@@ -51,4 +53,44 @@ public class DiscenteDao {
 		return discente;
 	}
 	
+	public Discente buscarDocentePorEmailSenha(String email, String senha){
+		Discente discente = null;
+		String sql = "select * from usuario"
+				+ "join endereco_usuario on id_usu = id_usu_end"
+				+ "join identificacao on login_usu = login_ide"
+				+ "join endereco_complemento on cep_usu = cep_com"
+				+ "join info_usuario on cpf_usu = cpf_inf;";
+		
+
+		PreparedStatement stmt;
+		try {
+			stmt = ConnectionManager.getConnection().prepareStatement(sql);
+			
+			stmt.setString(1, email);
+
+			// executa
+			stmt.execute();
+			
+			ResultSet resultSet =  stmt.getResultSet();
+			while(resultSet.next()){
+				discente = new Discente();
+				
+				discente.setCpf(resultSet.getString("cpf_usu"));
+				discente.setLogin(resultSet.getString("login_usu"));
+				discente.setEmail(resultSet.getString("email_usu"));
+				discente.getEndereco().setCep(resultSet.getString("cep_usu"));
+				discente.setTipo(resultSet.getString("tipo_uso"));
+				discente.setSenha(resultSet.getString("senha_ide"));
+			}
+			
+
+			stmt.close();
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return discente;
+	}
 }

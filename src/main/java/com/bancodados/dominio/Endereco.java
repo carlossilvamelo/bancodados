@@ -13,8 +13,16 @@ public class Endereco {
 	
 	
 	public Endereco() {
-		// TODO Auto-generated constructor stub
+		
+		
+		this.rua = "";
+		this.numero = 0;
+		this.cep = "";
+		this.estado = "";
 	}
+
+
+	
 	
 	
 	//getters and setters

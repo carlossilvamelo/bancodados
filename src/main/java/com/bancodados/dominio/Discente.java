@@ -9,7 +9,7 @@ public class Discente extends Usuario{
 	
 	// pode virar um enum
 	private Integer idTrabalho;
-	private Long matricula;
+	private String matricula;
 	private String reputacao;
 	
 	//construtores
@@ -22,15 +22,20 @@ public class Discente extends Usuario{
 	
 	//getters and setters
 	
-	public Long getMatricula() {
-		return matricula;
-	}
-	public void setMatricula(Long matricula) {
-		this.matricula = matricula;
-	}
+
 	public String getReputacao() {
 		return reputacao;
 	}
+	public String getMatricula() {
+		return matricula;
+	}
+
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+
 	public void setReputacao(String reputacao) {
 		this.reputacao = reputacao;
 	}

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout-professor/header-professor">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -22,19 +24,14 @@
     <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
     <script src="../js/global.js"></script>
     <link href="../css/css_perfil.css" rel="stylesheet"/>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script>
-        $(function(){
-            $("#header").load("header-professor.html");
-        });
-    </script>
-
+    
 
 </head>
 <body class="backColor">
 
 
-        <nav id="header"></nav>
+       <section layout:fragment="conteudo">
+       	
 
 
         <div id="divInfoPerfil" class="container-fluid  col-md-6 ">
@@ -186,7 +183,7 @@
             <h2>Áreas de pesquisa</h2>
 
             <div class="addAreaConhecimento">
-                <select id=x>
+                <select id="x">
                     <option value="" >Escolha uma área</option>
                     <option value="usa" >Usa</option>
                     <option value="ca" >Canada</option>
@@ -206,7 +203,8 @@
 
             </table>
         </div>
-
+       	
+       </section>
 
 
 
