@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout-professor/header-professor">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -23,52 +25,21 @@
     <script src="../js/global.js" type="text/javascript"></script>
 
 
-
-
 </head>
 <body class="backColor">
 
 
-<nav  class="navegador col-md-12 navbar navbar-default navbar-fixed-top ">
-    <div id="menuProf" class="container-fluid">
-
-        <div id="imgLogoCabecalho" class="navbar-header ">
-            <a class="navbar-brand" href="index-professor.html">
-                <img alt="Brand" src="../imagens/icone-brand.png"/>
-            </a>
-        </div>
-        <h1>Post<wbr>Acad</h1>
-
-
-        <div id="dropdownPerfil" class="">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> olá usuário!</a>
-                <ul>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-            </li>
-        </div>
-
-    </div>
-
-
-    <div id="barraNavegacao" class=" barraNavegacaoProfessor span12 navbar-default nav-justified  ">
-        <a href="galeria-trabalhos.html" type="button" class="btn btn-default navbar-btn ">Galeria de trabalhos</a>
-        <a href="gerenciar-contatos.html" type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
-        <a href="perfil-professor.html" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
-    </div>
-
-</nav>
-
-
+	<section layout:fragment="conteudo">
+		
 <div id="" class="divListaTrabalhos col-sm-push-1 col-md-10">
     <h1>Galeria de trabalhos</h1>
 
     <div class="menuListaTrabalhos">
-        <a href=""type="button" class="criarNovoTrabalho btn btn-primary navbar-btn">Criar novo trabalho</a>
+
         <div class="buscarTrabalho">
 
             <input type="text" placeholder="Titulo/palavra chave" />
-            <a href=""type="button" class="  btn btn-primary navbar-btn">Buscar</a>
+            <a href="" type="button" class="  btn btn-primary navbar-btn">Buscar</a>
         </div>
 
     </div>
@@ -76,7 +47,7 @@
 
 
 
-    <br>
+    <br/>
     <table class="meusTrabalhos">
         <tr>
             <td>
@@ -87,13 +58,22 @@
                     resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo </p>
 
 
-                <a href=""type="button" class="gerenciar btn btn-primary navbar-btn">Gerenciar</a>
-                <br>
-
+                <a href="#" type="button" class="gerenciar btn btn-primary navbar-btn" onclick="fecharAbrirChat('divVisualizarTrabalho')">Visualizar</a>
+                <br/>
             </td>
+            <div id="divVisualizarTrabalho" class="visualizarTrabalho">
+                <span onclick="fecharAbrirChat('divVisualizarTrabalho')"  style="float: right" class=" glyphicon glyphicon-remove"></span>
+
+                <h4>Avaliação do professor</h4>
+                <textarea name="textoAvaliacao" cols="30" rows="10"></textarea>
+                <a href="#" type="button" class="gerenciar btn btn-primary navbar-btn" >Avaliar</a>
+
+            </div>
         </tr>
     </table>
 </div>
+		
+	</section>
 
 
 

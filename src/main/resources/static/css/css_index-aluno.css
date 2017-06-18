@@ -7,6 +7,12 @@
 
 /* div conteudo*/
 
+div#divConteudo::-webkit-scrollbar{
+    display: none;
+}
+.listaContatos::-webkit-scrollbar{
+    display: none;
+}
 div#divConteudo{
 
     display: block;
@@ -19,9 +25,6 @@ div#divConteudo{
     text-align: center;
     overflow:auto;
     word-wrap: break-word;
-    border-right: 3px solid var(--corCinza);
-    border-bottom: 3px solid var(--corCinza);
-    border-radius: 10px;
 
 
 
@@ -66,13 +69,13 @@ div#divLadoDireito{
 }
 .listaContatos table tr td{
     padding: 3px;
-    background-color: rgba(47, 197, 239, 0.26);
+    background-color: white;
     width: 400px;
     height: 50px;
     border-bottom: 1px solid rgba(0, 66, 104, 0.68);
 }
 .listaContatos table tr td:hover{
-    background-color: rgba(255, 255, 255, 0.54);
+    background-color: var(--alunoHover);
 }
 
 .listaContatos table tr td h4{
@@ -89,8 +92,9 @@ div#divLadoDireito{
 }
 
 .timeLine td{
-    margin-bottom: 10px;
+
     padding: 5px;
+    border: 2px solid var(--alunoHover);
 
 }
 .timeLine td:hover{

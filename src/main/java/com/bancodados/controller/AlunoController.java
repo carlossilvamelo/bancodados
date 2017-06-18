@@ -13,7 +13,16 @@ public class AlunoController {
 	@GetMapping("/perfil-aluno")
 	public ModelAndView perfilAluno(){
 		
-		ModelAndView mv = new ModelAndView("perfil-aluno");
+		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
+		
+		
+		return mv;
+		
+	}
+	@GetMapping("/index-aluno")
+	public ModelAndView indexAluno(){
+		
+		ModelAndView mv = new ModelAndView("index-aluno");
 		
 		
 		return mv;
@@ -33,9 +42,9 @@ public class AlunoController {
 	@GetMapping("/gerenciar-contatos")
 	public ModelAndView gerenciarContatos(){
 		
-		ModelAndView mv = new ModelAndView("gerenciar-contatos");
+		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
 		
-		
+		System.out.println("gerenciar contatos");
 		return mv;
 		
 	}

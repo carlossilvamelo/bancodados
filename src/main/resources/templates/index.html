@@ -30,8 +30,8 @@
 
   <img class="img-responsive center-block" src="imagens/escudo.png"/>
 
-  <form class="form-signin"  th:action="@{/login}">
-    <h2 class="form-signin-heading text-center">Identifique-se</h2>
+  <form class="form-signin"  method="get" th:action="@{/login}">
+    <h2 class="form-signin-heading text-center heading-login">Identifique-se</h2>
     <label for="inputEmail" class="sr-only ">Email</label>
     <input name="email" type="email" id="inputEmail" class="form-control itensForm" placeholder="Email"  />
     <label for="inputPassword" class="sr-only">Senha</label>
@@ -43,7 +43,7 @@
   </form>
 
 </div> <!-- /container -->
-<a th:href="@{cadastro}" class="btn btn-primary criarConta">Criar nova conta</a>
+<a href="cadastro.html" class="btn btn-primary criarConta">Criar nova conta</a>
 
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

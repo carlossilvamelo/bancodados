@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout-aluno/header-aluno">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -22,43 +24,15 @@
     <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
     <script src="../js/global.js"></script>
 
-
+    
 
 </head>
 <body >
 
 
-        <nav  class="navegador col-md-12 navbar navbar-default navbar-fixed-top ">
-            <div id="menu" class="container-fluid">
 
-                <div id="imgLogoCabecalho" class="navbar-header ">
-                    <a class="navbar-brand" href="index-aluno.html">
-                        <img alt="Brand" src="../imagens/icone-brand.png"/>
-                    </a>
-                </div>
-                <h1>Post<wbr/>Acad</h1>
-
-
-                <div id="dropdownPerfil" class="">
-                    <li>
-                    <a href="#"><span class="glyphicon glyphicon-user"></span> olá usuário!</a>
-                        <ul>
-                            <li><a href="#logout">Logout</a></li>
-                        </ul>
-                    </li>
-                </div>
-
-            </div>
-
-
-            <div id="barraNavegacao" class=" barraNavegacaoAluno span12 navbar-default nav-justified">
-                <a th:href="@{/layout-aluno/trabalhos-aluno}" type="button" class="btn btn-default navbar-btn ">Gerenciar trabalhos</a>
-                <a th:href="@{gerenciar-contatos}" type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
-                <a th:href="@{perfil-aluno}" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
-            </div>
-
-        </nav>
-
+     <section layout:fragment="conteudo">
+     
         <div id="divConteudo" class="container-fluid col-sm-push-1 col-md-7 ">
 
             <table class="timeLine">
@@ -70,9 +44,9 @@
                         resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo
                         resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo </p>
 
-                    <a  type="button" class="btn botaoCurtirComentar glyphicon glyphicon-thumbs-up"> Cutir</a>
+                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon-thumbs-up"> Curtir</a>
 
-                    <a type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" onclick="fecharAbrirChat('divComentarios')"> Comentar</a>
+                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" onclick="fecharAbrirChat('divComentarios')"> Comentar</a>
 
                     <a href="#" type="button" class="botaoVisualizar btn btn-default navbar-btn">Visualizar</a>
                     <br/>
@@ -107,8 +81,10 @@
                         </div>
                     </div>
                 </td>
+
             </tr>
-                
+
+
             </table>
 
 
@@ -119,24 +95,46 @@
 
          <div class="panel panel-primary">
 
-             <div class="panel-heading">
+             <div class="panel-heading" style="background-color: var(--alunoAzul);">
                  <span class="glyphicon glyphicon-user"></span> contatos
 
              </div>
 
             <div class="listaContatos">
-                <table>
+                <table >
                     <tr class="">
                         <td><h4>contato 1</h4>
-                            <a  type="button" class="btn btn-default navbar-btn" onclick="Mudarestado('caixaDeChats')">Conversar</a>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
                         </td>
 
                     </tr>
+
                     <tr class="">
                         <td><h4>contato 2</h4>
-                            <a  type="button" class="btn btn-default navbar-btn" onclick="Mudarestado('caixaDeChats')">Conversar</a>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
                         </td>
-					</tr>
+                    </tr>
+                    <tr class="">
+                        <td><h4>contato 2</h4>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td><h4>contato 2</h4>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td><h4>contato 2</h4>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td><h4>contato 2</h4>
+                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
+                        </td>
+                    </tr>
+
 
 
                 </table>
@@ -177,12 +175,12 @@
                                 <span class="input-group-btn">
                             <button class="btn btn-warning btn-sm" id="btn-chat">
                                 Send</button>
-                        		</span>
+                        </span>
                             </div>
                         </div>
                     </div>
                 </div>
-
+     </section>
 
 
 </body>

@@ -4,16 +4,19 @@
     Estilos especificos da pagina de gerenciamento de trabalhos do aluno
 */
 
-
+.divListaTrabalhos::-webkit-scrollbar{
+    display: none;
+}
+.divListaTrabalhos::-webkit-scrollbar{
+    display: none;
+}
 .divListaTrabalhos{
 
     height: 450px;
     display: block;
     position: relative;
     margin-top: 120px;
-    border-right: 3px solid var(--corCinza);
-    border-bottom: 3px solid var(--corCinza);
-    border-radius: 10px;
+
     overflow-y: scroll;
 }
 .divListaTrabalhos h1{
@@ -29,8 +32,7 @@
     padding-right: 15px;
     font-weight: bolder;
     color: black;
-    border: 1px solid rgba(0, 0, 0, 0.28);
-    border-radius: 50px;
+
 }
 .meusTrabalhos tr{
     border-right: 2px solid var(--alunoHover);
@@ -41,7 +43,7 @@
 
 }
 .meusTrabalhos tr:hover{
-    transition:background-color .5s ;
+    transition:background-color .5s;
     background-color: var(--alunoHover);
 }
 

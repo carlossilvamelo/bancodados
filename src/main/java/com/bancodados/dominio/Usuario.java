@@ -1,5 +1,6 @@
 package com.bancodados.dominio;
 
+import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
@@ -8,30 +9,24 @@ public class Usuario {
 	
 	private Integer usuarioId;
 	private String nome;
-	private Integer idade;
-	private Integer cpf;
-	private Endereco endereco;
+	private String sobreNome;
+	private String login;
+	private String senha;
+	private String tipo;
+	private String cpf;
+	private Endereco endereco = new Endereco();
 	private String email;
 	private String curriculo;
-	private Calendar dataNascimento;
+	private Date dataNascimento;
 	private Identificacao identidicacao;
 	private List<String> areasConhecimentos;
+	private List<Mensagem> mensagens;
+	
 	
 	
 	
 	//contrutores
-	public Usuario(String nome, Integer idade, Integer cpf, Endereco endereco, String email,
-			String curriculo, Calendar dataNascimento, Identificacao identidicacao) {
-		super();
-		this.nome = nome;
-		this.idade = idade;
-		this.cpf = cpf;
-		this.endereco = endereco;
-		this.email = email;
-		this.curriculo = curriculo;
-		this.dataNascimento = dataNascimento;
-		this.identidicacao = identidicacao;
-	}
+	
 
 	public Usuario() {
 		// TODO Auto-generated constructor stub
@@ -60,21 +55,27 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public Integer getIdade() {
-		return idade;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setIdade(Integer idade) {
-		this.idade = idade;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
-	public Integer getCpf() {
+	
+
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+
+
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
+
 
 	public Endereco getEndereco() {
 		return endereco;
@@ -100,13 +101,7 @@ public class Usuario {
 		this.curriculo = curriculo;
 	}
 
-	public Calendar getDataNascimento() {
-		return dataNascimento;
-	}
 
-	public void setDataNascimento(Calendar dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
 
 	public Identificacao getIdentidicacao() {
 		return identidicacao;
@@ -123,6 +118,64 @@ public class Usuario {
 	public void setAreasConhecimentos(List<String> areasConhecimentos) {
 		this.areasConhecimentos = areasConhecimentos;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public List<Mensagem> getMensagens() {
+		return mensagens;
+	}
+
+	public void setMensagens(List<Mensagem> mensagens) {
+		this.mensagens = mensagens;
+	}
+
+	public Integer getUsuarioId() {
+		return usuarioId;
+	}
+
+	public void setUsuarioId(Integer usuarioId) {
+		this.usuarioId = usuarioId;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+
+
+	public String getSobreNome() {
+		return sobreNome;
+	}
+
+
+
+	public void setSobreNome(String sobreNome) {
+		this.sobreNome = sobreNome;
+	}
+
+
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	
 	
 	//getters and setters
 	
