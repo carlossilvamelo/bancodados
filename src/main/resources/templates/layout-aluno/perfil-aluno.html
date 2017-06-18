@@ -1,218 +1,249 @@
 <!DOCTYPE html>
-<html lang="pt-br"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout-aluno/header-aluno">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta name="description" content="identificação"/>
-    <meta name="author" content=""/>
-    <link rel="icon" href="../imagens/favicon/favicon.ico"/>
-    <title>postAcad</title>
+<meta name="description" content="identificação" />
+<meta name="author" content="" />
+<link rel="icon" href="../imagens/favicon/favicon.ico" />
+<title>postAcad</title>
 
-    <link href="../css-bootstrap/bootstrap.css" rel="stylesheet"/>
-    <link href="../css/global.css" rel="stylesheet"/>
-    <link href="../css/css_perfil.css" rel="stylesheet"/>
-    <link href="../css/css_barra-navegacao-aluno.css" rel="stylesheet"/>
-    <link href="../css-bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
-    <link href="../css-bootstrap/signin.css" rel="stylesheet"/>
-    <script src="../js-bootstrap/bootstrap.js"></script>
-    <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
-    <script src="../js/global.js" type="text/javascript"></script>
-    
+<link href="../css-bootstrap/bootstrap.css" rel="stylesheet" />
+<link href="../css/global.css" rel="stylesheet" />
+<link href="../css/css_perfil.css" rel="stylesheet" />
+<link href="../css/css_barra-navegacao-aluno.css" rel="stylesheet" />
+<link href="../css-bootstrap/ie10-viewport-bug-workaround.css"
+	rel="stylesheet" />
+<link href="../css-bootstrap/signin.css" rel="stylesheet" />
+<script src="../js-bootstrap/bootstrap.js"></script>
+<script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
+<script src="../js/global.js" type="text/javascript"></script>
+
 
 </head>
 
 <body>
 
 
-    
-<section layout:fragment="conteudo">
+
+	<section layout:fragment="conteudo">
 
 
-<div id="divInfoPerfil" class="container-fluid  col-md-6 ">
+		<div id="divInfoPerfil" class="container-fluid  col-md-6 ">
 
-    <h2> Gerenciamento de informações de perfil</h2>
-    <table >
-        <tr>
-            <td>
-                <p>Nome:</p> <span></span>
-                <a type="button" class="btn btn-default " onclick="mudarEstado('divNome')">Editar</a>
-                <br/>
-                <div id="divNome" class="edicao">
-                    <input name="nome" type="text" placeholder="Nome"/>
-                    <a href="#"  class="btn btn-default "> Salvar</a>
-                </div>
-            </td>
-        </tr>
+			<h2>Gerenciamento de informações de perfil</h2>
+			<table>
+				<tr>
+					<td>
+						<p>Nome:</p> <span th:text="${session.discente.nome}"></span> <a
+						type="button" class="btn btn-default "
+						onclick="mudarEstado('divNome')">Editar</a> <br />
+						<div id="divNome" class="edicao">
+							<form th:action="@{/layout-aluno/attNome(sessao=${session})}"
+								method="get">
+								<input name="nome" type="text" placeholder="Nome" />
+								<button type="submit">salvar</button>
+							</form>
+						</div>
+					</td>
+				</tr>
 
-        <tr>
-            <td>
-                <p>Sobrenome:</p> <span></span>
-                <a type="button" class="btn btn-default " onclick="mudarEstado('divSobrenome')">Editar</a>
-                <br/>
-                <div id="divSobrenome" class="edicao">
-                    <input name="sobreNome" type="text" placeholder="Sobrenome"/>
-                    <a href="#"  class="btn btn-default "> Salvar</a>
-                </div>
-            </td>
-        </tr>
+				<tr>
+					<td>
+						<p>Sobrenome:</p> <span th:text="${session.discente.sobreNome}"></span>
+						<a type="button" class="btn btn-default "
+						onclick="mudarEstado('divSobrenome')">Editar</a> <br />
+						<div id="divSobrenome" class="edicao">
 
-        <tr>
-            <td>
-                <p>Matrícula:</p> <span></span>
-                <a type="button" class="btn btn-default " onclick="mudarEstado('divMatricula')">Editar</a>
-                <br/>
-                <div id="divMatricula" class="edicao">
-                    <input name="matricula" type="text" placeholder="Senha"/>
-                    <a href="#"  class="btn btn-default "> Salvar</a>
-                </div>
-            </td>
-        </tr>
+							<form
+								th:action="@{/layout-aluno/attSobreNome(sessao=${session})}"
+								method="get">
+								<input name="sobreNome" type="text" placeholder="Sobrenome" />
+								<button type="submit">salvar</button>
+							</form>
 
-        <tr>
-            <td>
-                <p>Email:</p> <span></span>
-                <a href="#" type="button" class="btn btn-default " onclick="mudarEstado('divEmail')">Editar</a>
-                <br/>
-                <div id="divEmail" class="edicao">
-                    <input name="email" type="text" placeholder="Email"/>
-                    <a href="#"  class="btn btn-default "> Salvar</a>
-                </div>
-            </td>
-        </tr>
+						</div>
+					</td>
+				</tr>
 
-        <tr>
-            <td>
-                <p>CPF:</p> <span></span>
-                <a type="button" class="btn btn-default " onclick="mudarEstado('divCPF')">Editar</a>
-                <br/>
-                <div id="divCPF" class="edicao">
-                    <input name="cpf" type="text" placeholder="CPF"/>
-                    <a href=""  class="btn btn-default "> Salvar</a>
-                </div>
-            </td>
-        </tr>
+				<tr>
+					<td>
+						<p>Matrícula:</p> <span th:text="${session.discente.matricula}"></span>
+						<a type="button" class="btn btn-default "
+						onclick="mudarEstado('divMatricula')">Editar</a> <br />
+						<div id="divMatricula" class="edicao">
 
-        <tr>
-            <td>
-                <p>Data de nascimento:</p> <span></span>
-                <a type="button" class="btn btn-default " onclick="mudarEstado('divNascimento')">Editar</a>
-                <br/>
-                <div id="divNascimento" class="edicao">
-                    <input name="dataNascimento" type="date" placeholder="Data de nascimento"/>
-                    <a href="#"  class="btn btn-default "> Salvar</a>
-                </div>
-            </td>
-        </tr>
+							<form
+								th:action="@{/layout-aluno/attMatricula(sessao=${session})}">
+								<input name="matricula" type="text" placeholder="matricula" />
+								<button type="submit">salvar</button>
+							</form>
+						</div>
+					</td>
+				</tr>
 
-        <tr>
-            <td>
-                <p>Currículo:</p> <span></span>
-                <a type="button" class="btn btn-default " onclick="mudarEstado('divNascimento')">Editar</a>
-                <br/>
-                <div id="divCurriculo" class="edicao">
-                    <input name="curriculo" type="date" placeholder="Curriculo"/>
-                    <a href="#"  class="btn btn-default "> Salvar</a>
-                </div>
-            </td>
-        </tr>
+				<tr>
+					<td>
+						<p>Email:</p> <span th:text="${session.discente.email}"></span> <a
+						href="#" type="button" class="btn btn-default "
+						onclick="mudarEstado('divEmail')">Editar</a> <br />
+						<div id="divEmail" class="edicao">
+							<form th:action="@{/layout-aluno/attEmail(sessao=${session})}">
+								<input name="email" type="text" placeholder="Email" />
+								<button type="submit">salvar</button>
+							</form>
+						</div>
+					</td>
+				</tr>
 
-        <tr>
-            <td>
-                <p>Login:</p> <span></span>
-                <a type="button" class="btn btn-default " onclick="mudarEstado('divLogin')">Editar</a>
-                <br/>
-                <div id="divLogin" class="edicao">
-                    <input name="login" type="text" placeholder="Login"/>
-                    <a href="#"  class="btn btn-default "> Salvar</a>
-                </div>
-            </td>
-        </tr>
+				<tr>
+					<td>
+						<p>CPF:</p> <span th:text="${session.discente.cpf}"></span> <a
+						type="button" class="btn btn-default "
+						onclick="mudarEstado('divCPF')">Editar</a> <br />
+						<div id="divCPF" class="edicao">
+							<form th:action="@{/layout-aluno/attCpf(sessao=${session})}">
+								<input name="cpf" type="text" placeholder="CPF" />
+								<button type="submit">salvar</button>
+							</form>
+						</div>
+					</td>
+				</tr>
 
-        <tr>
-            <td>
-                <p>Senha:</p> <span></span>
-                <a type="button" class="btn btn-default " onclick="mudarEstado('divSenha')">Editar</a>
-                <br/>
-                <div id="divSenha" class="edicao">
-                    <input name="senha" type="text" placeholder="Senha"/>
-                    <a href="#"  class="btn btn-default "> Salvar</a>
-                </div>
-            </td>
-        </tr>
+				<tr>
+					<td>
+						<p>Data de nascimento:</p> <span
+						th:text="${session.discente.dataNascimento}"></span> <a
+						type="button" class="btn btn-default "
+						onclick="mudarEstado('divNascimento')">Editar</a> <br />
+						<div id="divNascimento" class="edicao">
+							<form
+								th:action="@{/layout-aluno/attDataNascimento(sessao=${session})}">
+								<input name="dataNascimento" type="date"
+									placeholder="Data de nascimento" />
+								<button type="submit">salvar</button>
+							</form>
+						</div>
+					</td>
+				</tr>
 
-    </table>
+				<tr>
+					<td>
+						<p>Currículo:</p> <span th:text="${session.discente.curriculo}"></span>
+						<a type="button" class="btn btn-default "
+						onclick="mudarEstado('divCurriculo')">Editar</a> <br />
+						<div id="divCurriculo" class="edicao">
+							<form
+								th:action="@{/layout-aluno/attCurriculo(sessao=${session})}">
+								<input name="curriculo" type="text" placeholder="Curriculo" />
+								<button type="submit">salvar</button>
+							</form>
+						</div>
+					</td>
+				</tr>
 
-    <table class="container-fluid  col-md-6 ">
-        <h3 style="text-align: center">Endereço</h3>
-        <tr>
-        <td>
-            <p>Cep:</p> <span></span>
-            <a type="button" class="btn btn-default " onclick="mudarEstado('divSenha')">Editar</a>
-            <br/>
-            <div id="divCep" class="edicao">
-                <input name="cep" type="text" placeholder="cep"/>
-                <a href="#"  class="btn btn-default "> Salvar</a>
-            </div>
-        </td>
-        </tr>
-        <tr>
-            <td>
-                <p>Rua:</p> <span></span>
-                <a type="button" class="btn btn-default " onclick="mudarEstado('divSenha')">Editar</a>
-                <br/>
-                <div id="divRua" class="edicao">
-                    <input name="rua" type="text" placeholder="Rua"/>
-                    <a href="#"  class="btn btn-default "> Salvar</a>
-                </div>
-            </td>
-        </tr>
+				<tr>
+					<td>
+						<p>Login:</p> <span th:text="${session.discente.login}"></span> <a
+						type="button" class="btn btn-default "
+						onclick="mudarEstado('divLogin')">Editar</a> <br />
+						<div id="divLogin" class="edicao">
+							<form th:action="@{/layout-aluno/attLogin(sessao=${session})}">
+								<input name="login" type="text" placeholder="Login" />
+								<button type="submit">salvar</button>
+							</form>
+						</div>
+					</td>
+				</tr>
 
-        <tr>
-            <td>
-                <p>Número:</p> <span></span>
-                <a type="button" class="btn btn-default " onclick="mudarEstado('divSenha')">Editar</a>
-                <br/>
-                <div id="divNumero" class="edicao">
-                    <input name="numero" type="text" placeholder="Número"/>
-                    <a href="#"  class="btn btn-default "> Salvar</a>
-                </div>
-            </td>
-        </tr>
+				<tr>
+					<td>
+						<p>Senha:</p> <span th:text="${session.discente.senha}"></span> <a
+						type="button" class="btn btn-default "
+						onclick="mudarEstado('divSenha')">Editar</a> <br />
+						<div id="divSenha" class="edicao">
+							<form th:action="@{/layout-aluno/attSenha(sessao=${session})}">
+								<input name="senha" type="text" placeholder="Senha" />
+								<button type="submit">salvar</button>
+							</form>
+						</div>
+					</td>
+				</tr>
+
+			</table>
+
+			<table class="container-fluid  col-md-6 ">
+				<h3 style="text-align: center">Endereço</h3>
+				<tr>
+					<td>
+						<p>Cep:</p> <span th:text="${session.discente.endereco.cep}"></span>
+						<a type="button" class="btn btn-default "
+						onclick="mudarEstado('divCep')">Editar</a> <br />
+						<div id="divCep" class="edicao">
+							<form th:action="@{/layout-aluno/attCep(sessao=${session})}">
+								<input name="cep" type="text" placeholder="cep" />
+								<button type="submit">salvar</button>
+							</form>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Rua:</p> <span th:text="${session.discente.endereco.rua}"></span>
+						<a type="button" class="btn btn-default "
+						onclick="mudarEstado('divRua')">Editar</a> <br />
+						<div id="divRua" class="edicao">
+							<form th:action="@{/layout-aluno/attRua(sessao=${session})}">
+								<input name="rua" type="text" placeholder="Rua" />
+								<button type="submit">salvar</button>
+							</form>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<p>Número:</p> <span th:text="${session.discente.endereco.numero}"></span>
+						<a type="button" class="btn btn-default "
+						onclick="mudarEstado('divNumero')">Editar</a> <br />
+						<div id="divNumero" class="edicao">
+							<form th:action="@{/layout-aluno/attNumero(sessao=${session})}">
+								<input name="numero" type="text" placeholder="Número" />
+								<button type="submit">salvar</button>
+							</form>
+						</div>
+					</td>
+				</tr>
 
 
 
-    </table>
-</div>
+			</table>
+		</div>
 
-<div id="divAreaConhecimento" class="col-md-4">
-    <h2>Áreas de conhecimento</h2>
-    <div class="addAreaConhecimento">
-        <select id="x">
-            <option value="" >Escolha uma área</option>
-            <option value="usa" >Usa</option>
-            <option value="ca" >Canada</option>
-            <option value="me" >Mexico</option>
-        </select>
-        <a type="button" class="btn btn-primary ">Adicionar</a>
-    </div>
-    <table class="col-md-12 itemArea">
-        <tr>
-            <td>
-                <span>Área</span>
-                <a type="button" class="btn btn-default ">Excluir</a>
+		<div id="divAreaConhecimento" class="col-md-4">
+			<h2>Áreas de conhecimento</h2>
+			<div class="addAreaConhecimento">
+				<select id="x">
+					<option value="">Escolha uma área</option>
+					<option value="usa">Usa</option>
+					<option value="ca">Canada</option>
+					<option value="me">Mexico</option>
+				</select> <a type="button" class="btn btn-primary ">Adicionar</a>
+			</div>
+			<table class="col-md-12 itemArea">
+				<tr>
+					<td><span>Área</span> <a type="button"
+						class="btn btn-default ">Excluir</a></td>
+				</tr>
 
-            </td>
-        </tr>
-
-    </table>
-</div>
-</section>
+			</table>
+		</div>
+	</section>
 
 
 
