@@ -96,7 +96,68 @@ public class ConsultasProjetoWeb {
 
 
 	}
-
+	
+	public void atualizarDiscente(Discente discente){
+		String sql = "UPDATE usuario SET  cpf = ?, login = ?, senha = ?, email = ?, nome = ?,"
+				+ " sobre_nome = ?, matricula = ?,"
+				+ "data_nascimento = ?, curriculo = ?, cep = ?, rua = ?, numero = ?, estado = ?, tipo = ? "
+				+ "WHERE id = ?";
+		PreparedStatement stmt;
+		try {
+			stmt = ConnectionManager.getConnection().prepareStatement(sql);
+			stmt.setString(1, discente.getCpf());
+			stmt.setString(2, discente.getLogin());
+			stmt.setString(3, discente.getSenha());
+			stmt.setString(4, discente.getEmail());
+			stmt.setString(5, discente.getNome());
+			stmt.setString(6, discente.getSobreNome());
+			stmt.setString(7, discente.getMatricula());
+			stmt.setDate(8, discente.getDataNascimento());
+			stmt.setString(9,discente.getCurriculo());
+			stmt.setString(10, discente.getEndereco().getCep());
+			stmt.setString(11, discente.getEndereco().getRua());
+			stmt.setInt(12, discente.getEndereco().getNumero());
+			stmt.setString(13, discente.getEndereco().getEstado());
+			stmt.setString(14, discente.getTipo());
+			stmt.setInt(15, discente.getId());
+			
+			// execute insert SQL stetement
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public void atualizarDocente(Docente docente){
+		String sql = "UPDATE usuario SET  cpf = ?, login = ?, senha = ?, email = ?, nome = ?,"
+				+ " sobre_nome = ?, data_nascimento = ?, curriculo = ?, cep = ?, rua = ?,"
+				+ " numero = ?, estado = ?, tipo = ? WHERE id = ?";
+		PreparedStatement stmt;
+		try {
+			stmt = ConnectionManager.getConnection().prepareStatement(sql);
+			stmt.setString(1, docente.getCpf());
+			stmt.setString(2, docente.getLogin());
+			stmt.setString(3, docente.getSenha());
+			stmt.setString(4, docente.getEmail());
+			stmt.setString(5, docente.getNome());
+			stmt.setString(6, docente.getSobreNome());
+			stmt.setDate(7, docente.getDataNascimento());
+			stmt.setString(8,docente.getCurriculo());
+			stmt.setString(9, docente.getEndereco().getCep());
+			stmt.setString(10, docente.getEndereco().getRua());
+			stmt.setInt(11, docente.getEndereco().getNumero());
+			stmt.setString(12, docente.getEndereco().getEstado());
+			stmt.setString(13, docente.getTipo());
+			stmt.setInt(14, docente.getId());
+			
+			// execute insert SQL stetement
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void inserirDocente(Docente docente) {
 		// conectando
@@ -162,7 +223,7 @@ public class ConsultasProjetoWeb {
 			ResultSet resultSet =  stmt.getResultSet();
 			while(resultSet.next()){
 				discente = new Discente();
-
+				discente.setId(resultSet.getInt("id"));
 				discente.setCpf(resultSet.getString("cpf"));
 				discente.setLogin(resultSet.getString("login"));
 				discente.setSenha(resultSet.getString("senha"));
@@ -209,7 +270,7 @@ public class ConsultasProjetoWeb {
 			ResultSet resultSet =  stmt.getResultSet();
 			while(resultSet.next()){
 				docente = new Docente();
-
+				docente.setId(resultSet.getInt("id"));
 				docente.setCpf(resultSet.getString("cpf"));
 				docente.setLogin(resultSet.getString("login"));
 				docente.setSenha(resultSet.getString("senha"));

@@ -7,9 +7,10 @@
 .divListaTrabalhos::-webkit-scrollbar{
     display: none;
 }
-.divListaTrabalhos::-webkit-scrollbar{
+.divListaTrabalhosProf::-webkit-scrollbar{
     display: none;
 }
+
 .divListaTrabalhos{
 
     height: 450px;
@@ -26,6 +27,7 @@
     text-align: center;
     border-radius: 50px;
 }
+
 .menuListaTrabalhos{
     background-color: var(--alunoHover);
     padding-left: 15px;
@@ -35,16 +37,30 @@
 
 }
 .meusTrabalhos tr{
-    border-right: 2px solid var(--alunoHover);
-    border-bottom: 2px solid var(--alunoHover);
+    border-right: 2px solid var(--fundoConteudoAluno);
+    border-bottom: 2px solid var(--fundoConteudoAluno);
     border-radius: 10px;
     text-align: center;
     padding: 10px;
 
 }
 .meusTrabalhos tr:hover{
-    transition:background-color .5s;
-    background-color: var(--alunoHover);
+    transition:background-color 1s;
+    background-color: var(--fundoConteudoAluno);
+}
+
+
+.meusTrabalhosProf tr{
+    border-right: 2px solid var(--fundoConteudoProfessor);
+    border-bottom: 2px solid var(--fundoConteudoProfessor);
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+
+}
+.meusTrabalhosProf tr:hover{
+    transition:background-color 1s;
+    background-color: var(--fundoConteudoProfessor);
 }
 
 

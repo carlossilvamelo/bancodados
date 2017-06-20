@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Header-Geral</title>
@@ -17,9 +19,9 @@
 
 
         <div id="dropdownPerfil" class="">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> olá usuário!</a>
+            <li><a href="#"><span class="glyphicon glyphicon-user" th:text="'Olá ' + ${session.discente.nome}"></span> </a>
                 <ul>
-                    <li><a href="#">Logout</a></li>
+                    <li><a th:href="@{http://localhost:8080}">Logout</a></li>
                 </ul>
             </li>
         </div>
@@ -30,7 +32,7 @@
     <div id="barraNavegacao" class="barraNavegacaoAluno span12 navbar-default nav-justified  ">
                 <a th:href="@{~/layout-aluno/trabalhos-aluno}" type="button" class="btn btn-default navbar-btn ">Gerenciar trabalhos</a>
                 <a th:href="@{~/layout-aluno/gerenciar-contatos}" type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
-                <a th:href="@{~/layout-aluno/perfil-aluno(id=${session.discente.cpf})}" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
+                <a th:href="@{~/layout-aluno/perfil-aluno}" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
             </div>
 
 </nav>
