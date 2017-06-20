@@ -41,13 +41,13 @@
 				<tr>
 					<td>
 						<p>Nome:</p> <span th:text="${session.discente.nome}"></span> <a
-						type="button" class="btn btn-default "
+						type="button" class="btn btn-primary "
 						onclick="mudarEstado('divNome')">Editar</a> <br />
 						<div id="divNome" class="edicao">
 							<form th:action="@{/layout-aluno/attNome(sessao=${session})}"
 								method="get">
 								<input name="nome" type="text" placeholder="Nome" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 						</div>
 					</td>
@@ -56,7 +56,7 @@
 				<tr>
 					<td>
 						<p>Sobrenome:</p> <span th:text="${session.discente.sobreNome}"></span>
-						<a type="button" class="btn btn-default "
+						<a type="button" class="btn btn-primary "
 						onclick="mudarEstado('divSobrenome')">Editar</a> <br />
 						<div id="divSobrenome" class="edicao">
 
@@ -64,7 +64,7 @@
 								th:action="@{/layout-aluno/attSobreNome(sessao=${session})}"
 								method="get">
 								<input name="sobreNome" type="text" placeholder="Sobrenome" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 
 						</div>
@@ -74,14 +74,14 @@
 				<tr>
 					<td>
 						<p>Matrícula:</p> <span th:text="${session.discente.matricula}"></span>
-						<a type="button" class="btn btn-default "
+						<a type="button" class="btn btn-primary "
 						onclick="mudarEstado('divMatricula')">Editar</a> <br />
 						<div id="divMatricula" class="edicao">
 
 							<form
 								th:action="@{/layout-aluno/attMatricula(sessao=${session})}">
 								<input name="matricula" type="text" placeholder="matricula" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 						</div>
 					</td>
@@ -90,12 +90,12 @@
 				<tr>
 					<td>
 						<p>Email:</p> <span th:text="${session.discente.email}"></span> <a
-						href="#" type="button" class="btn btn-default "
+						href="#" type="button" class="btn btn-primary "
 						onclick="mudarEstado('divEmail')">Editar</a> <br />
 						<div id="divEmail" class="edicao">
 							<form th:action="@{/layout-aluno/attEmail(sessao=${session})}">
 								<input name="email" type="text" placeholder="Email" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 						</div>
 					</td>
@@ -104,12 +104,12 @@
 				<tr>
 					<td>
 						<p>CPF:</p> <span th:text="${session.discente.cpf}"></span> <a
-						type="button" class="btn btn-default "
+						type="button" class="btn btn-primary "
 						onclick="mudarEstado('divCPF')">Editar</a> <br />
 						<div id="divCPF" class="edicao">
 							<form th:action="@{/layout-aluno/attCpf(sessao=${session})}">
 								<input name="cpf" type="text" placeholder="CPF" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 						</div>
 					</td>
@@ -119,14 +119,14 @@
 					<td>
 						<p>Data de nascimento:</p> <span
 						th:text="${session.discente.dataNascimento}"></span> <a
-						type="button" class="btn btn-default "
+						type="button" class="btn btn-primary "
 						onclick="mudarEstado('divNascimento')">Editar</a> <br />
 						<div id="divNascimento" class="edicao">
 							<form
 								th:action="@{/layout-aluno/attDataNascimento(sessao=${session})}">
 								<input name="dataNascimento" type="date"
 									placeholder="Data de nascimento" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 						</div>
 					</td>
@@ -135,13 +135,13 @@
 				<tr>
 					<td>
 						<p>Currículo:</p> <span th:text="${session.discente.curriculo}"></span>
-						<a type="button" class="btn btn-default "
+						<a type="button" class="btn btn-primary "
 						onclick="mudarEstado('divCurriculo')">Editar</a> <br />
 						<div id="divCurriculo" class="edicao">
 							<form
 								th:action="@{/layout-aluno/attCurriculo(sessao=${session})}">
 								<input name="curriculo" type="text" placeholder="Curriculo" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 						</div>
 					</td>
@@ -150,12 +150,12 @@
 				<tr>
 					<td>
 						<p>Login:</p> <span th:text="${session.discente.login}"></span> <a
-						type="button" class="btn btn-default "
+						type="button" class="btn btn-primary "
 						onclick="mudarEstado('divLogin')">Editar</a> <br />
 						<div id="divLogin" class="edicao">
 							<form th:action="@{/layout-aluno/attLogin(sessao=${session})}">
 								<input name="login" type="text" placeholder="Login" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 						</div>
 					</td>
@@ -164,12 +164,12 @@
 				<tr>
 					<td>
 						<p>Senha:</p> <span th:text="${session.discente.senha}"></span> <a
-						type="button" class="btn btn-default "
+						type="button" class="btn btn-primary "
 						onclick="mudarEstado('divSenha')">Editar</a> <br />
 						<div id="divSenha" class="edicao">
 							<form th:action="@{/layout-aluno/attSenha(sessao=${session})}">
 								<input name="senha" type="text" placeholder="Senha" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 						</div>
 					</td>
@@ -182,12 +182,12 @@
 				<tr>
 					<td>
 						<p>Cep:</p> <span th:text="${session.discente.endereco.cep}"></span>
-						<a type="button" class="btn btn-default "
+						<a type="button" class="btn btn-primary "
 						onclick="mudarEstado('divCep')">Editar</a> <br />
 						<div id="divCep" class="edicao">
 							<form th:action="@{/layout-aluno/attCep(sessao=${session})}">
 								<input name="cep" type="text" placeholder="cep" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 						</div>
 					</td>
@@ -195,12 +195,12 @@
 				<tr>
 					<td>
 						<p>Rua:</p> <span th:text="${session.discente.endereco.rua}"></span>
-						<a type="button" class="btn btn-default "
+						<a type="button" class="btn btn-primary "
 						onclick="mudarEstado('divRua')">Editar</a> <br />
 						<div id="divRua" class="edicao">
 							<form th:action="@{/layout-aluno/attRua(sessao=${session})}">
 								<input name="rua" type="text" placeholder="Rua" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 						</div>
 					</td>
@@ -209,12 +209,12 @@
 				<tr>
 					<td>
 						<p>Número:</p> <span th:text="${session.discente.endereco.numero}"></span>
-						<a type="button" class="btn btn-default "
+						<a type="button" class="btn btn-primary "
 						onclick="mudarEstado('divNumero')">Editar</a> <br />
 						<div id="divNumero" class="edicao">
 							<form th:action="@{/layout-aluno/attNumero(sessao=${session})}">
 								<input name="numero" type="text" placeholder="Número" />
-								<button type="submit">salvar</button>
+								<button class="btn btn-primary " type="submit">salvar</button>
 							</form>
 						</div>
 					</td>

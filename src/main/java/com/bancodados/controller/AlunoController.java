@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bancodados.DAOs.ConsultasProjetoWeb;
 import com.bancodados.dominio.Discente;
+import com.bancodados.dominio.Docente;
 
 
 @Controller
@@ -29,7 +30,7 @@ public class AlunoController {
 	@GetMapping("/index-aluno")
 	public ModelAndView indexAluno(){
 		
-		ModelAndView mv = new ModelAndView("index-aluno");
+		ModelAndView mv = new ModelAndView("/index-aluno");
 		
 		
 		return mv;
@@ -216,6 +217,13 @@ public class AlunoController {
 		
 	}
 	
-	
+	@GetMapping("/logout")
+	public void logout(HttpSession sessao){
+
+		Discente discente = (Discente) sessao.getAttribute("discente");
+		System.out.println("logout");
+		discente = null;
+
+	}
 	
 }

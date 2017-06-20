@@ -56,6 +56,9 @@ public class IndexController {
 				mv = new ModelAndView("/layout-aluno/index-aluno");
 			}else{
 				Docente docente = consultas.buscarDocentePorEmailSenha(email, senha);
+				attributes.addFlashAttribute("message","Bem Vindo " + docente.getNome());
+				attributes.addFlashAttribute("docente", docente);
+				System.err.println(docente.getId());
 				session.setAttribute("docente", docente);
 				mv = new ModelAndView("/layout-professor/index-professor");
 			}

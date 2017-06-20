@@ -131,9 +131,8 @@ public class ConsultasProjetoWeb {
 	}
 	public void atualizarDocente(Docente docente){
 		String sql = "UPDATE usuario SET  cpf = ?, login = ?, senha = ?, email = ?, nome = ?,"
-				+ " sobre_nome = ?,"
-				+ "data_nascimento = ?, curriculo = ?, cep = ?, rua = ?, numero = ?, estado = ?, tipo = ? "
-				+ "WHERE id = ?";
+				+ " sobre_nome = ?, data_nascimento = ?, curriculo = ?, cep = ?, rua = ?,"
+				+ " numero = ?, estado = ?, tipo = ? WHERE id = ?";
 		PreparedStatement stmt;
 		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(sql);
@@ -271,7 +270,7 @@ public class ConsultasProjetoWeb {
 			ResultSet resultSet =  stmt.getResultSet();
 			while(resultSet.next()){
 				docente = new Docente();
-
+				docente.setId(resultSet.getInt("id"));
 				docente.setCpf(resultSet.getString("cpf"));
 				docente.setLogin(resultSet.getString("login"));
 				docente.setSenha(resultSet.getString("senha"));
