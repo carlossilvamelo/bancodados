@@ -27,7 +27,6 @@ div#divConteudo{
     word-wrap: break-word;
 
 
-
 }
 
 /*estilo para scroll*/
@@ -85,17 +84,9 @@ div#divLadoDireito{
     float: right;
 }
 
-
-
-.timeLine h2{
-    font-family: "Comic Sans MS";
-}
-
 .timeLine td{
-
     padding: 5px;
     border: 2px solid var(--alunoHover);
-
 }
 .timeLine td:hover{
     transition: background-color 1s;
