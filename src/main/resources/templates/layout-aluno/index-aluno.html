@@ -36,20 +36,20 @@
         <div id="divConteudo" class="container-fluid col-sm-push-1 col-md-7 ">
 
             <table class="timeLine">
-                <tr>
-                <td>
-                    <h2>Titulo</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <tr th:if="${lista != null}" th:each="lista,iter: ${trabalhos}">
+                <td >
+                
+                    <h2 th:text="${lista.titulo}">Titulo</h2>
+                    <p th:text="${lista.resumo}" >resumo.</p>
 
+					
                     <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon-thumbs-up"> Curtir</a>
 
-                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" onclick="fecharAbrirChat('divComentarios')"> Comentar</a>
+                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" th:onclick="'fecharAbrirChat(\'divComentarios'+${iter.index}+'\');'"> Comentar</a>
 
-                    <a href="#" type="button" class="botaoVisualizar btn btn-primary navbar-btn">Visualizar</a>
+                    <a th:href="@{/layout-aluno/visualizarTrabalho}" type="button" class="botaoVisualizar btn btn-primary navbar-btn">Visualizar</a>
                     <br/>
-                    <div id="divComentarios">
+                    <div th:id="'divComentarios' + ${iter.index}" class="divComentarios">
                         <div  class="col-md-12 ">
                             <div class="panel panel-default">
                                 <div class="panel-heading">

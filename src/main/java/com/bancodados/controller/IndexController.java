@@ -2,6 +2,9 @@ package com.bancodados.controller;
 
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bancodados.DAOs.ConsultasProjetoWeb;
 import com.bancodados.DAOs.DiscenteDao;
 import com.bancodados.DAOs.DocenteDao;
 import com.bancodados.DAOs.LoginDao;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
+import com.bancodados.dominio.Trabalho;
 
 
 @Controller
@@ -41,30 +44,52 @@ public class IndexController {
 	public ModelAndView login(String email,String senha,RedirectAttributes attributes, HttpSession session){
 
 		ModelAndView mv = null;
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
 		
+		if(!email.equals("")){
+			/*
+			if(consultas.verificarTipoPorEmail(email) != null){
 
-		if(consultas.verificarTipoPorEmail(email) != null){
+				if(consultas.verificarTipoPorEmail(email).equals("dis")){
 
-			if(consultas.verificarTipoPorEmail(email).equals("dis")){
 
-				
-				Discente discente = consultas.buscarDiscentePorEmailSenha(email, senha);
-				attributes.addFlashAttribute("message","Bem Vindo " + discente.getNome());
-				attributes.addFlashAttribute("discente", discente);
-				session.setAttribute("discente", discente);
-				mv = new ModelAndView("/layout-aluno/index-aluno");
-			}else{
-				Docente docente = consultas.buscarDocentePorEmailSenha(email, senha);
-				attributes.addFlashAttribute("message","Bem Vindo " + docente.getNome());
-				attributes.addFlashAttribute("docente", docente);
-				System.err.println(docente.getId());
-				session.setAttribute("docente", docente);
-				mv = new ModelAndView("/layout-professor/index-professor");
+					Discente discente = consultas.buscarDiscentePorEmailSenha(email, senha);
+					if(discente != null){
+						attributes.addFlashAttribute("message","Bem Vindo " + discente.getNome());
+						attributes.addFlashAttribute("discente", discente);
+						session.setAttribute("discente", discente);
+						ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
+
+						Collections.shuffle(trabalhos);
+
+
+						mv = new ModelAndView("/layout-aluno/index-aluno");
+						mv.addObject("trabalhos", trabalhos);
+					}else{
+						mv = new ModelAndView("index");
+					}
+				}else{
+					Docente docente = consultas.buscarDocentePorEmailSenha(email, senha);
+					if(docente != null){
+						attributes.addFlashAttribute("message","Bem Vindo " + docente.getNome());
+						attributes.addFlashAttribute("docente", docente);
+
+						session.setAttribute("docente", docente);
+						ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
+
+						Collections.shuffle(trabalhos);
+						mv = new ModelAndView("/layout-professor/index-professor");
+						mv.addObject("trabalhos", trabalhos);
+					}else{
+						mv = new ModelAndView("index");
+					}
+
+				}
 			}
+*/
+		}else{
+			mv = new ModelAndView("index");
 		}
-
-
 		return mv;
 	}
 
@@ -82,7 +107,7 @@ public class IndexController {
 			, String senha, String rTipo){
 
 		ModelAndView mv = new ModelAndView("index");
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
 		if(rTipo == "dis"){
 			Discente discente = new Discente();
 			discente.setNome(nome);
@@ -90,7 +115,7 @@ public class IndexController {
 			discente.setEmail(email);
 			discente.setSenha(senha);
 			discente.setTipo(rTipo);
-			consultas.inserirDiscente(discente);
+		//	consultas.inserirDiscente(discente);
 
 		}else{
 			Docente docente = new Docente();
@@ -100,15 +125,16 @@ public class IndexController {
 			docente.setSenha(senha);
 			docente.setTipo(rTipo);
 
-			consultas.inserirDocente(docente);
+		//	consultas.inserirDocente(docente);
 
 
 
 
 		}
 		return mv;
-
-
 	}
+	
+	
+	
 }
 

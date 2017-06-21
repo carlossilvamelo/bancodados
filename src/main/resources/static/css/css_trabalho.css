@@ -44,9 +44,9 @@
     text-align: center;
 }
 .divInfoTrabalho{
+	background-color:var(--fundoConteudoAluno);
     position: relative;
-    border-right: 1px solid var(--alunoAzul);
-    border-bottom: 1px solid var(--alunoAzul);
+   
     border-radius: 5px;
     overflow-y: auto;
     height: 400px;
@@ -54,10 +54,10 @@
 }
 
 
+
 .divAtividades{
     position: relative;
-    border-right: 1px solid var(--alunoAzul);
-    border-bottom: 1px solid var(--alunoAzul);
+   background-color:var(--fundoConteudoAluno);
     border-radius: 5px;
 }
 .divAtividades thead th{
@@ -70,6 +70,7 @@
     word-wrap: break-word;
 }
 .divAtividades tr:hover{
+	transition: 1s;
     background-color: var(--alunoHover);
 }
 .botaoCriarAtividade{
@@ -89,7 +90,7 @@
 
 
 .divIntegrantes{
-
+background-color:var(--fundoConteudoAluno);
 }
 .divIntegrantes td{
     border-radius: 10px;
@@ -172,6 +173,8 @@ div#divInfoTrabalho table tr td{
     padding: 10px;
 }
 div#divInfoTrabalho table tr:hover {
+	border-radius:10px;
+	transition:1s;
     background-color: var(--alunoHover);
 }
 
