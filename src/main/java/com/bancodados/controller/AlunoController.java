@@ -1,6 +1,8 @@
 package com.bancodados.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bancodados.DAOs.ConsultasProjetoWeb;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
+import com.bancodados.dominio.Trabalho;
 
 
 @Controller
@@ -27,11 +29,31 @@ public class AlunoController {
 		return mv;
 		
 	}
+	@GetMapping("/visualizarTrabalho")
+	public ModelAndView visualizarTrabalho(HttpSession session){
+		ModelAndView mv = new ModelAndView("/layout-aluno/trabalho");
+
+		return mv;
+	}
+	
 	@GetMapping("/index-aluno")
 	public ModelAndView indexAluno(){
-		
 		ModelAndView mv = new ModelAndView("/index-aluno");
 		
+		
+		
+		return mv;
+		
+	}
+	
+	@GetMapping("/inicioAluno")
+	public ModelAndView inicioAluno(HttpSession session){
+		ModelAndView mv = new ModelAndView("/layout-aluno/index-aluno");
+		//ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
+
+		//Collections.shuffle(trabalhos);
+		//mv.addObject("trabalhos", trabalhos);
+			
 		
 		return mv;
 		
@@ -39,7 +61,6 @@ public class AlunoController {
 	
 	@GetMapping("/trabalhos-aluno")
 	public ModelAndView trabalhosAluno(){
-		System.err.println("trabalhos-aluno");
 		ModelAndView mv = new ModelAndView("/layout-aluno/trabalhos-aluno");
 		
 		
@@ -52,7 +73,6 @@ public class AlunoController {
 		
 		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
 		
-		System.out.println("gerenciar contatos");
 		return mv;
 		
 	}
@@ -66,8 +86,8 @@ public class AlunoController {
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setNome(nome);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDiscente(discente);
+		//ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+		//consultas.atualizarDiscente(discente);
 		
 		
 		return mv;
@@ -80,8 +100,8 @@ public class AlunoController {
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setCpf(cpf);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDiscente(discente);
+		//ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+		//consultas.atualizarDiscente(discente);
 		
 		
 		return mv;
@@ -94,8 +114,8 @@ public class AlunoController {
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setLogin(login);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDiscente(discente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+		//consultas.atualizarDiscente(discente);
 		
 		
 		return mv;
@@ -109,8 +129,8 @@ public class AlunoController {
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setSenha(senha);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDiscente(discente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	consultas.atualizarDiscente(discente);
 		
 		
 		return mv;
@@ -124,8 +144,8 @@ public class AlunoController {
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setEmail(email);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDiscente(discente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	consultas.atualizarDiscente(discente);
 		
 		
 		return mv;
@@ -138,8 +158,8 @@ public class AlunoController {
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setSobreNome(sobreNome);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDiscente(discente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	consultas.atualizarDiscente(discente);
 		
 		
 		return mv;
@@ -153,8 +173,8 @@ public class AlunoController {
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setMatricula(matricula);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDiscente(discente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+		//consultas.atualizarDiscente(discente);
 		
 		
 		return mv;
@@ -167,8 +187,8 @@ public class AlunoController {
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setCurriculo(curriculo);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDiscente(discente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+		//consultas.atualizarDiscente(discente);
 		
 		
 		return mv;
@@ -181,8 +201,8 @@ public class AlunoController {
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.getEndereco().setCep(cep);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDiscente(discente);
+		//ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+		//consultas.atualizarDiscente(discente);
 		
 		
 		return mv;
@@ -195,8 +215,8 @@ public class AlunoController {
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.getEndereco().setRua(rua);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDiscente(discente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	consultas.atualizarDiscente(discente);
 		
 		
 		return mv;
@@ -209,8 +229,8 @@ public class AlunoController {
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.getEndereco().setNumero(Integer.parseInt(numero));
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDiscente(discente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	consultas.atualizarDiscente(discente);
 		
 		
 		return mv;
@@ -221,7 +241,6 @@ public class AlunoController {
 	public void logout(HttpSession sessao){
 
 		Discente discente = (Discente) sessao.getAttribute("discente");
-		System.out.println("logout");
 		discente = null;
 
 	}

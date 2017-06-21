@@ -1,5 +1,8 @@
 package com.bancodados.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -7,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bancodados.DAOs.ConsultasProjetoWeb;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
+import com.bancodados.dominio.Trabalho;
 
 @Controller
 @RequestMapping("/layout-professor")
@@ -20,6 +23,19 @@ public class ProfessorController {
 		
 		ModelAndView mv = new ModelAndView("index-professor");
 		
+		
+		return mv;
+		
+	}
+	@GetMapping("/inicioProfessor")
+	public ModelAndView inicioAluno(HttpSession session){
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+		ModelAndView mv = new ModelAndView("/layout-professor/index-professor");
+	//	ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
+
+	//	Collections.shuffle(trabalhos);
+	//	mv.addObject("trabalhos", trabalhos);
+			
 		
 		return mv;
 		
@@ -62,8 +78,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.setNome(nome);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDocente(docente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+		//consultas.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -76,8 +92,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.setCpf(cpf);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDocente(docente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	consultas.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -90,8 +106,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.setLogin(login);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDocente(docente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+		//consultas.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -105,8 +121,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.setSenha(senha);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDocente(docente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	consultas.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -120,8 +136,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.setEmail(email);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDocente(docente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	consultas.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -132,10 +148,9 @@ public class ProfessorController {
 		
 		ModelAndView mv = new ModelAndView("/layout-professor/perfil-professor");
 		Docente docente = (Docente) sessao.getAttribute("docente");
-		System.out.println(sobreNome);
 		docente.setSobreNome(sobreNome);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDocente(docente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	consultas.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -148,9 +163,8 @@ public class ProfessorController {
 		
 		ModelAndView mv = new ModelAndView("/layout-professor/perfil-professor");
 		Docente docente = (Docente) sessao.getAttribute("docente");
-System.out.println(docente.getId());
 		docente.setCurriculo(curriculo);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
 		//consultas.atualizarDocente(docente);
 		
 		
@@ -162,9 +176,8 @@ System.out.println(docente.getId());
 		
 		ModelAndView mv = new ModelAndView("/layout-professor/perfil-professor");
 		Docente docente = (Docente) sessao.getAttribute("docente");
-		System.out.println(docente.getId());
 		docente.getEndereco().setCep(cep);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
 		//consultas.atualizarDocente(docente);
 		
 		
@@ -178,8 +191,8 @@ System.out.println(docente.getId());
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.getEndereco().setRua(rua);
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDocente(docente);
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	consultas.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -192,9 +205,9 @@ System.out.println(docente.getId());
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.getEndereco().setNumero(Integer.parseInt(numero));
-		ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		consultas.atualizarDocente(docente);
-		
+	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
+	//	consultas.atualizarDocente(docente);
+	//	
 		
 		return mv;
 		
@@ -205,6 +218,12 @@ System.out.println(docente.getId());
 		
 		Docente docente = (Docente) sessao.getAttribute("docente");
 		docente = null;
+		
+	}
+	@GetMapping("/curtir")
+	public void logout(Integer idTrabalho){
+		
+		
 		
 	}
 	

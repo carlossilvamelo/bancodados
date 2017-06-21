@@ -10,6 +10,9 @@
 div#divConteudo::-webkit-scrollbar{
     display: none;
 }
+div#divConteudoProf::-webkit-scrollbar{
+    display: none;
+}
 .listaContatos::-webkit-scrollbar{
     display: none;
 }
@@ -21,7 +24,8 @@ div#divConteudo{
     float:left;
     /*posicinamento*/
     margin-top: 120px;
-    padding: 5px;
+    
+   
     height: 445px;
     text-align: center;
     overflow:auto;
@@ -87,17 +91,26 @@ div#divLadoDireito{
 }
 
 
-
+.timeLine{
+	margin-top:20px;
+	width:100%;
+  
+}
 .timeLine h2{
-    font-family: "Comic Sans MS";
+    font-family: "Segoe UI";
 }
-
+.timeLine p{
+	font-size: 19px;
+}
 .timeLine td{
-
+	border-radius:10px;
     padding: 5px;
-    
+    border-bottom:2px solid white;
+    font-size: large;
 
 }
+
+
 .timeLine td:hover{
     transition: background-color 1s;
     background-color: var(--alunoHover);
@@ -117,7 +130,7 @@ div#divLadoDireito{
 
 
 
-div#divComentarios{
+.divComentarios{
     position: relative;
     display: none;
 }
