@@ -35,18 +35,26 @@ public class IndexController {
 
 
 		ModelAndView mv = new ModelAndView("index");
-
-
+		DiscenteDao discenteDao = new DiscenteDao();
+		Discente discente = discenteDao.buscarDiscentePorCpf("09566369000");
+		
+		System.out.println(discente.getNome());
+		System.out.println(discente.getEndereco().getCep());
+		System.out.println(discente.getEmail());
+		
+		
+		
+		
 		return mv;
 	}
 
 	@GetMapping("/login")
-	public ModelAndView login(String email,String senha,RedirectAttributes attributes, HttpSession session){
+	public ModelAndView login(String cpf,String senha,RedirectAttributes attributes, HttpSession session){
 
 		ModelAndView mv = null;
 	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
 		
-		if(!email.equals("")){
+		if(!cpf.equals("")){
 			/*
 			if(consultas.verificarTipoPorEmail(email) != null){
 
@@ -103,7 +111,7 @@ public class IndexController {
 	}
 
 	@GetMapping("/cadastrar")
-	public ModelAndView cadastrar(String nome,String sobreNome, String email
+	public ModelAndView cadastrar(String nome,String sobreNome, String cpf
 			, String senha, String rTipo){
 
 		ModelAndView mv = new ModelAndView("index");
@@ -112,7 +120,7 @@ public class IndexController {
 			Discente discente = new Discente();
 			discente.setNome(nome);
 			discente.setSobreNome(sobreNome);
-			discente.setEmail(email);
+			discente.setEmail(cpf);
 			discente.setSenha(senha);
 			discente.setTipo(rTipo);
 		//	consultas.inserirDiscente(discente);
@@ -121,7 +129,7 @@ public class IndexController {
 			Docente docente = new Docente();
 			docente.setNome(nome);
 			docente.setSobreNome(sobreNome);
-			docente.setEmail(email);
+			docente.setEmail(cpf);
 			docente.setSenha(senha);
 			docente.setTipo(rTipo);
 
