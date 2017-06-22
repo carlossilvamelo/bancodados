@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout-aluno/header-aluno">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -22,65 +24,32 @@
     <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
     <script src="../js/global.js"></script>
 
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script>
-        $(function(){
-            $("#header").load("header-aluno.html");
-        });
-    </script>
+    
 
 </head>
 <body >
 
 
-        <nav  class="navegador col-md-12 navbar navbar-default navbar-fixed-top ">
-            <div id="menu" class="container-fluid">
 
-                <div id="imgLogoCabecalho" class="navbar-header ">
-                    <a class="navbar-brand" href="index-aluno.html">
-                        <img alt="Brand" src="../imagens/icone-brand.png"/>
-                    </a>
-                </div>
-                <h1>Post<wbr/>Acad</h1>
-
-
-                <div id="dropdownPerfil" class="">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> olá usuário!</a>
-                        <ul>
-                            <li><a href="#">Logout</a></li>
-                        </ul>
-                    </li>
-                </div>
-
-            </div>
-
-
-            <div id="barraNavegacao" class="barraNavegacaoAluno span12 navbar-default nav-justified  ">
-                <a href="trabalhos-aluno.html" type="button" class="btn btn-default navbar-btn ">Gerenciar trabalhos</a>
-                <a href="gerenciar-contatos.html" type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
-                <a href="perfil-aluno.html" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
-            </div>
-
-        </nav>
-
+     <section layout:fragment="conteudo">
+     
         <div id="divConteudo" class="container-fluid col-sm-push-1 col-md-7 ">
 
             <table class="timeLine">
-                <tr>
-                <td>
-                    <h2>Titulo</h2>
-                    <p>resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo
-                        resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo
-                        resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo
-                        resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo resumo </p>
+                <tr th:if="${lista != null}" th:each="lista,iter: ${trabalhos}">
+                <td >
+                
+                    <h2 th:text="${lista.titulo}">Titulo</h2>
+                    <p th:text="${lista.resumo}" >resumo.</p>
 
+					
                     <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon-thumbs-up"> Curtir</a>
 
-                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" onclick="fecharAbrirChat('divComentarios')"> Comentar</a>
+                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" th:onclick="'fecharAbrirChat(\'divComentarios'+${iter.index}+'\');'"> Comentar</a>
 
-                    <a href="#" type="button" class="botaoVisualizar btn btn-default navbar-btn">Visualizar</a>
+                    <a th:href="@{/layout-aluno/visualizarTrabalho}" type="button" class="botaoVisualizar btn btn-primary navbar-btn">Visualizar</a>
                     <br/>
-                    <div id="divComentarios">
+                    <div th:id="'divComentarios' + ${iter.index}" class="divComentarios">
                         <div  class="col-md-12 ">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -210,6 +179,7 @@
                         </div>
                     </div>
                 </div>
+     </section>
 
 
 </body>

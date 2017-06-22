@@ -14,20 +14,24 @@ public class ConnectionManager {
 	
 	}
 
-	public synchronized static Connection getConnection() throws SQLException{
+	public synchronized static Connection getConnection(){
 		
-		if((connection == null)||(connection.isClosed())){
-			try{
-				
-				connection = DriverManager.
-						getConnection("jdbc:mysql://localhost/mydb"
-								,"root","root");
-			System.out.println("Conectado!");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				
-				e.printStackTrace();
-			}	
+		try {
+			if((connection == null)||(connection.isClosed())){
+				try{
+					
+					connection = DriverManager.
+							getConnection("jdbc:mysql://localhost/mydb"
+									,"root","root");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					
+					e.printStackTrace();
+				}	
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return connection; 

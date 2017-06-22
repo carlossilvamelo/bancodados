@@ -3,11 +3,16 @@
 .divMeusContatos::-webkit-scrollbar{
     display: none;
 }
+.divMeusContatosProf::-webkit-scrollbar{
+    display: none;
+}
 .divBuscarContatos::-webkit-scrollbar{
     display: none;
 }
 
 .divMeusContatos{
+	border:5px solid var(--fundoConteudoAluno);
+	border-radius: 10px;
     margin-top: 120px;
     height: 400px;
     float: left;
@@ -18,7 +23,27 @@
     text-align: center;
 
 }
+
+
+.divMeusContatosProf{
+	border:5px solid var(--fundoConteudoProfessor);
+	border-radius: 10px;
+    margin-top: 120px;
+    height: 400px;
+    float: left;
+    word-wrap: break-word;
+
+}
+.divMeusContatosProf h1{
+    text-align: center;
+
+}
+
+
+
 .divBuscarContatos{
+	border:5px solid var(--fundoConteudoAluno);
+	border-radius: 10px;
     height: 400px;
     margin-right: 25px;
     margin-top: 120px;
@@ -26,10 +51,11 @@
 }
 
 .buscarContato{
+	border-radius: 10px;
     float: right;
     padding: 10px;
     margin-top: 5px;
-    background-color: var(--alunoHover);
+    background-color: var(--fundoConteudoAluno);
 }
 .buscarContato input{
     padding: 5px;
@@ -37,12 +63,60 @@
     width: 85%;
 }
 
+
+.divBuscarContatosProf{
+	border:5px solid var(--fundoConteudoProfessor);
+	border-radius: 10px;
+    height: 400px;
+    margin-right: 25px;
+    margin-top: 120px;
+    float: right;
+}
+
+.buscarContatoProf{
+	border-radius: 10px;
+    float: right;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: var(--fundoConteudoProfessor);
+}
+.buscarContatoProf input{
+    padding: 5px;
+    border-radius: 4px;
+    width: 85%;
+}
+
+
+
 .listaContatos{
+	
+	border-radius: 10px;
     margin-top: 10px;
 
 
 }
+.listaContatos tr td{
+    padding:5px;
+    border-radius: 10px;
+}
 .listaContatos tr:hover{
-    background-color: var(--alunoHover);
+    background-color: var(--fundoConteudoAluno);
+}
+
+
+.listaContatosProf{
+	
+	border-radius: 10px;
+    margin-top: 10px;
+
+
+}
+
+.listaContatosProf tr td{
+    padding:5px;
+    border-radius: 10px;
+}
+.listaContatosProf tr:hover{
+    background-color: var(--fundoConteudoProfessor);
 }
 

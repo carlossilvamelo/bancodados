@@ -14,7 +14,7 @@ public class Usuario {
 	private String senha;
 	private String tipo;
 	private String cpf;
-	private Endereco endereco;
+	private Endereco endereco = new Endereco();
 	private String email;
 	private String curriculo;
 	private Date dataNascimento;
