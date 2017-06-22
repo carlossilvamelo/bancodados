@@ -13,60 +13,110 @@ public class DiscenteDao {
 	
 	
 	public void inserirDiscente(Discente discente) throws SQLException{
-		 // conectando
-       //Connection con = ConnectionManager.getConnection();
-
-       // cria um preparedStatement
-       String sql =  "insert into usuario (id_usu, login_usu, senha_usu, nome_usu, cpf_usu"
-       		+ ", email_usu, data_nascimento_usu, curriculo_usu, rua_usu, numero_usu, cep_usu"
-       		+ ", estado_usu) "
-       		+ "values (?,?,?,?,?,?,?,?,?,?,?,?)";
-       
-       PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql);
-
-       // preenche os valores
-       stmt.setInt(1, discente.getId());
-       stmt.setString(2, discente.getLogin());
+		
+		PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		// operação 1
+		String inserirUsuario = "insert into usuario (login_usu, cpf_usu, email_usu, cep_usu, tipo_usu)"
+				+ "values(?,?,?,?,?) ";
+		 stmt = ConnectionManager.getConnection().prepareStatement(inserirUsuario);
+		 stmt.setString(1, discente.getLogin());
+		 stmt.setString(2, discente.getCpf());
+		 stmt.setString(3, discente.getEmail());
+		 stmt.setString(4, discente.getEndereco().getCep());
+		 stmt.setString(5, discente.getTipo());
+		 stmt.execute();
+	     stmt.close();
+		
+		
+		
+		// operação 2
+       String id_usuario =  "select id_usu from usuario where cpf_usu = ?";
+       stmt = ConnectionManager.getConnection().prepareStatement(id_usuario);
+       stmt.setString(1, discente.getCpf());
+       stmt.execute();
+       resultSet =  stmt.getResultSet();
+       Integer idUsuario = null;
+		 while(resultSet.next()){
+			 idUsuario = resultSet.getInt("id_usu");
+			}
+       stmt.close();
+      
+       // operação 3
+       String inserirIdentificacao =  "insert into identificacao (id_ide, email_ide, senha_ide)"
+       		+ "values(?, ?, ?)";
+       stmt = ConnectionManager.getConnection().prepareStatement(inserirIdentificacao);
+       stmt.setInt(1, idUsuario);
+       stmt.setString(2, discente.getEmail());
        stmt.setString(3, discente.getSenha());
-       stmt.setString(4,  discente.getNome());
-       stmt.setString(5, discente.getCpf());
-       stmt.setString(6, discente.getEmail());
-       stmt.setDate(7, discente.getDataNascimento());
-       stmt.setString(8,discente.getCurriculo());
-       stmt.setString(9, discente.getEndereco().getRua());
-       stmt.setInt(10, discente.getEndereco().getNumero());
-       stmt.setString(11, discente.getEndereco().getCep());
-       stmt.setString(12, "Caelum");
-
-       // executa
        stmt.execute();
        stmt.close();
+       
+       
+    // operação 4
+       String inserirEnderecoUsuario = "insert into endereco_usuario (id_usu_end, rua_end, cep_end, numero_end)"
+       		+ "values(?, ?, ?, ?)";
+       stmt = ConnectionManager.getConnection().prepareStatement(inserirEnderecoUsuario);
+       stmt.setInt(1, idUsuario);
+       stmt.setString(2, discente.getEndereco().getRua());
+       stmt.setString(3, discente.getEndereco().getCep());
+       stmt.setInt(4, discente.getEndereco().getNumero());
+       stmt.execute();
+       stmt.close();
+       
+    // operação 5
+       String inserirInfoUsuario = "insert into info_usuario(id_inf, curriculo_inf, data_nascimento_inf, nome_inf)"
+       		+ "values(?, ?, ?, ?)";
+       stmt = ConnectionManager.getConnection().prepareStatement(inserirInfoUsuario);
+       stmt.setInt(1, idUsuario);
+       stmt.setString(2, discente.getCurriculo());
+       stmt.setDate(3, discente.getDataNascimento());
+       stmt.setString(4, discente.getNome());
+       stmt.execute();
+       stmt.close();
+       
+       
+    // operação 6
+       String inserirEnderecoComplemento = "insert into endereco_complemento (id_end_com, estado_com, rua_com)"
+       		+ "values(?, ?, ?)";
+       stmt = ConnectionManager.getConnection().prepareStatement(inserirEnderecoComplemento);
+       stmt.setInt(1, idUsuario);
+       stmt.setString(2, discente.getEndereco().getEstado());
+       stmt.setString(3, discente.getEndereco().getRua());
+       stmt.execute();
+       stmt.close();
+       
+    // operação 7
+       String inserirDiscente = "insert into discente (id_usuario_dis, matricula_dis, reputacao_dis)"
+       		+ "values(?, ?, ?)";
+       stmt = ConnectionManager.getConnection().prepareStatement(inserirDiscente);
+       stmt.setInt(1, idUsuario);
+       stmt.setString(2, discente.getMatricula());
+       stmt.setString(3, discente.getReputacao());
+       stmt.execute();
+       stmt.close();
+       
+       
 
        System.out.println("Docente inserido!");
        ConnectionManager.closeConnection();
        
 	}
 	
-	public Discente buscarDocentePorCpf(){
-		Discente discente = null;
-		
-		return discente;
-	}
 	
-	public Discente buscarDocentePorEmailSenha(String email, String senha){
+	
+	
+	
+	public Discente buscarDiscentePorCpf(String cpf){
 		Discente discente = null;
-		String sql = "select * from usuario"
-				+ "join endereco_usuario on id_usu = id_usu_end"
-				+ "join identificacao on login_usu = login_ide"
-				+ "join endereco_complemento on cep_usu = cep_com"
-				+ "join info_usuario on cpf_usu = cpf_inf;";
+	
+		String sql = "select * from view_discente where cpf_usu = ?";
 		
 
 		PreparedStatement stmt;
 		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(sql);
-			
-			stmt.setString(1, email);
+			stmt.setString(1, cpf);
 
 			// executa
 			stmt.execute();
@@ -74,13 +124,22 @@ public class DiscenteDao {
 			ResultSet resultSet =  stmt.getResultSet();
 			while(resultSet.next()){
 				discente = new Discente();
-				
-				discente.setCpf(resultSet.getString("cpf_usu"));
+				discente.setId(resultSet.getInt("id_usu"));
 				discente.setLogin(resultSet.getString("login_usu"));
+				discente.setCpf(resultSet.getString("cpf_usu"));
 				discente.setEmail(resultSet.getString("email_usu"));
 				discente.getEndereco().setCep(resultSet.getString("cep_usu"));
-				discente.setTipo(resultSet.getString("tipo_uso"));
+				discente.setTipo(resultSet.getString("tipo_usu"));
+				discente.getEndereco().setRua(resultSet.getString("rua_end"));
+				discente.getEndereco().setNumero(resultSet.getInt("numero_end"));
 				discente.setSenha(resultSet.getString("senha_ide"));
+				discente.getEndereco().setEstado(resultSet.getString("estado_com"));
+				discente.setCurriculo(resultSet.getString("curriculo_inf"));
+				discente.setDataNascimento(resultSet.getDate("data_nascimento_inf"));
+				discente.setNome(resultSet.getString("nome_inf"));
+				discente.setMatricula(resultSet.getString("matricula_dis"));
+				discente.setReputacao(resultSet.getString("reputacao_dis"));
+				
 			}
 			
 
@@ -91,6 +150,11 @@ public class DiscenteDao {
 			e.printStackTrace();
 		}
 		
+		
 		return discente;
 	}
+	
+	
+	 
+	
 }

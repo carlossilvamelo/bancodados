@@ -21,7 +21,7 @@ public class ConnectionManager {
 				try{
 					
 					connection = DriverManager.
-							getConnection("jdbc:mysql://localhost/web"
+							getConnection("jdbc:mysql://localhost/mydb"
 									,"root","root");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
