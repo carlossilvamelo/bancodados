@@ -48,6 +48,7 @@ public class IndexController {
 
 		DiscenteDao discenteDao = new DiscenteDao();
 		UsuarioDao usuarioDao = new UsuarioDao();
+		DocenteDao docenteDao = new DocenteDao();
 
 		if(!cpf.equals("") && !senha.equals("")){
 
@@ -62,7 +63,7 @@ public class IndexController {
 						
 						attributes.addFlashAttribute("message","Bem Vindo " + discente.getNome());
 						attributes.addFlashAttribute("discente", discente);
-						//session.setAttribute("discente", discente);
+						session.setAttribute("discente", discente);
 						//ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
 
 						//	Collections.shuffle(trabalhos);
@@ -74,20 +75,20 @@ public class IndexController {
 						mv = new ModelAndView("index");
 					}
 				}else{
-					/*	Docente docente = consultas.buscarDocentePorEmailSenha(email, senha);
-					if(docente != null){
+						Docente docente = docenteDao.buscarDocentePorCpf(cpf);
+					if(docente.getCpf().equals(cpf) && docente.getSenha().equals(senha)){
 						attributes.addFlashAttribute("message","Bem Vindo " + docente.getNome());
 						attributes.addFlashAttribute("docente", docente);
 
 						session.setAttribute("docente", docente);
-						ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
+					//	ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
 
-						Collections.shuffle(trabalhos);
+					//	Collections.shuffle(trabalhos);
 						mv = new ModelAndView("/layout-professor/index-professor");
-						mv.addObject("trabalhos", trabalhos);
+					//	mv.addObject("trabalhos", trabalhos);
 					}else{
 						mv = new ModelAndView("index");
-					}*/
+					}
 
 				}
 			}
@@ -112,7 +113,8 @@ public class IndexController {
 
 		ModelAndView mv = new ModelAndView("index");
 		DiscenteDao discenteDao = new DiscenteDao();
-
+		DocenteDao docenteDao = new DocenteDao();
+		
 		if(rTipo.equals("dis")){
 			Discente discente = new Discente();
 			discente.setNome(nome);
@@ -131,7 +133,7 @@ public class IndexController {
 			docente.setSenha(senha);
 			docente.setTipo(rTipo);
 
-			//	consultas.inserirDocente(docente);
+			docenteDao.inserirDocente(docente);
 
 
 

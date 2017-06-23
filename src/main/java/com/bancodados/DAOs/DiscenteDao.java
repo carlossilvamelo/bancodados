@@ -160,6 +160,99 @@ public class DiscenteDao {
 	}
 	
 	
+	public void atualizarDiscente(Discente discente){
+		
+		DiscenteDao discenteDao = new DiscenteDao();
+		//operação 0
+
+		
+		PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		// operação 1
+		String inserirUsuario = "UPDATE usuario SET login_usu = ?, cpf_usu = ?, email_usu = ?, cep_usu = ?, tipo_usu = ?"
+				+ "WHERE id_usu = ?;";
+		 try {
+			stmt = ConnectionManager.getConnection().prepareStatement(inserirUsuario);
+			
+			 stmt.setString(1, discente.getLogin());
+			 stmt.setString(2, discente.getCpf());
+			 stmt.setString(3, discente.getEmail());
+			 stmt.setString(4, discente.getEndereco().getCep());
+			 stmt.setString(5, discente.getTipo());
+			 stmt.setInt(6, discente.getId());
+			
+			 stmt.execute();
+		     stmt.close();
+			
+			
+			
+		
+	      
+	       // operação 3
+	       String atualizarIdentificacao =  "UPDATE identificacao SET email_ide = ?, senha_ide = ? WHERE id_ide = ?;";
+	       stmt = ConnectionManager.getConnection().prepareStatement(atualizarIdentificacao);
+	       stmt.setString(1, discente.getEmail());
+	       stmt.setString(2, discente.getSenha());
+	       stmt.setInt(3, discente.getId());
+	       stmt.execute();
+	       stmt.close();
+	       
+	       
+	    // operação 4
+	       String atualizarEnderecoUsuario = "UPDATE endereco_usuario SET id_usu_end = ?, rua_end = ?, cep_end = ?, numero_end = ? "
+	       		+ "WHERE id_usu_end = ?;";
+	       stmt = ConnectionManager.getConnection().prepareStatement(atualizarEnderecoUsuario);
+	       stmt.setInt(1, discente.getId());
+	       stmt.setString(2, discente.getEndereco().getRua());
+	       stmt.setString(3, discente.getEndereco().getCep());
+	       stmt.setInt(4, discente.getEndereco().getNumero());
+	       stmt.setInt(5, discente.getId());
+	       stmt.execute();
+	       stmt.close();
+	       
+	    // operação 5
+	       String inserirInfoUsuario = "UPDATE info_usuario SET curriculo_inf = ?, data_nascimento_inf = ?, nome_inf = ? "
+	       		+ "WHERE id_inf = ?;";
+	       stmt = ConnectionManager.getConnection().prepareStatement(inserirInfoUsuario);
+	       stmt.setString(1, discente.getCurriculo());
+	       stmt.setDate(2, discente.getDataNascimento());
+	       stmt.setString(3, discente.getNome());
+	       stmt.setInt(4, discente.getId());
+	       stmt.execute();
+	       stmt.close();
+	       
+	       
+	    // operação 6
+	       String atualizarEnderecoComplemento = "UPDATE endereco_complemento SET  id_end_com = ?, estado_com =?, rua_com = ? "
+	       		+ "WHERE id_end_com = ?;";
+	       stmt = ConnectionManager.getConnection().prepareStatement(atualizarEnderecoComplemento);
+	       stmt.setInt(1, discente.getId());
+	       stmt.setString(2, discente.getEndereco().getEstado());
+	       stmt.setString(3, discente.getEndereco().getRua());
+	       stmt.setInt(4, discente.getId());
+	       stmt.execute();
+	       stmt.close();
+	       
+	    // operação 7
+	       String atualizarDiscente = "UPDATE discente SET id_usuario_dis = ?, matricula_dis = ?, reputacao_dis = ? "
+	       		+ "WHERE id_dis = ?;";
+	       stmt = ConnectionManager.getConnection().prepareStatement(atualizarDiscente);
+	       stmt.setInt(1, discente.getId());
+	       stmt.setString(2, discente.getMatricula());
+	       stmt.setString(3, discente.getReputacao());
+	       stmt.setInt(4, discente.getId());
+	       stmt.execute();
+	       stmt.close();
+		
+	       System.out.println("Docente inserido!");
+	       ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	 
 	
 }
