@@ -15,7 +15,7 @@ public class Usuario {
 	private String tipo;
 	private String cpf;
 	private Endereco endereco = new Endereco();
-	private String email;
+	private String email = "";
 	private String curriculo;
 	private Date dataNascimento;
 	private Identificacao identidicacao;

@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bancodados.DAOs.DiscenteDao;
 import com.bancodados.DAOs.DocenteDao;
 import com.bancodados.DAOs.LoginDao;
+import com.bancodados.DAOs.UsuarioDao;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
 import com.bancodados.dominio.Trabalho;
@@ -35,16 +37,7 @@ public class IndexController {
 
 
 		ModelAndView mv = new ModelAndView("index");
-		DiscenteDao discenteDao = new DiscenteDao();
-		Discente discente = discenteDao.buscarDiscentePorCpf("09566369000");
-		
-		System.out.println(discente.getNome());
-		System.out.println(discente.getEndereco().getCep());
-		System.out.println(discente.getEmail());
-		
-		
-		
-		
+
 		return mv;
 	}
 
@@ -52,32 +45,36 @@ public class IndexController {
 	public ModelAndView login(String cpf,String senha,RedirectAttributes attributes, HttpSession session){
 
 		ModelAndView mv = null;
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		
-		if(!cpf.equals("")){
-			/*
-			if(consultas.verificarTipoPorEmail(email) != null){
 
-				if(consultas.verificarTipoPorEmail(email).equals("dis")){
+		DiscenteDao discenteDao = new DiscenteDao();
+		UsuarioDao usuarioDao = new UsuarioDao();
 
+		if(!cpf.equals("") && !senha.equals("")){
 
-					Discente discente = consultas.buscarDiscentePorEmailSenha(email, senha);
-					if(discente != null){
+			if(usuarioDao.verificarTipoUsuarioPorCpf(cpf) != null){//verifica se usuario existe
+				
+				if(usuarioDao.verificarTipoUsuarioPorCpf(cpf).equals("dis")){
+					//verificação do tipo de usuário
+
+					Discente discente = discenteDao.buscarDiscentePorCpf(cpf);
+					if(discente.getCpf().equals(cpf) && discente.getSenha().equals(senha)){
+						//verificação da identificação
+						
 						attributes.addFlashAttribute("message","Bem Vindo " + discente.getNome());
 						attributes.addFlashAttribute("discente", discente);
-						session.setAttribute("discente", discente);
-						ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
+						//session.setAttribute("discente", discente);
+						//ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
 
-						Collections.shuffle(trabalhos);
+						//	Collections.shuffle(trabalhos);
 
 
 						mv = new ModelAndView("/layout-aluno/index-aluno");
-						mv.addObject("trabalhos", trabalhos);
+						//	mv.addObject("trabalhos", trabalhos);
 					}else{
 						mv = new ModelAndView("index");
 					}
 				}else{
-					Docente docente = consultas.buscarDocentePorEmailSenha(email, senha);
+					/*	Docente docente = consultas.buscarDocentePorEmailSenha(email, senha);
 					if(docente != null){
 						attributes.addFlashAttribute("message","Bem Vindo " + docente.getNome());
 						attributes.addFlashAttribute("docente", docente);
@@ -90,11 +87,11 @@ public class IndexController {
 						mv.addObject("trabalhos", trabalhos);
 					}else{
 						mv = new ModelAndView("index");
-					}
+					}*/
 
 				}
 			}
-*/
+
 		}else{
 			mv = new ModelAndView("index");
 		}
@@ -111,29 +108,30 @@ public class IndexController {
 	}
 
 	@GetMapping("/cadastrar")
-	public ModelAndView cadastrar(String nome,String sobreNome, String cpf
-			, String senha, String rTipo){
+	public ModelAndView cadastrar(String nome,String sobreNome, String cpf, String senha, String rTipo){
 
 		ModelAndView mv = new ModelAndView("index");
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		if(rTipo == "dis"){
+		DiscenteDao discenteDao = new DiscenteDao();
+
+		if(rTipo.equals("dis")){
 			Discente discente = new Discente();
 			discente.setNome(nome);
 			discente.setSobreNome(sobreNome);
-			discente.setEmail(cpf);
+			discente.setCpf(cpf);
 			discente.setSenha(senha);
 			discente.setTipo(rTipo);
-		//	consultas.inserirDiscente(discente);
+
+			discenteDao.inserirDiscente(discente);
 
 		}else{
 			Docente docente = new Docente();
 			docente.setNome(nome);
 			docente.setSobreNome(sobreNome);
-			docente.setEmail(cpf);
+			docente.setCpf(cpf);
 			docente.setSenha(senha);
 			docente.setTipo(rTipo);
 
-		//	consultas.inserirDocente(docente);
+			//	consultas.inserirDocente(docente);
 
 
 
@@ -141,8 +139,8 @@ public class IndexController {
 		}
 		return mv;
 	}
-	
-	
-	
+
+
+
 }
 
