@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bancodados.DAOs.DocenteDao;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
 import com.bancodados.dominio.Trabalho;
@@ -78,6 +79,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.setNome(nome);
+		DocenteDao docenteDao = new DocenteDao();
+		
 	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
 		//consultas.atualizarDocente(docente);
 		
