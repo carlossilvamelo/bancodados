@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Header-Geral</title>
+</head>
+<body>
+<nav  class="navegador col-md-12 navbar navbar-default navbar-fixed-top ">
+    <div id="menu" class="container-fluid">
+
+        <div id="imgLogoCabecalho" class="navbar-header ">
+            <a class="navbar-brand" th:href="@{~/layout-aluno/inicioAluno}">
+                <img alt="Brand" src="../imagens/icone-brand.png"/>
+            </a>
+        </div>
+        <h1>Post<wbr/>Acad</h1>
+
+
+        <div id="dropdownPerfil" class="">
+            <li><a href="#"><span class="glyphicon glyphicon-user" th:text="'Olá ' + ${session.discente.nome}"></span> </a>
+                <ul>
+                    <li><a th:href="@{http://localhost:8080}">Logout</a></li>
+                </ul>
+            </li>
+        </div>
+
+    </div>
+
+
+    <div id="barraNavegacao" class="barraNavegacaoAluno span12 navbar-default nav-justified  ">
+                <a th:href="@{~/layout-aluno/trabalhos-aluno}" type="button" class="btn btn-default navbar-btn ">Gerenciar trabalhos</a>
+                <a th:href="@{~/layout-aluno/gerenciar-contatos}" type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
+                <a th:href="@{~/layout-aluno/perfil-aluno}" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
+            </div>
+
+</nav>
+<section class="aw-layout-content  js-content" layout:fragment="conteudo"></section>
+</body>
+</html>

@@ -22,7 +22,7 @@ public class ConnectionManager {
 					
 					connection = DriverManager.
 							getConnection("jdbc:mysql://localhost/mydb"
-									,"root","root");
+									,"root","admin");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					

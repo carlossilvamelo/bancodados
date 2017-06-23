@@ -35,14 +35,14 @@ public class IndexController {
 
 
 		ModelAndView mv = new ModelAndView("index");
-		DiscenteDao discenteDao = new DiscenteDao();
+		/*DiscenteDao discenteDao = new DiscenteDao();
 		Discente discente = discenteDao.buscarDiscentePorCpf("09566369000");
 		
 		System.out.println(discente.getNome());
 		System.out.println(discente.getEndereco().getCep());
 		System.out.println(discente.getEmail());
 		
-		
+		*/
 		
 		
 		return mv;

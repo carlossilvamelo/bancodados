@@ -1,0 +1,216 @@
+@charset "utf-8";
+
+
+
+div#divInfoPerfil::-webkit-scrollbar{
+    display: none;
+}
+div#divInfoPerfilProf::-webkit-scrollbar{
+    display: none;
+}
+div#divAreaConhecimento::-webkit-scrollbar{
+    display: none;
+}
+
+div#divInfoPerfil{
+    position: relative;
+    height: 450px;
+    overflow-y: scroll;
+    margin-top: 120px;
+    margin-left: 50px;
+	border-radius:10px;
+    background-color: var(--fundoConteudoAluno);
+
+}
+div#divInfoPerfil h2{
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+div#divInfoPerfil table{
+    width: 100%;
+    word-wrap: break-word;
+}
+
+div#divInfoPerfil table tr td a{
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    float: right;
+
+}
+div#divInfoPerfil table tr td p{
+    font-weight: bold;
+}
+div#divInfoPerfil table tr td span{
+    margin-left: 30px;
+}
+div#divInfoPerfil table tr td{
+    padding: 10px;
+}
+div#divInfoPerfil table tr td:hover{
+	transition: 1s;
+    background-color: var(--fundoConteudoAluno);
+}
+
+
+
+div#divInfoPerfilProf{
+    position: relative;
+    height: 450px;
+    overflow-y: scroll;
+    margin-top: 120px;
+    margin-left: 50px;
+	border-radius:10px;
+    background-color: var(--fundoConteudoProfessor);
+
+}
+div#divInfoPerfilProf h2{
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+div#divInfoPerfilProf table{
+    width: 100%;
+    word-wrap: break-word;
+}
+
+div#divInfoPerfilProf table tr td a{
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    float: right;
+
+}
+div#divInfoPerfilProf table tr td p{
+    font-weight: bold;
+}
+div#divInfoPerfilProf table tr td span{
+    margin-left: 30px;
+}
+div#divInfoPerfilProf table tr td{
+    padding: 10px;
+}
+div#divInfoPerfilProf table tr td:hover{
+	transition: 1s;
+    background-color: var(--alunoHover);
+}
+
+.botaoProfessor{
+          background-color: rgb(63, 158, 63);
+          color: white;
+}
+.botaoProfessor:hover{
+	
+          background-color: rgb(48, 116, 48);
+          color: white;
+          
+}
+
+
+
+
+
+.edicao{
+    display: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(27, 109, 133, 0.31);
+    float: right;
+    margin-top: 20px;
+}
+.edicao input{
+
+}
+.edicao a{
+    margin:2px;
+    padding: 2px;
+}
+
+div#divAreaConhecimento{
+    height: 450px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 120px;
+
+    float:right;
+    margin-right: 30px;
+    text-align: center;
+    overflow-y: auto;
+    
+}
+
+#divAreaConhecimento{
+    padding: 0px;
+
+}
+.itemArea tr:hover{
+	transition: 1s;
+    background-color: var(--fundoConteudoAluno);
+}
+
+.itemArea tr{
+
+}
+.itemArea td{
+	border-radius:10px;
+    padding: 5px;
+
+}
+.itemAreaProf span{
+    font-size: 20px;
+    float: left;
+}
+.itemAreaProf a{
+    float: right;
+}
+
+
+.itemAreaProf tr:hover{
+	transition: 1s;
+    background-color: var(--fundoConteudoProfessor);
+}
+
+.itemAreaProf tr{
+
+}
+.itemAreaProf td{
+	border-radius:10px;
+    padding: 5px;
+
+}
+.itemAreaProf span{
+    font-size: 20px;
+    float: left;
+}
+.itemAreaProf a{
+    float: right;
+}
+
+
+
+.addAreaConhecimento{
+    padding: 2px;
+    width: 80%;
+    margin-left: 10%;
+    border: 2px solid #c9c9c9;
+    border-radius: 50px;
+}
+.addAreaConhecimento select{
+    border-radius: 5px;
+    padding: 7px;
+    background-color: var(--alunoHover);
+}
+.addAreaConhecimentoProf{
+    padding: 2px;
+    width: 80%;
+    margin-left: 10%;
+    border: 2px solid #c9c9c9;
+    border-radius: 50px;
+}
+.addAreaConhecimentoProf select{
+    border-radius: 5px;
+    padding: 7px;
+    background-color: var(--fundoConteudoProfessor);
+}
+
+
