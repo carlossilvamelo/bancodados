@@ -51,12 +51,12 @@ public class IndexController {
 		DocenteDao docenteDao = new DocenteDao();
 
 		if(!cpf.equals("") && !senha.equals("")){
-
-			if(usuarioDao.verificarTipoUsuarioPorCpf(cpf) != null){//verifica se usuario existe
+			
+			if(usuarioDao.verificarTipoUsuarioPorCpf(cpf) != null){
+				//verifica se usuario existe
 				
 				if(usuarioDao.verificarTipoUsuarioPorCpf(cpf).equals("dis")){
 					//verificação do tipo de usuário
-
 					Discente discente = discenteDao.buscarDiscentePorCpf(cpf);
 					if(discente.getCpf().equals(cpf) && discente.getSenha().equals(senha)){
 						//verificação da identificação
@@ -79,7 +79,6 @@ public class IndexController {
 					if(docente.getCpf().equals(cpf) && docente.getSenha().equals(senha)){
 						attributes.addFlashAttribute("message","Bem Vindo " + docente.getNome());
 						attributes.addFlashAttribute("docente", docente);
-
 						session.setAttribute("docente", docente);
 					//	ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
 
@@ -91,6 +90,8 @@ public class IndexController {
 					}
 
 				}
+			}else{
+				mv = new ModelAndView("index");
 			}
 
 		}else{
