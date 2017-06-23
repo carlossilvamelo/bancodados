@@ -12,7 +12,7 @@ public class UsuarioDao {
 	public String verificarTipoUsuarioPorCpf(String cpf){
 		String tipo = null;
 	
-		String sql = "select * from view_discente where cpf_usu = ?";
+		String sql = "select tipo_usu from usuario where cpf_usu = ?";
 		
 
 		PreparedStatement stmt;

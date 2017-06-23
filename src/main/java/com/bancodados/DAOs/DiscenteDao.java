@@ -162,12 +162,10 @@ public class DiscenteDao {
 	
 	public void atualizarDiscente(Discente discente){
 		
-		DiscenteDao discenteDao = new DiscenteDao();
 		//operação 0
 
 		
 		PreparedStatement stmt = null;
-		ResultSet resultSet = null;
 		// operação 1
 		String inserirUsuario = "UPDATE usuario SET login_usu = ?, cpf_usu = ?, email_usu = ?, cep_usu = ?, tipo_usu = ?"
 				+ "WHERE id_usu = ?;";
