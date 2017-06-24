@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bancodados.DAOs.DocenteDao;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
 import com.bancodados.dominio.Trabalho;
@@ -78,8 +79,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.setNome(nome);
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		//consultas.atualizarDocente(docente);
+		DocenteDao docenteDao = new DocenteDao();
+		docenteDao.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -92,8 +93,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.setCpf(cpf);
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-	//	consultas.atualizarDocente(docente);
+		DocenteDao docenteDao = new DocenteDao();
+		docenteDao.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -106,8 +107,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.setLogin(login);
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		//consultas.atualizarDocente(docente);
+		DocenteDao docenteDao = new DocenteDao();
+		docenteDao.atualizarDocente(docente);;
 		
 		
 		return mv;
@@ -121,8 +122,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.setSenha(senha);
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-	//	consultas.atualizarDocente(docente);
+		DocenteDao docenteDao = new DocenteDao();
+		docenteDao.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -136,8 +137,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.setEmail(email);
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-	//	consultas.atualizarDocente(docente);
+		DocenteDao docenteDao = new DocenteDao();
+		docenteDao.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -149,8 +150,8 @@ public class ProfessorController {
 		ModelAndView mv = new ModelAndView("/layout-professor/perfil-professor");
 		Docente docente = (Docente) sessao.getAttribute("docente");
 		docente.setSobreNome(sobreNome);
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-	//	consultas.atualizarDocente(docente);
+		DocenteDao docenteDao = new DocenteDao();
+		docenteDao.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -164,8 +165,8 @@ public class ProfessorController {
 		ModelAndView mv = new ModelAndView("/layout-professor/perfil-professor");
 		Docente docente = (Docente) sessao.getAttribute("docente");
 		docente.setCurriculo(curriculo);
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		//consultas.atualizarDocente(docente);
+		DocenteDao docenteDao = new DocenteDao();
+		docenteDao.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -177,8 +178,8 @@ public class ProfessorController {
 		ModelAndView mv = new ModelAndView("/layout-professor/perfil-professor");
 		Docente docente = (Docente) sessao.getAttribute("docente");
 		docente.getEndereco().setCep(cep);
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-		//consultas.atualizarDocente(docente);
+		DocenteDao docenteDao = new DocenteDao();
+		docenteDao.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -191,8 +192,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.getEndereco().setRua(rua);
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-	//	consultas.atualizarDocente(docente);
+		DocenteDao docenteDao = new DocenteDao();
+		docenteDao.atualizarDocente(docente);
 		
 		
 		return mv;
@@ -205,9 +206,8 @@ public class ProfessorController {
 		Docente docente = (Docente) sessao.getAttribute("docente");
 
 		docente.getEndereco().setNumero(Integer.parseInt(numero));
-	//	ConsultasProjetoWeb consultas = new ConsultasProjetoWeb();
-	//	consultas.atualizarDocente(docente);
-	//	
+		DocenteDao docenteDao = new DocenteDao();
+		docenteDao.atualizarDocente(docente);
 		
 		return mv;
 		
