@@ -1,6 +1,16 @@
 @charset "UTF-8";
 
 
+.divGerenciarTrabalho::-webkit-scrollbar{
+    display: none;
+}
+ .divIntegrantes::-webkit-scrollbar{
+     display: none;
+ }
+.divAtividades::-webkit-scrollbar{
+    display: none;
+}
+
 .abrirChat{
     margin-left: 900px;
     margin-top: 120px;
@@ -28,50 +38,59 @@
     height: 400px;
     overflow-y: auto;
     word-wrap: break-word;
-    border-radius: 5px;
+
 }
 .divGerenciarTrabalho h3{
     text-align: center;
 }
 .divInfoTrabalho{
+	background-color:var(--fundoConteudoAluno);
     position: relative;
-    border-right: 3px solid var(--alunoAzul);
-    border-bottom: 3px solid var(--alunoAzul);
-    border-radius: 10px;
+   
+    border-radius: 5px;
     overflow-y: auto;
     height: 400px;
     word-wrap: break-word;
 }
 
 
+
 .divAtividades{
     position: relative;
-    border-right: 3px solid var(--alunoAzul);
-    border-bottom: 3px solid var(--alunoAzul);
-    border-radius: 10px;
+   background-color:var(--fundoConteudoAluno);
+    border-radius: 5px;
+}
+.divAtividades thead th{
+    text-align: center;
 }
 .divAtividades td{
-    padding: 10px;
+    padding: 5px;
+    width: 150px;
+    max-width: 150px;
+    word-wrap: break-word;
 }
 .divAtividades tr:hover{
+	transition: 1s;
     background-color: var(--alunoHover);
 }
 .botaoCriarAtividade{
     margin-left: 42%;
     margin-bottom: 20px;
 }
+.botaoAcoes{
+    width: 40%;
+    margin-left: 42%;
+    margin-bottom: 5px;
+}
 #criarAtividade{
     display: none;
-    border-right: 3px solid var(--alunoAzul);
-    border-bottom: 3px solid var(--alunoAzul);
-    height: 100px;
-    width: 100%;
+
 }
 
 
 
 .divIntegrantes{
-
+background-color:var(--fundoConteudoAluno);
 }
 .divIntegrantes td{
     border-radius: 10px;
@@ -85,7 +104,28 @@
     text-align: center;
 }
 
+#editarAtividade{
+    display: none;
 
+}
+#divVisualizar{
+    display: none;
+}
+#editarTrabalho{
+    display: none;
+}
+.divOculta{
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--alunoAzul);
+    height: 200px;
+    width: 90%;
+    position: absolute;
+    z-index: 1;
+    word-wrap: break-word;
+}
 
 #divEdicao{
     display: none;
@@ -99,21 +139,28 @@
 
 div#divInfoTrabalho{
     position: relative;
-
+}
+div#divInfoTrabalho table{
+    width: 100%;
+}
+div#divInfoTrabalho td{
+    width: 50px;
 }
 div#divInfoTrabalho h2{
     text-align: center;
     margin-bottom: 70px;
 }
 div#divInfoTrabalho table{
-    width: 600px;
+    width: 700px;
     word-wrap: break-word;
 }
 
 div#divInfoTrabalho table tr td a{
+    margin-left: 2px;
+    margin-right: 2px;
     margin-top: 0px;
     margin-bottom: 0px;
-    float: right;
+
 
 }
 div#divInfoTrabalho table tr td p{
@@ -125,18 +172,12 @@ div#divInfoTrabalho table tr td span{
 div#divInfoTrabalho table tr td{
     padding: 10px;
 }
-div#divInfoTrabalho table tr td:hover {
+div#divInfoTrabalho table tr:hover {
+	border-radius:10px;
+	transition:1s;
     background-color: var(--alunoHover);
 }
 
-.divAcoes{
-    width: 100px;
-    border: 1px solid var(--alunoAzul);
-    padding: 5px;
-}
-.divAcoes a{
-    width: 100%;
-}
 
 .divIntegrantes{
     height: 400px;
@@ -144,7 +185,12 @@ div#divInfoTrabalho table tr td:hover {
     margin-top: 120px;
     margin-right: 30px;
     padding-right:50px;
-    border-right: 3px solid var(--alunoAzul);
-    border-bottom: 3px solid var(--alunoAzul);
-    border-radius: 10px;
+    border-right: 1px solid var(--alunoAzul);
+    border-bottom: 1px solid var(--alunoAzul);
+    border-radius: 5px;
 }
+
+
+.visualizarTrabalhoAluno{}
+
+.visualizarTrabalhoProfessor{}

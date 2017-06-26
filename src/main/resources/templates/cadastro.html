@@ -21,25 +21,28 @@
     <script src="js-bootstrap/ie-emulation-modes-warning.js"></script>
 
 
+
   </head>
 
-  <body class="corFundo">
+  <body class="fundo">
+
+  <div class="fixLeft">&nbsp;</div>
 
     <div class="divDadosCadastro ">
-      <form class="formCadastro form-signin" method="post" th:action="@{/cadastrar}">
+
+      <form class="formCadastro form-signin" method="get" th:action="@{/cadastrar}">
         <h2 class="form-signin-heading text-center">Crie uma nova conta!</h2>
 
         <input name="nome" type="text" id="inputNome" placeholder="Nome" class="form-control itensForm"/>
         <input name="sobreNome" type="text" id="inputSobreNome" placeholder="Sobrenome" class="form-control itensForm"/>
 
-        <input name="email" type="email" id="inputEmail" class="form-control itensForm" placeholder="Email" />
+        <input name="cpf" type="text" id="inputEmail" maxlength="11" class="form-control itensForm" placeholder="CPF" />
 
         <input name="senha" type="password" id="inputPassword" class="form-control itensForm" placeholder="Senha" />
 
         <fieldset>
-
-          <input type="radio" name="rTipo" id="rDocente" value="docente" /><label for="rDocente">Docente</label>
-          <input type="radio" name="rTipo" id="rDiscente" value="discente" /><label for="rDiscente">Discente</label>
+          <input name="rTipo" id="rDocente" type="radio" value="doc" /><label for="rDocente">Docente</label>
+          <input name="rTipo" id="rDiscente" type="radio" value="dis" /><label for="rDiscente">Discente</label>
         </fieldset>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Criar nova conta</button>
@@ -51,13 +54,14 @@
 
     <div class="divInfoCadastro">
 
-    <img class="img-responsive center-block" src="imagens/escudo.png"/>
+    <img class="img-responsive center-block imgLogo" src="imagens/escudo.png"/>
       <p>
-        Seja bem-vindo ao PostAcad, a rede social de apoio aos trabalhos acadêmicos,
-        com o PostAcad você e sua equipe teram a possibilidade de organizar os grupos e as atividades
+        Seja bem-vindo ao PostAcad, a rede social de apoio aos trabalhos acadêmicos.
+        Com o PostAcad você e sua equipe teram a possibilidade de organizar os grupos e as atividades
         vinculadas aos trabalhos realizados a cada semestre, vamos trabalhar!
       </p>
 
+      <img class="img-responsive center-block imgCoworking" src="imagens/coworking.png"/>
     </div>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

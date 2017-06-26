@@ -8,17 +8,12 @@ public class Discente extends Usuario{
 
 	
 	// pode virar um enum
-	private Long matricula;
+	private Integer idTrabalho;
+	private String matricula;
 	private String reputacao;
 	
 	//construtores
-	public Discente(String nome, Integer idade, Integer cpf, Endereco endereco, String email,
-			String curriculo, Calendar dataNascimento, Identificacao identidicacao,
-			List<String> areasConhecimento, Long matricula, String reputacao) {
-		super(nome, idade, cpf, endereco, email, curriculo, dataNascimento, identidicacao);
-		this.matricula = matricula;
-		this.reputacao = reputacao;
-	}
+	
 	
 	public Discente() {
 		// TODO Auto-generated constructor stub
@@ -27,17 +22,30 @@ public class Discente extends Usuario{
 	
 	//getters and setters
 	
-	public Long getMatricula() {
-		return matricula;
-	}
-	public void setMatricula(Long matricula) {
-		this.matricula = matricula;
-	}
+
 	public String getReputacao() {
 		return reputacao;
 	}
+	public String getMatricula() {
+		return matricula;
+	}
+
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+
 	public void setReputacao(String reputacao) {
 		this.reputacao = reputacao;
+	}
+
+	public Integer getIdTrabalho() {
+		return idTrabalho;
+	}
+
+	public void setIdTrabalho(Integer idTrabalho) {
+		this.idTrabalho = idTrabalho;
 	}
 	
 	

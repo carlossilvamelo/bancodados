@@ -6,67 +6,36 @@ import java.util.List;
 public class Trabalho {
 
 	
-	private Integer trabalhoId;
+	private Integer idTrabalho;
 	private String titulo;
-	private List<String> areasConhecimento;
-	private List<Usuario> participantes;
-	private String avaliacao;
-	
-	//contrutores
-	public Trabalho(String titulo, List<String> areasCOnhecimento, List<Usuario> participantes,
-			String avaliacao) {
-		super();
-		this.titulo = titulo;
-		this.areasConhecimento = areasCOnhecimento;
-		this.participantes = participantes;
-		this.avaliacao = avaliacao;
+	private String resumo;
+	private Integer curtidas;
+	public Integer getIdTrabalho() {
+		return idTrabalho;
 	}
-	
-	public Trabalho() {
-		// TODO Auto-generated constructor stub
+	public void setIdTrabalho(Integer idTrabalho) {
+		this.idTrabalho = idTrabalho;
 	}
-
-	
-	//getters and setters
-	public Integer getId() {
-		return trabalhoId;
-	}
-
-	public void setId(Integer id) {
-		this.trabalhoId = id;
-	}
-
 	public String getTitulo() {
 		return titulo;
 	}
-
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
-	public List<String> getAreasCOnhecimento() {
-		return areasConhecimento;
+	public String getResumo() {
+		return resumo;
 	}
-
-	public void setAreasCOnhecimento(List<String> areasCOnhecimento) {
-		this.areasConhecimento = areasCOnhecimento;
+	public void setResumo(String resumo) {
+		this.resumo = resumo;
 	}
-
-	public List<Usuario> getParticipantes() {
-		return participantes;
+	public Integer getCurtidas() {
+		return curtidas;
 	}
-
-	public void setParticipantes(List<Usuario> participantes) {
-		this.participantes = participantes;
+	public void setCurtidas(Integer curtidas) {
+		this.curtidas = curtidas;
 	}
-
-	public String getAvaliacao() {
-		return avaliacao;
-	}
-
-	public void setAvaliacao(String avaliacao) {
-		this.avaliacao = avaliacao;
-	}
+	
+	
 	
 	
 	

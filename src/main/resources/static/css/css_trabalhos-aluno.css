@@ -4,6 +4,12 @@
     Estilos especificos da pagina de gerenciamento de trabalhos do aluno
 */
 
+.divListaTrabalhos::-webkit-scrollbar{
+    display: none;
+}
+.divListaTrabalhosProf::-webkit-scrollbar{
+    display: none;
+}
 
 .divListaTrabalhos{
 
@@ -11,9 +17,7 @@
     display: block;
     position: relative;
     margin-top: 120px;
-    border-right: 3px solid var(--corCinza);
-    border-bottom: 3px solid var(--corCinza);
-    border-radius: 10px;
+
     overflow-y: scroll;
 }
 .divListaTrabalhos h1{
@@ -23,26 +27,40 @@
     text-align: center;
     border-radius: 50px;
 }
+
 .menuListaTrabalhos{
     background-color: var(--alunoHover);
     padding-left: 15px;
     padding-right: 15px;
     font-weight: bolder;
     color: black;
-    border: 1px solid rgba(0, 0, 0, 0.28);
-    border-radius: 50px;
+
 }
 .meusTrabalhos tr{
-    border-right: 2px solid var(--alunoHover);
-    border-bottom: 2px solid var(--alunoHover);
+    border-right: 2px solid var(--fundoConteudoAluno);
+    border-bottom: 2px solid var(--fundoConteudoAluno);
     border-radius: 10px;
     text-align: center;
     padding: 10px;
 
 }
 .meusTrabalhos tr:hover{
-    transition:background-color .5s ;
-    background-color: var(--alunoHover);
+    transition:background-color 1s;
+    background-color: var(--fundoConteudoAluno);
+}
+
+
+.meusTrabalhosProf tr{
+    border-right: 2px solid var(--fundoConteudoProfessor);
+    border-bottom: 2px solid var(--fundoConteudoProfessor);
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+
+}
+.meusTrabalhosProf tr:hover{
+    transition:background-color 1s;
+    background-color: var(--fundoConteudoProfessor);
 }
 
 

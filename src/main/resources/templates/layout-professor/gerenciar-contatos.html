@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout-professor/header-professor">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -22,139 +24,114 @@
     <script src="../js-bootstrap/bootstrap.js"></script>
     <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
     <script src="../js/global.js"></script>
-
+   
 
 
 </head>
 <body class="backColor">
 
 
-        <nav  class="navegador col-md-12 navbar navbar-default navbar-fixed-top ">
-            <div id="menuProf" class="container-fluid">
-
-                <div id="imgLogoCabecalho" class="navbar-header ">
-                    <a class="navbar-brand" href="index-professor.html">
-                        <img alt="Brand" src="../imagens/icone-brand.png"/>
-                    </a>
-                </div>
-                <h1>Post<wbr>Acad</h1>
+      <section layout:fragment="conteudo">
+      	
 
 
-                <div id="dropdownPerfil" class="">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> olá usuário!</a>
-                        <ul>
-                            <li><a href="#">Logout</a></li>
-                        </ul>
-                    </li>
-                </div>
-
-            </div>
-
-
-            <div id="barraNavegacao" class=" barraNavegacaoProfessor span12 navbar-default nav-justified  ">
-                <a href="galeria-trabalhos.html" type="button" class="btn btn-default navbar-btn ">Galeria de trabalhos</a>
-                <a href="gerenciar-contatos.html" type="button" class="btn btn-default navbar-btn">Gerenciar contatos</a>
-                <a href="perfil-professor.html" type="button" class="btn btn-default navbar-btn">Gerenciar perfil</a>
-            </div>
-
-        </nav>
-
-
-        <div  class="  divMeusContatos col-sm-push-1 col-md-5">
+        <div  class="  divMeusContatosProf col-sm-push-1 col-md-5">
             <h1>Meus contatos</h1>
 
             <div class="menuListaTrabalhos">
 
-                <div class="buscarContato col-md-12">
+                <div class="buscarContatoProf col-md-12">
 
                     <input type="text" placeholder="filtrar" />
-                    <a href=""type="button" class="  btn btn-primary navbar-btn">Filtrar</a>
+                    <a href="" type="button" class="  btn botaoProfessor navbar-btn">Filtrar</a>
                 </div>
 
             </div>
 
-            <br>
-            <table class="listaContatos col-md-12">
+            <br/>
+            <table class="listaContatosProf col-md-12">
 
                 <tr>
                     <td>
                         <label for="">Login:</label>
-                        <span>chsm</span><br>
+                        <span>chsm</span><br/>
                         <label for="">Nome:</label>
-                        <span>carlos henrique</span><br>
+                        <span>carlos henrique</span><br/>
                         <label for="">Email:</label>
                         <span>carlossilvameloo@gmail.com</span>
 
                     </td>
                     <td>
-                        <a href=""type="button" class="gerenciar btn btn-danger navbar-btn">Excluir</a>
+                        <a href="" type="button" class="gerenciar btn btn-danger navbar-btn">Excluir</a>
                     </td>
 
                 </tr>
                 <tr>
                     <td>
                         <label for="">Login:</label>
-                        <span>chsm</span><br>
+                        <span>chsm</span><br/>
                         <label for="">Nome:</label>
-                        <span>carlos henrique</span><br>
+                        <span>carlos henrique</span><br/>
                         <label for="">Email:</label>
                         <span>carlossilvameloo@gmail.com</span>
 
                     </td>
                     <td>
-                        <a href=""type="button" class="gerenciar btn btn-danger navbar-btn">Excluir</a>
+                        <a href="#" type="button" class="gerenciar btn btn-danger navbar-btn">Excluir</a>
                     </td>
 
                 </tr>
             </table>
         </div>
 
-        <div class=" divBuscarContatos col-md-5">
+        <div class=" divBuscarContatosProf col-md-5">
             <div class="menuListaTrabalhos">
 
-                <div class="buscarContato col-md-12">
+                <div class="buscarContatoProf col-md-12">
 
                     <input type="text" placeholder="Buscar novo contato por email" />
-                    <a href=""type="button" class="  btn btn-primary navbar-btn">Buscar</a>
+                    <a href="" type="button" class=" btn botaoProfessor navbar-btn">Buscar</a>
+
                 </div>
 
             </div>
 
-            <br>
-            <table class="listaContatos col-md-12">
+            <br/>
+            <table class="listaContatosProf col-md-12">
 
                 <tr>
                     <td>
                         <label for="">Login:</label>
-                        <span>chsm</span><br>
+                        <span>chsm</span><br/>
                         <label for="">Nome:</label>
-                        <span>carlos henrique</span><br>
+                        <span>carlos henrique</span><br/>
                         <label for="">Email:</label>
                         <span>carlossilvameloo@gmail.com</span>
 
                     </td>
                     <td>
-                        <a href=""type="button" class="gerenciar btn btn-primary navbar-btn">Adicionar</a>
+                        <a href="" type="button" class="gerenciar btn botaoProfessor navbar-btn">Adicionar</a>
                     </td>
 
                 </tr>
                 <tr>
                     <td>
                         <label for="">Login:</label>
-                        <span>chsm</span><br>
+                        <span>chsm</span><br/>
                         <label for="">Nome:</label>
-                        <span>carlos henrique</span><br>
+                        <span>carlos henrique</span><br/>
                         <label for="">Email:</label>
                         <span>carlossilvameloo@gmail.com</span>
 
                     </td>
                     <td>
-                        <a href=""type="button" class="gerenciar btn btn-primary navbar-btn">Adicionar</a>
+                        <a href="" type="button" class="gerenciar btn botaoProfessor navbar-btn">Adicionar</a>
                     </td>
 
                 </tr>
             </table>
         </div>
+      </section>
 
 
 
