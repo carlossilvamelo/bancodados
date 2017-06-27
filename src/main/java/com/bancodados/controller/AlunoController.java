@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bancodados.DAOs.ContatosDiscenteDao;
 import com.bancodados.DAOs.DiscenteDao;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
 import com.bancodados.dominio.Trabalho;
+import com.bancodados.dominio.Usuario;
 
 
 @Controller
@@ -51,7 +53,8 @@ public class AlunoController {
 	public ModelAndView inicioAluno(HttpSession session){
 		ModelAndView mv = new ModelAndView("/layout-aluno/index-aluno");
 		//ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
-
+		//Discente discente = (Discente) session.getAttribute("discente");
+	//	System.out.println(discente.getCpf());
 		//Collections.shuffle(trabalhos);
 		//mv.addObject("trabalhos", trabalhos);
 			
@@ -70,14 +73,37 @@ public class AlunoController {
 	}
 	
 	@GetMapping("/gerenciar-contatos")
-	public ModelAndView gerenciarContatos(){
-		
+	public ModelAndView gerenciarContatos(HttpSession session){
+		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
 		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
-		
+		Discente discente = (Discente) session.getAttribute("discente");
+		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
+		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
+		mv.addObject("contatos", contatos);
+		mv.addObject("usuarios", usuarios);
 		return mv;
 		
 	}
 	
+	@GetMapping("/addContato")
+	public ModelAndView addContato(HttpSession session, String cpfContato){
+		
+		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
+		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
+		Discente discenteA = (Discente) session.getAttribute("discente");
+		
+		Discente discenteB = new Discente();
+		discenteB.setCpf(cpfContato);
+		
+		contatosDao.inserirContato(discenteA, discenteB);
+		
+		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
+		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discenteA);
+		mv.addObject("contatos", contatos);
+		mv.addObject("usuarios", usuarios);
+		return mv;
+		
+	}
 	
 	
 	@GetMapping("/attNome")

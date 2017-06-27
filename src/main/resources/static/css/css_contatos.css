@@ -17,6 +17,7 @@
     height: 400px;
     float: left;
     word-wrap: break-word;
+    overflow:auto;
 
 }
 .divMeusContatos h1{
@@ -48,6 +49,7 @@
     margin-right: 25px;
     margin-top: 120px;
     float: right;
+    overflow:auto;
 }
 
 .buscarContato{
