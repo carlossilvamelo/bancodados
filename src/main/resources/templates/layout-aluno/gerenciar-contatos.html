@@ -47,14 +47,14 @@
     <br/>
     <table class="listaContatos col-md-12">
 
-        <tr>
+        <tr th:if="${c != null}" th:each="c,iter: ${contatos}">
             <td>
                 <label>Login:</label>
-                <span>chsm</span><br/>
+                <span th:text="${c.login}">chsm</span><br/>
                 <label>Nome:</label>
-                <span>carlos henrique</span><br/>
+                <span th:text="${c.nome}">carlos henrique</span><br/>
                 <label>Email:</label>
-                <span>carlossilvameloo@gmail.com</span>
+                <span th:text="${c.email}">carlossilvameloo@gmail.com</span>
             </td>
             
             <td>
@@ -62,21 +62,7 @@
             </td>
 
         </tr>
-        <tr>
-            <td>
-                <label for="">Login:</label>
-                <span>chsm</span><br/>
-                <label for="">Nome:</label>
-                <span>carlos henrique</span><br/>
-                <label for="">Email:</label>
-                <span>carlossilvameloo@gmail.com</span>
-
-            </td>
-            <td>
-                <a href="#" type="button" class="gerenciar btn btn-danger navbar-btn">Excluir</a>
-            </td>
-
-        </tr>
+        
     </table>
 </div>
 
@@ -94,36 +80,23 @@
     <br/>
     <table class="listaContatos col-md-12">
 
-        <tr>
+        <tr th:if="${u != null}" th:each="u,iter: ${usuarios}">
             <td>
                 <label for="">Login:</label>
-                <span>chsm</span><br/>
+                <span th:text="${u.login}">chsm</span><br/>
                 <label for="">Nome:</label>
-                <span>carlos henrique</span><br/>
+                <span th:text="${u.nome}">carlos henrique</span><br/>
                 <label for="">Email:</label>
-                <span>carlossilvameloo@gmail.com</span>
+                <span th:text="${u.email}">carlossilvameloo@gmail.com</span>
 
             </td>
             <td>
-                <a href="" type="button" class="gerenciar btn btn-primary navbar-btn">Adicionar</a>
+                <a href="" type="button" class="gerenciar btn btn-primary navbar-btn"
+                th:href="@{/layout-aluno/addContato(cpfContato=${u.cpf})}" >Adicionar</a>
             </td>
 
         </tr>
-        <tr>
-            <td>
-                <label for="">Login:</label>
-                <span>chsm</span><br/>
-                <label for="">Nome:</label>
-                <span>carlos henrique</span><br/>
-                <label for="">Email:</label>
-                <span>carlossilvameloo@gmail.com</span>
-
-            </td>
-            <td>
-                <a href="" type="button" class="gerenciar btn btn-primary navbar-btn">Adicionar</a>
-            </td>
-
-        </tr>
+        
     </table>
 </div>
 	

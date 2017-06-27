@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bancodados.DAOs.ContatosDiscenteDao;
 import com.bancodados.DAOs.DiscenteDao;
 import com.bancodados.DAOs.DocenteDao;
 import com.bancodados.DAOs.LoginDao;
@@ -24,6 +25,7 @@ import com.bancodados.DAOs.UsuarioDao;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
 import com.bancodados.dominio.Trabalho;
+import com.bancodados.dominio.Usuario;
 
 
 @Controller
@@ -49,7 +51,7 @@ public class IndexController {
 		DiscenteDao discenteDao = new DiscenteDao();
 		UsuarioDao usuarioDao = new UsuarioDao();
 		DocenteDao docenteDao = new DocenteDao();
-
+		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
 		if(!cpf.equals("") && !senha.equals("")){
 			
 			if(usuarioDao.verificarTipoUsuarioPorCpf(cpf) != null){
@@ -67,10 +69,12 @@ public class IndexController {
 						//ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
 
 						//	Collections.shuffle(trabalhos);
-
+						ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
+						
 
 						mv = new ModelAndView("/layout-aluno/index-aluno");
-						//	mv.addObject("trabalhos", trabalhos);
+						//mv.addObject("trabalhos", trabalhos);
+						mv.addObject("contatos", contatos);
 					}else{
 						mv = new ModelAndView("index");
 					}
