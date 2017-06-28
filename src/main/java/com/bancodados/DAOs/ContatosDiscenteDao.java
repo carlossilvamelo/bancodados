@@ -52,6 +52,43 @@ public class ContatosDiscenteDao {
 
 
 	}
+	
+	
+	
+	public void excluirContato(Discente discenteA, Discente discenteB){
+
+		PreparedStatement stmt = null;
+		// operação 1
+
+
+		try {
+			String inserirContato = "delete from contato where id_usu_a = ? "
+					+ "and id_usu_b = ?;";
+
+			stmt = ConnectionManager.getConnection().prepareStatement(inserirContato);
+
+			stmt.setString(1, discenteA.getCpf());
+			stmt.setString(2, discenteB.getCpf());
+			stmt.execute();
+			stmt.close();
+			
+			
+			stmt = ConnectionManager.getConnection().prepareStatement(inserirContato);
+			stmt.setString(1, discenteB.getCpf());
+			stmt.setString(2, discenteA.getCpf());
+			stmt.execute();
+			stmt.close();
+
+
+	
+			System.out.println("contato excluido!");
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 	public ArrayList<Usuario> buscarContatos(Discente discente){
 		PreparedStatement stmt = null;

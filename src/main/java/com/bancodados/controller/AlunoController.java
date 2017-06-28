@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bancodados.DAOs.ContatosDiscenteDao;
 import com.bancodados.DAOs.DiscenteDao;
+import com.bancodados.DAOs.DocenteDao;
+import com.bancodados.DAOs.UsuarioDao;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
 import com.bancodados.dominio.Trabalho;
@@ -25,12 +27,12 @@ public class AlunoController {
 
 	@GetMapping("/perfil-aluno")
 	public ModelAndView perfilAluno(){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
-		
-		
+
+
 		return mv;
-		
+
 	}
 	@GetMapping("/visualizarTrabalho")
 	public ModelAndView visualizarTrabalho(HttpSession session){
@@ -38,40 +40,104 @@ public class AlunoController {
 
 		return mv;
 	}
-	
+
 	@GetMapping("/index-aluno")
 	public ModelAndView indexAluno(){
 		ModelAndView mv = new ModelAndView("/index-aluno");
-		
-		
-		
+
+
+
 		return mv;
-		
+
 	}
-	
+
 	@GetMapping("/inicioAluno")
 	public ModelAndView inicioAluno(HttpSession session){
+
+		Discente discente = (Discente) session.getAttribute("discente");
+		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
 		ModelAndView mv = new ModelAndView("/layout-aluno/index-aluno");
+		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
+		mv.addObject("contatos", contatos);
 		//ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
 		//Discente discente = (Discente) session.getAttribute("discente");
-	//	System.out.println(discente.getCpf());
+		//	System.out.println(discente.getCpf());
 		//Collections.shuffle(trabalhos);
 		//mv.addObject("trabalhos", trabalhos);
-			
-		
+
+
 		return mv;
-		
+
 	}
-	
+
+	@GetMapping("/filtrarUsuarios")
+	public ModelAndView filtrarUsuarios(HttpSession session, String filtro){
+		Discente discente = (Discente) session.getAttribute("discente");
+		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
+		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
+		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
+		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
+		if(!filtro.equals("")){
+			ArrayList<Usuario> contatosFiltrados = new ArrayList<Usuario>();
+			for (Usuario usuario : usuarios) {
+				if(usuario.getNome().contains(filtro)){
+					contatosFiltrados.add(usuario);
+				}
+			}
+			mv.addObject("usuarios", contatosFiltrados);
+			mv.addObject("contatos", contatos);
+		}else{
+			mv.addObject("usuarios", usuarios);
+			mv.addObject("contatos", contatos);
+		}
+
+
+
+		return mv;
+
+	}
+
+	@GetMapping("/filtrarContatos")
+	public ModelAndView filtrarContatos(HttpSession session, String filtro){
+		Discente discente = (Discente) session.getAttribute("discente");
+		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
+		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
+		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
+		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
+		if(!filtro.equals("")){
+			ArrayList<Usuario> contatosFiltrados = new ArrayList<Usuario>();
+			for (Usuario usuario : contatos) {
+				if(usuario.getNome().contains(filtro)){
+					contatosFiltrados.add(usuario);
+				}
+			}
+			mv.addObject("contatos", contatosFiltrados);
+			mv.addObject("usuarios", usuarios);
+		}else{
+			mv.addObject("contatos", contatos);
+			mv.addObject("usuarios", usuarios);
+		}
+
+
+
+
+
+
+		return mv;
+
+	}
+
+
+
 	@GetMapping("/trabalhos-aluno")
 	public ModelAndView trabalhosAluno(){
 		ModelAndView mv = new ModelAndView("/layout-aluno/trabalhos-aluno");
-		
-		
+
+
 		return mv;
-		
+
 	}
-	
+
 	@GetMapping("/gerenciar-contatos")
 	public ModelAndView gerenciarContatos(HttpSession session){
 		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
@@ -82,188 +148,208 @@ public class AlunoController {
 		mv.addObject("contatos", contatos);
 		mv.addObject("usuarios", usuarios);
 		return mv;
-		
+
 	}
-	
+
 	@GetMapping("/addContato")
 	public ModelAndView addContato(HttpSession session, String cpfContato){
-		
+
 		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
 		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
 		Discente discenteA = (Discente) session.getAttribute("discente");
-		
+
 		Discente discenteB = new Discente();
 		discenteB.setCpf(cpfContato);
-		
+
 		contatosDao.inserirContato(discenteA, discenteB);
-		
+
 		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
 		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discenteA);
 		mv.addObject("contatos", contatos);
 		mv.addObject("usuarios", usuarios);
 		return mv;
-		
+
 	}
-	
-	
+
+	@GetMapping("/excluirContato")
+	public ModelAndView excluirContato(HttpSession session, String cpfContato){
+
+		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
+		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
+		Discente discenteA = (Discente) session.getAttribute("discente");
+
+		Discente discenteB = new Discente();
+		discenteB.setCpf(cpfContato);
+
+		contatosDao.excluirContato(discenteA, discenteB);
+
+		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
+		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discenteA);
+		mv.addObject("contatos", contatos);
+		mv.addObject("usuarios", usuarios);
+		return mv;
+
+	}
+
+
 	@GetMapping("/attNome")
 	public ModelAndView atualizarNome(String nome, HttpSession sessao){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
-		
+
 		discente.setNome(nome);
 		DiscenteDao discenteDao = new DiscenteDao();
 		discenteDao.atualizarDiscente(discente);
-		
-		
+
+
 		return mv;
-		
+
 	}
 	@GetMapping("/attCpf")
 	public ModelAndView atualizarCpf(String cpf, HttpSession sessao){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setCpf(cpf);
 		DiscenteDao discenteDao = new DiscenteDao();
 		discenteDao.atualizarDiscente(discente);
-		
-		
+
+
 		return mv;
-		
+
 	}
 	@GetMapping("/attLogin")
 	public ModelAndView atualizarLogin(String login, HttpSession sessao){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setLogin(login);
 		DiscenteDao discenteDao = new DiscenteDao();
 		discenteDao.atualizarDiscente(discente);
-		
-		
+
+
 		return mv;
-		
+
 	}
-	
+
 	@GetMapping("/attSenha")
 	public ModelAndView atualizarSenha(String senha, HttpSession sessao){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setSenha(senha);
 		DiscenteDao discenteDao = new DiscenteDao();
 		discenteDao.atualizarDiscente(discente);
-		
-		
+
+
 		return mv;
-		
+
 	}
-	
+
 	@GetMapping("/attEmail")
 	public ModelAndView atualizarEmail(String email, HttpSession sessao){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setEmail(email);
 		DiscenteDao discenteDao = new DiscenteDao();
 		discenteDao.atualizarDiscente(discente);
-		
-		
+
+
 		return mv;
-		
+
 	}
 	@GetMapping("/attSobreNome")
 	public ModelAndView atualizarSObreNome(String sobreNome, HttpSession sessao){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setSobreNome(sobreNome);
 		DiscenteDao discenteDao = new DiscenteDao();
 		discenteDao.atualizarDiscente(discente);
-		
-		
+
+
 		return mv;
-		
+
 	}
-	
+
 	@GetMapping("/attMatricula")
 	public ModelAndView atualizarMatricula(String matricula, HttpSession sessao){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setMatricula(matricula);
 		DiscenteDao discenteDao = new DiscenteDao();
 		discenteDao.atualizarDiscente(discente);
-		
-		
+
+
 		return mv;
-		
+
 	}
 	@GetMapping("/attCurriculo")
 	public ModelAndView atualizarCurriculo(String curriculo, HttpSession sessao){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.setCurriculo(curriculo);
 		DiscenteDao discenteDao = new DiscenteDao();
 		discenteDao.atualizarDiscente(discente);
-		
-		
+
+
 		return mv;
-		
+
 	}
 	@GetMapping("/attCep")
 	public ModelAndView atualizarCep(String cep, HttpSession sessao){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.getEndereco().setCep(cep);
 		DiscenteDao discenteDao = new DiscenteDao();
 		discenteDao.atualizarDiscente(discente);
-		
-		
+
+
 		return mv;
-		
+
 	}
 	@GetMapping("/attRua")
 	public ModelAndView atualizarRua(String rua, HttpSession sessao){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.getEndereco().setRua(rua);
 		DiscenteDao discenteDao = new DiscenteDao();
 		discenteDao.atualizarDiscente(discente);
-		
-		
+
+
 		return mv;
-		
+
 	}
 	@GetMapping("/attNumero")
 	public ModelAndView atualizarNumero(String numero, HttpSession sessao){
-		
+
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
 
 		discente.getEndereco().setNumero(Integer.parseInt(numero));
 		DiscenteDao discenteDao = new DiscenteDao();
 		discenteDao.atualizarDiscente(discente);
-		
-		
+
+
 		return mv;
-		
+
 	}
-	
+
 	@GetMapping("/logout")
 	public void logout(HttpSession sessao){
 
@@ -271,5 +357,5 @@ public class AlunoController {
 		discente = null;
 
 	}
-	
+
 }
