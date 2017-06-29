@@ -231,8 +231,8 @@ public class TrabalhoDao {
 		// operação1
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
-		String procurarIdTrabalhos = "SELECT (id_tra, titulo_tra, resumo_tra, status_tra, numero_curtidas_tra) FROM trabalho"
-				+ " INNER JOIN(SELECT id_trabalho_par FROM participante_trabalho WHERE id_discente_par = ?) as part_trab_id "
+		String procurarIdTrabalhos = "SELECT * FROM trabalho"
+				+ " INNER JOIN (SELECT id_trabalho_par FROM participante_trabalho WHERE id_discente_par = ?) as part_trab_id "
 				+ "ON id_tra = part_trab_id.id_trabalho_par;";
 		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(procurarIdTrabalhos);
