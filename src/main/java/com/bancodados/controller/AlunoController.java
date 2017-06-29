@@ -226,8 +226,24 @@ public class AlunoController {
 		ContatosDao contatosDao = new ContatosDao();
 		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
 		Discente discente = (Discente) session.getAttribute("discente");
-		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
+		ArrayList<Usuario> todosUsuarios = contatosDao.buscarTodosUsuarios();
 		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		for (Usuario usuario : todosUsuarios) {
+			if(!usuario.getCpf().equals(discente.getCpf())){
+				usuarios.add(usuario);
+			}
+			for (Usuario contato : contatos) {
+				if(usuario.getCpf().equals(contato.getCpf())){
+					usuarios.remove(usuario);
+				}
+			}
+			
+		}
+		
+		
+		
 		mv.addObject("contatos", contatos);
 		mv.addObject("usuarios", usuarios);
 		return mv;

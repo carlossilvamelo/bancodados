@@ -52,10 +52,10 @@ public class MensagemDao {
 				+ "inner join info_usuario on id_usu = id_inf "
 				+ "inner join mensagem on id_remetente_men=id_usu where "
 				+ "(id_remetente_men= ? and id_destinatario_men= ?) "
-				+ "or (id_remetente_men= ? and id_destinatario_men= ?);";
+				+ "or (id_remetente_men= ? and id_destinatario_men= ?) order by id_men asc;";
 		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(inserirUsuario);
-
+					
 			stmt.setInt(1, remetente.getId());
 			stmt.setInt(2, destinatario.getId());
 			stmt.setInt(3, destinatario.getId());

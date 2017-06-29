@@ -136,8 +136,20 @@ public class ProfessorController {
 		ContatosDao contatosDao = new ContatosDao();
 		ModelAndView mv = new ModelAndView("layout-professor/gerenciar-contatos");
 		Docente docente = (Docente) session.getAttribute("docente");
-		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
+		ArrayList<Usuario> todosUsuarios = contatosDao.buscarTodosUsuarios();
 		ArrayList<Usuario> contatos = contatosDao.buscarContatos(docente);
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		for (Usuario usuario : todosUsuarios) {
+			if(!usuario.getCpf().equals(docente.getCpf())){
+				usuarios.add(usuario);
+			}
+			for (Usuario contato : contatos) {
+				if(usuario.getCpf().equals(contato.getCpf())){
+					usuarios.remove(usuario);
+				}
+			}
+			
+		}
 		mv.addObject("contatos", contatos);
 		mv.addObject("usuarios", usuarios);
 
