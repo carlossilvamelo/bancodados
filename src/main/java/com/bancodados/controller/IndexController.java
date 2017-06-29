@@ -22,6 +22,7 @@ import com.bancodados.DAOs.ContatosDao;
 import com.bancodados.DAOs.DiscenteDao;
 import com.bancodados.DAOs.DocenteDao;
 import com.bancodados.DAOs.LoginDao;
+import com.bancodados.DAOs.TrabalhoDao;
 import com.bancodados.DAOs.UsuarioDao;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
@@ -53,6 +54,7 @@ public class IndexController {
 		DiscenteDao discenteDao = new DiscenteDao();
 		UsuarioDao usuarioDao = new UsuarioDao();
 		DocenteDao docenteDao = new DocenteDao();
+		TrabalhoDao trabalhoDao = new TrabalhoDao();
 		ContatosDao contatosDao = new ContatosDao();
 		if(!cpf.equals("") && !senha.equals("")){
 			
@@ -68,16 +70,16 @@ public class IndexController {
 						attributes.addFlashAttribute("message","Bem Vindo " + discente.getNome());
 						attributes.addFlashAttribute("discente", discente);
 						session.setAttribute("discente", discente);
-						//ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
+						ArrayList<Trabalho> trabalhos = trabalhoDao.procurarQuantidade(10);
 
-						//	Collections.shuffle(trabalhos);
+						Collections.shuffle(trabalhos);
 						ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
 						
 						
 						
 						
 						mv = new ModelAndView("/layout-aluno/index-aluno");
-						//mv.addObject("trabalhos", trabalhos);
+						mv.addObject("trabalhos", trabalhos);
 						mv.addObject("contatos", contatos);
 						
 					}else{
@@ -89,12 +91,12 @@ public class IndexController {
 						attributes.addFlashAttribute("message","Bem Vindo " + docente.getNome());
 						attributes.addFlashAttribute("docente", docente);
 						session.setAttribute("docente", docente);
-					//	ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
+						ArrayList<Trabalho> trabalhos = trabalhoDao.procurarQuantidade(10);
 						ArrayList<Usuario> contatos = contatosDao.buscarContatos(docente);
-					//	Collections.shuffle(trabalhos);
+						Collections.shuffle(trabalhos);
 						mv = new ModelAndView("/layout-professor/index-professor");
 						mv.addObject("contatos", contatos);
-					//	mv.addObject("trabalhos", trabalhos);
+						mv.addObject("trabalhos", trabalhos);
 					}else{
 						mv = new ModelAndView("index");
 					}

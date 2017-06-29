@@ -16,6 +16,7 @@ import com.bancodados.DAOs.ContatosDao;
 import com.bancodados.DAOs.DiscenteDao;
 import com.bancodados.DAOs.DocenteDao;
 import com.bancodados.DAOs.MensagemDao;
+import com.bancodados.DAOs.TrabalhoDao;
 import com.bancodados.DAOs.UsuarioDao;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
@@ -56,17 +57,17 @@ public class AlunoController {
 
 	@GetMapping("/inicioAluno")
 	public ModelAndView inicioAluno(HttpSession session){
-
+		TrabalhoDao trabalhoDao = new TrabalhoDao();
 		Discente discente = (Discente) session.getAttribute("discente");
 		ContatosDao contatosDao = new ContatosDao();
 		ModelAndView mv = new ModelAndView("/layout-aluno/index-aluno");
 		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
 		mv.addObject("contatos", contatos);
-		//ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
+		ArrayList<Trabalho> trabalhos = trabalhoDao.procurarQuantidade(10);
 		//Discente discente = (Discente) session.getAttribute("discente");
 		//	System.out.println(discente.getCpf());
-		//Collections.shuffle(trabalhos);
-		//mv.addObject("trabalhos", trabalhos);
+		Collections.shuffle(trabalhos);
+		mv.addObject("trabalhos", trabalhos);
 
 
 		return mv;
@@ -93,9 +94,11 @@ public class AlunoController {
 			mv.addObject("usuarios", usuarios);
 			mv.addObject("contatos", contatos);
 		}
-
-
-
+		TrabalhoDao trabalhoDao = new TrabalhoDao();
+		ArrayList<Trabalho> trabalhos = trabalhoDao.procurarQuantidade(10);
+		Collections.shuffle(trabalhos);
+		mv.addObject("trabalhos", trabalhos);
+		
 		return mv;
 
 	}
@@ -130,7 +133,10 @@ public class AlunoController {
 			mv.addObject("mensagens", mensagens);
 			mv.addObject("cpfDestinatario", cpfDestinatario);
 		}
-
+		TrabalhoDao trabalhoDao = new TrabalhoDao();
+		ArrayList<Trabalho> trabalhos = trabalhoDao.procurarQuantidade(10);
+		Collections.shuffle(trabalhos);
+		mv.addObject("trabalhos", trabalhos);
 		return mv;
 
 	}
@@ -173,7 +179,10 @@ public class AlunoController {
 			ArrayList<Mensagem> mensagens = mensagemDao.buscarMensagens(remetente, Discentedestinatario);
 			mv.addObject("mensagens", mensagens);
 		}
-		
+		TrabalhoDao trabalhoDao = new TrabalhoDao();
+		ArrayList<Trabalho> trabalhos = trabalhoDao.procurarQuantidade(10);
+		Collections.shuffle(trabalhos);
+		mv.addObject("trabalhos", trabalhos);
 
 		return mv;
 
@@ -213,9 +222,13 @@ public class AlunoController {
 
 
 	@GetMapping("/trabalhos-aluno")
-	public ModelAndView trabalhosAluno(){
+	public ModelAndView trabalhosAluno(HttpSession session){
 		ModelAndView mv = new ModelAndView("/layout-aluno/trabalhos-aluno");
-
+		Discente discente = (Discente) session.getAttribute("discente");
+		TrabalhoDao trabalhoDao = new TrabalhoDao();
+		ArrayList<Trabalho> trabalhos = trabalhoDao.procurarTrabalhosPorDiscente(discente);
+		Collections.shuffle(trabalhos);
+		mv.addObject("trabalhos", trabalhos);
 
 		return mv;
 
