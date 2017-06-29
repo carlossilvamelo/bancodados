@@ -34,13 +34,19 @@
     padding-right: 15px;
     font-weight: bolder;
     color: black;
+    width: ;
 
 }
+.meusTrabalhos{
+	width:100%;
+}
+
 .meusTrabalhos tr{
     border-right: 2px solid var(--fundoConteudoAluno);
     border-bottom: 2px solid var(--fundoConteudoAluno);
     border-radius: 10px;
     text-align: center;
+    
     padding: 10px;
 
 }

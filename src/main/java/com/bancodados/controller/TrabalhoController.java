@@ -55,12 +55,15 @@ public class TrabalhoController {
 	@GetMapping("/gerenciar")
 	public ModelAndView gerenciar(HttpSession session, String idTrabalho){
 		
+		TrabalhoDao trabalhoDao = new TrabalhoDao();
 		
 		
-		ModelAndView mv = new ModelAndView("/layout-aluno/index-aluno");
+		ModelAndView mv = new ModelAndView("/layout-aluno/trabalho");
 		
-		
-		return null;
+		//Trabalho trabalho = trabalhoDao.buscarTrabalhoPorTitulo(titulo);
+		System.out.println(idTrabalho);
+		//mv.addObject("trabalho", trabalho);
+		return mv;
 
 	}
 	
