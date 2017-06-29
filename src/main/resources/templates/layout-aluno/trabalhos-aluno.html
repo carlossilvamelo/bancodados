@@ -23,14 +23,17 @@
 <script src="../js-bootstrap/bootstrap.js"></script>
 <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
 <script src="../js/global.js" type="text/javascript"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+<style>
+.imagem{
+	margin-left:43%;
+}
+</style>
 
 </head>
 
@@ -46,7 +49,7 @@
 			<div class="menuListaTrabalhos">
 				<!-- Trigger the modal with a button -->
 				<button type="button" class="btn btn-info btn-lg"
-					data-toggle="modal" data-target="#myModal">Open Modal</button>
+					data-toggle="modal" data-target="#myModal">Novo trabalho</button>
 
 				<!-- Modal -->
 				<div id="myModal" class="modal fade" role="dialog">
@@ -59,7 +62,7 @@
 								<h4 class="modal-title">Novo trabalho</h4>
 							</div>
 							<div class="modal-body">
-							
+							<img class="imagem" alt="Brand" src="../imagens/icone-brand.png"/>
 							
 								<form class="formCadastro form-signin" method="get"
 									th:action="@{/../trabalho/novoTrabalho}">
@@ -80,18 +83,18 @@
 
 
 							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
-							</div>
+							
 						</div>
 
 					</div>
 				</div>
 				<div class="buscarTrabalho">
 
-					<input type="text" placeholder="Titulo/palavra chave" /> <a
-						href="#" type="button" class="  btn btn-primary navbar-btn">Buscar</a>
+					<form th:action="@{/../trabalho/filtrar}" method="get">
+
+						<input name="filtro" type="text" placeholder="filtrar por titulo" />
+						<button class="btn btn-primary " type="submit">filtrar</button>
+					</form>
 				</div>
 
 			</div>
@@ -101,15 +104,15 @@
 
 			<br />
 			<table class="meusTrabalhos">
-				<tr>
+				<tr th:if="${trabalho != null}" th:each="trabalho,iter: ${trabalhos}">
 					<td>
-						<h2>Titulo</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+						<h2 th:text="${trabalho.titulo}">Titulo</h2>
+						<p th:text="${trabalho.resumo}">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 							sed do eiusmod tempor incididunt ut labore et dolore magna
 							aliqua. Ut enim ad minim veniam, quis nostrud exercitation
 							ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <a
-						href="#" type="button"
-						class="gerenciar btn btn-primary navbar-btn">Gerenciar</a> <br />
+						th:href="@{/../trabalho/gerenciar(idTrabalho=$(trabalho.idTrabalho))}" type="button"
+						class="gerenciar btn btn-primary navbar-btn">Gerenciar</a> <br/>
 
 					</td>
 				</tr>

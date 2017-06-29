@@ -43,4 +43,29 @@ public class TrabalhoController {
 		return mv;
 
 	}
+	
+	@GetMapping("/gerenciar")
+	public ModelAndView gerenciar(HttpSession session, String idTrabalho){
+		
+		
+		
+		ModelAndView mv = new ModelAndView("/layout-aluno/index-aluno");
+		
+		
+		return null;
+
+	}
+	
+	@GetMapping("/filtrar")
+	public ModelAndView filtrar(HttpSession session, String filtro){
+		
+		
+		
+		ModelAndView mv = new ModelAndView("/layout-aluno/index-aluno");
+		
+		
+		return null;
+
+	}
+	
 }
