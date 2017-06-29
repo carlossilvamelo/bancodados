@@ -51,4 +51,12 @@ public class Trabalho {
 		this.participantes = participantes;
 	}
 	
+	public void adicionarParticipante(Discente discente){
+		this.participantes.add(discente);
+	}
+	
+	public void removerParticipante(Discente discente){
+		this.participantes.remove(discente);
+	}
+	
 }

@@ -3,6 +3,7 @@ package com.bancodados.DAOs;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.StatusTrabalho;
@@ -137,26 +138,104 @@ public class TrabalhoDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		// operação 2
-				String inserirParticipantes = "UPDATE participante_trabalho SET id_discente_par = ? WHERE id_tra = ?;";
-				try {
-					stmt = ConnectionManager.getConnection().prepareStatement(inserirUsuario);
 
-					stmt.setString(1, trabalho.getTitulo());
-					stmt.setString(2, trabalho.getStatus().toString());
-					stmt.setInt(3, trabalho.getCurtidas());
-					stmt.setString(4, trabalho.getResumo());
-					stmt.setInt(5, trabalho.getIdTrabalho());
-					stmt.execute();
-					stmt.close();
+		for (Discente participante : trabalho.getParticipantes()) {
+			// operação 2
+			String inserirParticipantes = "INSERT INTO participante_trabalho VALUES (?,?) ON DUPLICATE KEY UPDATE;";
+			try {
+				stmt = ConnectionManager.getConnection().prepareStatement(inserirParticipantes);
 
-					System.out.println("Trabalho atualizado!");
-					ConnectionManager.closeConnection();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				stmt.setInt(1, participante.getId());
+				stmt.setInt(2, trabalho.getIdTrabalho());
+				stmt.execute();
+				stmt.close();
+
+				System.out.println("Trabalho atualizado!");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		try
+
+		{
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
+	public void inserirParticipante(Trabalho trabalho, Discente discente) {
+		PreparedStatement stmt = null;
+		// operação 1
+		String inserirParticipantes = "INSERT INTO participante_trabalho VALUES (?,?) ON DUPLICATE KEY UPDATE;";
+		try {
+			stmt = ConnectionManager.getConnection().prepareStatement(inserirParticipantes);
+
+			stmt.setInt(1, discente.getId());
+			stmt.setInt(2, trabalho.getIdTrabalho());
+			stmt.execute();
+			stmt.close();
+
+			System.out.println("Participante inserido!");
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public ArrayList<Trabalho> procurarTrabalhosPorDiscente(Discente discente){
+		
+		ArrayList<Trabalho> trabalhosEncontrados = new ArrayList<Trabalho>();
+		Trabalho trabalho = null;
+		//operação1
+		PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		PreparedStatement stmt1 = null;
+		ResultSet resultSet1 = null;
+		String procurarIdTrabalhos = "SELECT id_trabalho_par FROM participante_trabalho WHERE id_discente_par = ?";
+		try{
+			stmt = ConnectionManager.getConnection().prepareStatement(procurarIdTrabalhos);
+			
+			stmt.setInt(1, discente.getId());
+			stmt.execute();
+			stmt.close();
+			
+			resultSet = stmt.getResultSet();
+			
+			while(resultSet.next()){
+				trabalho = new Trabalho();
+				trabalho.setIdTrabalho(resultSet.getInt("id_trabalho_par"));
+				trabalhosEncontrados.add(trabalho);
+			}
+			
+			//operação 2
+			String procurarTrabalhos = "SELECT * FROM trabalho WHERE id_tra = ?;";
+			for(Trabalho trab_encontrado : trabalhosEncontrados){
+				stmt1 = ConnectionManager.getConnection().prepareStatement(procurarTrabalhos);
+				
+				stmt1.setInt(1, trab_encontrado.getIdTrabalho());
+				
+				stmt1.execute();
+				stmt1.close();
+				
+				resultSet1 = stmt1.getResultSet();
+				while(resultSet1.next()){
+					trab_encontrado.setTitulo(resultSet1.getString("titulo_tra"));
+					trab_encontrado.setResumo(resultSet1.getString("resumo_tra"));
+					trab_encontrado.setStatus(StatusTrabalho.getStatusByNome(resultSet1.getString("status_tra")));
+					trab_encontrado.setCurtidas(resultSet1.getInt("numero_curtidas_tra"));
+					break;
+				}
+			}
+			ConnectionManager.closeConnection();
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return trabalhosEncontrados;
+	}
+	
+	public ArrayList<Discente> procurarDiscentesPorTrabalho(Trabalho trabalho){
+		
+	}
 }

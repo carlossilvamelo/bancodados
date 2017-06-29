@@ -98,7 +98,7 @@ public class DiscenteDao {
 	       stmt.execute();
 	       stmt.close();
 		
-	       System.out.println("Docente inserido!");
+	       System.out.println("Discente inserido!");
 	       ConnectionManager.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
