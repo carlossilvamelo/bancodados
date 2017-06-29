@@ -231,9 +231,10 @@ public class TrabalhoDao {
 		// operação1
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
-		String procurarIdTrabalhos = "SELECT (id_tra, titulo_tra, resumo_tra, status_tra, numero_curtidas_tra) FROM trabalho"
-				+ " INNER JOIN(SELECT id_trabalho_par FROM participante_trabalho WHERE id_discente_par = ?) as part_trab_id "
-				+ "ON id_tra = part_trab_id.id_trabalho_par;";
+		String procurarIdTrabalhos = "SELECT * "
+				+ "FROM trabalho as trab "
+				+ "INNER JOIN (SELECT id_trabalho_par FROM participante_trabalho WHERE id_discente_par = ? ) as trab_id "
+				+ "ON trab.id_tra = trab_id.id_trabalho_par;";
 		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(procurarIdTrabalhos);
 
@@ -249,7 +250,6 @@ public class TrabalhoDao {
 				trabalho.setResumo(resultSet.getString("resumo_tra"));
 				trabalho.setStatus(StatusTrabalho.getStatusByNome(resultSet.getString("status_tra")));
 				trabalho.setCurtidas(resultSet.getInt("numero_curtidas_tra"));
-				trabalho.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trabalho));
 				trabalhosEncontrados.add(trabalho);
 			}
 			stmt.close();
@@ -278,7 +278,9 @@ public class TrabalhoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		for(Trabalho trab : trabalhosEncontrados){
+			trab.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trab));
+		}
 		return trabalhosEncontrados;
 	}
 
@@ -305,7 +307,6 @@ public class TrabalhoDao {
 				discentesEncontrados.add(discente);
 			}
 			stmt.close();
-			ConnectionManager.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -335,7 +336,6 @@ public class TrabalhoDao {
 				trabAtual.setResumo(resultSet.getString("resumo_tra"));
 				trabAtual.setStatus(StatusTrabalho.getStatusByNome(resultSet.getString("status_tra")));
 				trabAtual.setCurtidas(resultSet.getInt("numero_curtidas_tra"));
-				trabAtual.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trabAtual));
 				trabs_encontrados.add(trabAtual);
 			}
 			stmt.close();
@@ -343,7 +343,9 @@ public class TrabalhoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		for(Trabalho trab : trabs_encontrados){
+			trab.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trab));
+		}
 		return trabs_encontrados;
 	}
 }
