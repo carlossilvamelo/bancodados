@@ -190,9 +190,9 @@ public class TrabalhoDao {
 		//operação1
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
-		PreparedStatement stmt1 = null;
-		ResultSet resultSet1 = null;
-		String procurarIdTrabalhos = "SELECT id_trabalho_par FROM participante_trabalho WHERE id_discente_par = ?";
+		String procurarIdTrabalhos = "SELECT (id_tra, titulo_tra, resumo_tra, status_tra, numero_curtidas_tra) FROM trabalho"
+				+ "INNER JOIN(SELECT id_trabalho_par FROM participante_trabalho WHERE id_discente_par = ?) "
+				+ "ON id_tra = id_trabalho_par;";
 		try{
 			stmt = ConnectionManager.getConnection().prepareStatement(procurarIdTrabalhos);
 			
@@ -204,10 +204,17 @@ public class TrabalhoDao {
 			
 			while(resultSet.next()){
 				trabalho = new Trabalho();
-				trabalho.setIdTrabalho(resultSet.getInt("id_trabalho_par"));
+				trabalho.setIdTrabalho(resultSet.getInt("id_tra"));
+				trabalho.setTitulo(resultSet.getString("titulo_tra"));
+				trabalho.setResumo(resultSet.getString("resumo_tra"));
+				trabalho.setStatus(StatusTrabalho.getStatusByNome(resultSet.getString("status_tra")));
+				trabalho.setCurtidas(resultSet.getInt("numero_curtidas_tra"));
 				trabalhosEncontrados.add(trabalho);
 			}
-			
+			ConnectionManager.closeConnection();
+			/* 
+			PreparedStatement stmt1 = null;
+			ResultSet resultSet1 = null;
 			//operação 2
 			String procurarTrabalhos = "SELECT * FROM trabalho WHERE id_tra = ?;";
 			for(Trabalho trab_encontrado : trabalhosEncontrados){
@@ -227,6 +234,7 @@ public class TrabalhoDao {
 					break;
 				}
 			}
+			*/
 			ConnectionManager.closeConnection();
 		} catch(SQLException e){
 			e.printStackTrace();
