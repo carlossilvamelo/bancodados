@@ -249,6 +249,7 @@ public class TrabalhoDao {
 				trabalho.setResumo(resultSet.getString("resumo_tra"));
 				trabalho.setStatus(StatusTrabalho.getStatusByNome(resultSet.getString("status_tra")));
 				trabalho.setCurtidas(resultSet.getInt("numero_curtidas_tra"));
+				trabalho.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trabalho));
 				trabalhosEncontrados.add(trabalho);
 			}
 			stmt.close();
@@ -334,6 +335,7 @@ public class TrabalhoDao {
 				trabAtual.setResumo(resultSet.getString("resumo_tra"));
 				trabAtual.setStatus(StatusTrabalho.getStatusByNome(resultSet.getString("status_tra")));
 				trabAtual.setCurtidas(resultSet.getInt("numero_curtidas_tra"));
+				trabAtual.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trabAtual));
 				trabs_encontrados.add(trabAtual);
 			}
 			stmt.close();
