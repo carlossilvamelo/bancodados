@@ -32,7 +32,6 @@ div#divConteudo{
     word-wrap: break-word;
 
 
-
 }
 
 /*estilo para scroll*/
@@ -98,6 +97,7 @@ div#divLadoDireito{
     float: right;
 }
 
+<<<<<<< HEAD
 
 .timeLine{
 	margin-top:20px;
@@ -110,12 +110,21 @@ div#divLadoDireito{
 .timeLine p{
 	font-size: 19px;
 }
+=======
+>>>>>>> refs/remotes/origin/cadastro_usuario
 .timeLine td{
+<<<<<<< HEAD
 	border-radius:10px;
+=======
+>>>>>>> refs/remotes/origin/cadastro_usuario
     padding: 5px;
+<<<<<<< HEAD
     border-bottom:2px solid white;
     font-size: large;
 
+=======
+    border: 2px solid var(--alunoHover);
+>>>>>>> refs/remotes/origin/cadastro_usuario
 }
 
 

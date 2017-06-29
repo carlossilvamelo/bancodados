@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout-professor/header-professor">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <meta name="description" content="identificação"/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="../imagens/favicon/favicon.ico"/>
+    <title>postAcad</title>
+
+    <link href="../css-bootstrap/bootstrap.css" rel="stylesheet"/>
+    <link href="../css/global.css" rel="stylesheet"/>
+    <link href="../css/css_index-aluno.css" rel="stylesheet"/>
+    <link href="../css/css_barra-navegacao-aluno.css" rel="stylesheet"/>
+
+    <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
+    <script src="../js/global.js"></script>
+
+  
+
+
+</head>
+<body class="backColor">
+
+
+       <section layout:fragment="conteudo">
+       
+        <div id="header"></div>
+
+        <div id="divConteudoProf" class="container-fluid col-sm-push-1 col-md-7 ">
+
+            <table class="timeLine">
+                <tr th:if="${lista != null}" th:each="lista,iter: ${trabalhos}">
+                <td>
+                    <h2 th:text="${lista.titulo}" >Titulo</h2>
+                    <p th:text="${lista.resumo}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
+                    <a href="#" class="botaoCurtirComentar glyphicon glyphicon-thumbs-up" th:text="' ' + ${lista.curtidas + ' curtir'}"> Curtir</a>
+                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" th:onclick="'fecharAbrirChat(\'divComentarios'+${iter.index}+'\');'"> Comentar</a>
+
+                    <a href="#" type="button" class="botaoVisualizar btn btn-default navbar-btn" onclick="fecharAbrirChat('divVisualizarTrabalho')">Visualizar</a>
+
+
+                    <div th:id="'divComentarios' + ${iter.index}" class="divComentarios">
+                        <div  class="col-md-12 ">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <span class="glyphicon glyphicon-comment"></span> Comentários
+                                </div>
+                                <div >
+                                    <ul class="chat caixaComentarios">
+
+                                        <li class="chatTextLeft ">
+                                            <span>Nome:</span>
+                                            <p>Que legal o trabalho de vocês!</p>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+
+                                <div class="panel-footer">
+                                    <div class="input-group">
+                                        <input  type="text" class="form-control input-sm" placeholder="Mensagem.." />
+                                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" >
+                                Send</button>
+                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+
+
+
+
+                    <div id="divVisualizarTrabalho" class="visualizarTrabalho">
+                        <span onclick="fecharAbrirChat('divVisualizarTrabalho')"  style="float: right" class=" glyphicon glyphicon-remove"></span>
+                        asdasdasd
+
+                    </div>
+            </tr>
+
+
+            </table>
+
+
+        </div>
+
+
+        <div id="divLadoDireito" class="col-md-3">
+
+         <div class="panel panel-primary">
+
+             <div class="panel-heading" style="background-color: var(--profVerde);">
+                 <span class="glyphicon glyphicon-user"></span> contatos
+
+             </div>
+
+            <div class="listaContatos">
+                <table>
+
+                    <tr class="">
+                        <td><h4>contato 2</h4>
+                            <a onclick="fecharAbrirChat('caixaDeChats')" href="#" type="button" class="btn btn-default navbar-btn">Conversar</a>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+                <div id="caixaDeChats" class="col-md-5 navbar-fixed-top ">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-comment"></span> Chat
+                            <span onclick="fecharAbrirChat('caixaDeChats')" style="float: right" class=" glyphicon glyphicon-remove"></span>
+                        </div>
+                        <div class="caixaTextChat">
+                            <ul class="chat">
+
+                                <li class="chatTextLeft">
+                                        <p>Vamos marcar uma reunião?</p>
+                                </li>
+                                <li class="chatTextRight">
+                                    <p>Vamos!</p>
+                                </li>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Mensagem.." />
+                                <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat">
+                                Send</button>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+       </section>
+
+
+
+
+</body>
+</html>
