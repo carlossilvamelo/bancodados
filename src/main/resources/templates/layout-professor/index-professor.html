@@ -29,138 +29,151 @@
 <body class="backColor">
 
 
-       <section layout:fragment="conteudo">
+      
        
-        <div id="header"></div>
+       
+       <section layout:fragment="conteudo">
 
-        <div id="divConteudoProf" class="container-fluid col-sm-push-1 col-md-7 ">
+		<div id="divConteudoProf" class="container-fluid col-sm-push-1 col-md-7 ">
 
-            <table class="timeLine">
-                <tr th:if="${lista != null}" th:each="lista,iter: ${trabalhos}">
-                <td>
-                    <h2 th:text="${lista.titulo}" >Titulo</h2>
-                    <p th:text="${lista.resumo}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+			<table class="timeLine">
+				<tr th:if="${lista != null}" th:each="lista,iter: ${trabalhos}">
+					<td>
 
-                    <a href="#" class="botaoCurtirComentar glyphicon glyphicon-thumbs-up" th:text="' ' + ${lista.curtidas + ' curtir'}"> Curtir</a>
-                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" th:onclick="'fecharAbrirChat(\'divComentarios'+${iter.index}+'\');'"> Comentar</a>
+						<h2 th:text="${lista.titulo}">Titulo</h2>
+						<p th:text="${lista.resumo}">resumo.</p> <a href="#" type="button"
+						class="btn botaoCurtirComentar glyphicon glyphicon-thumbs-up">
+							Curtir</a> <a href="#" type="button"
+						class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment"
+						th:onclick="'fecharAbrirChat(\'divComentarios'+${iter.index}+'\');'">
+							Comentar</a> <a th:href="@{/layout-professor/visualizarTrabalho}"
+						type="button" class="botaoVisualizar btn btn-primary navbar-btn">Visualizar</a>
+						<br />
+						<div th:id="'divComentarios' + ${iter.index}"
+							class="divComentarios">
+							<div class="col-md-12 ">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<span class="glyphicon glyphicon-comment"></span> Comentários
+									</div>
+									<div>
+										<ul class="chat caixaComentarios">
 
-                    <a href="#" type="button" class="botaoVisualizar btn btn-default navbar-btn" onclick="fecharAbrirChat('divVisualizarTrabalho')">Visualizar</a>
-
-
-                    <div th:id="'divComentarios' + ${iter.index}" class="divComentarios">
-                        <div  class="col-md-12 ">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <span class="glyphicon glyphicon-comment"></span> Comentários
-                                </div>
-                                <div >
-                                    <ul class="chat caixaComentarios">
-
-                                        <li class="chatTextLeft ">
-                                            <span>Nome:</span>
-                                            <p>Que legal o trabalho de vocês!</p>
-                                        </li>
-
-
-                                    </ul>
-                                </div>
-
-                                <div class="panel-footer">
-                                    <div class="input-group">
-                                        <input  type="text" class="form-control input-sm" placeholder="Mensagem.." />
-                                        <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" >
-                                Send</button>
-                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </td>
+											<li class="chatTextLeft "><span>Nome:</span>
+												<p>Que legal o trabalho de vocês!</p></li>
 
 
+										</ul>
+									</div>
+
+									<div class="panel-footer">
+										<div class="input-group">
+											<input type="text" class="form-control input-sm"
+												placeholder="Mensagem.." /> <span class="input-group-btn">
+												<button class="btn btn-warning btn-sm">Send</button>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+
+				</tr>
 
 
-                    <div id="divVisualizarTrabalho" class="visualizarTrabalho">
-                        <span onclick="fecharAbrirChat('divVisualizarTrabalho')"  style="float: right" class=" glyphicon glyphicon-remove"></span>
-                        asdasdasd
-
-                    </div>
-            </tr>
+			</table>
 
 
-            </table>
+		</div>
 
 
-        </div>
+		<div id="divLadoDireito" class="col-md-3">
+
+			<div class="panel panel-primary">
+
+				<div class="panel-heading"
+					style="background-color: var(--profVerde);">
+					<span class="glyphicon glyphicon-user"></span> contatos
+
+				</div>
+
+				<div class="listaContatos">
+					<table>
+						<tr th:if="${c != null}" th:each="c,iter: ${contatos}">
+							<td>
+								<h4 th:text="${c.nome}"></h4> <a type="button"
+								class="btn btn-default navbar-btn"
+								th:href="@{~/layout-professor/conversar(cpfDestinatario=${c.cpf})}"
+								th:onclick="'fecharAbrirChat(\'caixaDeChats'+${iter.index}+'\');'">Conversar</a>
+
+								<div th:id="'caixaDeChats' + ${iter.index}"
+									class="col-md-5 navbar-fixed-bottom janelaChat">
+									<div class="panel panel-primary">
+										<div class="panel-heading">
+											<span class="glyphicon glyphicon-comment"></span> Chat <span
+												th:onclick="'fecharAbrirChat(\'caixaDeChats'+${iter.index}+'\');'"
+												style="float: right" class=" glyphicon glyphicon-remove"></span>
+										</div>
+										<div class="caixaTextChat">
+											<ul class="chat" th:if="${msg != null}"
+												th:each="msg,iter: ${mensagens}">
+
+												<li class="chatTextLeft"
+													th:if="${msg.idRemetente == session.docente.id}">
+													<p th:text="${msg.conteudo}">Vamos marcar uma reunião?</p>
+												</li>
+												
+												<li class="chatTextRight"
+													th:if="${msg.idRemetente != session.docente.id}">
+													<p th:text="${msg.conteudo}">Vamos marcar uma reunião?</p>
+												</li>
+
+											</ul>
+											
+										</div>
+
+										<div class="panel-footer">
+											<div class="input-group">
+
+												<form
+													th:action="@{~/layout-professor/enviarMensagem(cpfDestinatario=${c.cpf})}"
+													method="get">
+													
+														<input style="display:none;" th:value="${cpfDestinatario}" id="btn-input" type="text" name="destinatario"
+														class="form-control input-sm"  />
+													<input id="btn-input" type="text" name="mensagem"
+														class="form-control input-sm" placeholder="Mensagem.." />
+													<span class="input-group-btn">
+														<button  class="btn btn-warning btn-sm" id="btn-chat">
+															Enviar</button>
+															
+															</span>
+												</form>
+
+												
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</td>
+
+						</tr>
+
+					</table>
+
+				</div>
+
+			</div>
+		</div>
 
 
-        <div id="divLadoDireito" class="col-md-3">
-
-         <div class="panel panel-primary">
-
-             <div class="panel-heading" style="background-color: var(--profVerde);">
-                 <span class="glyphicon glyphicon-user"></span> contatos
-
-             </div>
-
-            <div class="listaContatos">
-                <table>
-
-                    <tr class="">
-                        <td><h4>contato 2</h4>
-                            <a onclick="fecharAbrirChat('caixaDeChats')" href="#" type="button" class="btn btn-default navbar-btn">Conversar</a>
-                        </td>
-
-                    </tr>
-
-                </table>
-
-            </div>
-
-          </div>
-        </div>
 
 
 
 
-
-                <div id="caixaDeChats" class="col-md-5 navbar-fixed-top ">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <span class="glyphicon glyphicon-comment"></span> Chat
-                            <span onclick="fecharAbrirChat('caixaDeChats')" style="float: right" class=" glyphicon glyphicon-remove"></span>
-                        </div>
-                        <div class="caixaTextChat">
-                            <ul class="chat">
-
-                                <li class="chatTextLeft">
-                                        <p>Vamos marcar uma reunião?</p>
-                                </li>
-                                <li class="chatTextRight">
-                                    <p>Vamos!</p>
-                                </li>
-
-
-                            </ul>
-                        </div>
-
-                        <div class="panel-footer">
-                            <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Mensagem.." />
-                                <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-chat">
-                                Send</button>
-                        </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-       </section>
+	</section>
 
 
 
