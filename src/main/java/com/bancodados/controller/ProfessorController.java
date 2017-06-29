@@ -1,6 +1,8 @@
 package com.bancodados.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 
 import javax.servlet.http.HttpSession;
@@ -36,10 +38,10 @@ public class ProfessorController {
 	}
 	@GetMapping("/inicioProfessor")
 	public ModelAndView inicioProfessor(HttpSession session){
-		Usuario discente = (Docente) session.getAttribute("docente");
+		Usuario docente = (Docente) session.getAttribute("docente");
 		ContatosDao contatosDao = new ContatosDao();
 		ModelAndView mv = new ModelAndView("/layout-professor/index-professor");
-		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
+		ArrayList<Usuario> contatos = contatosDao.buscarContatos(docente);
 		mv.addObject("contatos", contatos);
 		//ArrayList<Trabalho> trabalhos = consultas.buscarTrabalhos();
 		//Discente discente = (Discente) session.getAttribute("discente");
@@ -338,6 +340,29 @@ public class ProfessorController {
 
 		return mv;
 
+	}
+	
+	@GetMapping("/attDataNascimento")
+	public ModelAndView atualizarNascimento(String dataNascimento, HttpSession sessao){
+		ModelAndView mv = new ModelAndView("/layout-professor/perfil-professor");
+
+		String[] datas = dataNascimento.split("-");
+		int ano = Integer.parseInt(datas[0]);
+		int mes = Integer.parseInt(datas[1]);
+		int dia = Integer.parseInt(datas[2]);
+		Calendar cal = Calendar.getInstance();
+		cal.set(cal.YEAR, ano);
+		cal.set(cal.MONTH, mes - 1);
+		cal.set(cal.DAY_OF_MONTH, dia);
+		Date nascimento = new Date(cal.getTimeInMillis());
+		
+		Docente docente = (Docente) sessao.getAttribute("docente");
+		docente.setDataNascimento(nascimento);
+		DocenteDao docenteDao = new DocenteDao();
+		docenteDao.atualizarDocente(docente);
+		
+		System.out.println(dataNascimento);
+		return mv;
 	}
 
 	@GetMapping("/attEmail")
