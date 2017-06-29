@@ -196,7 +196,6 @@ public class DiscenteDao {
 			
 
 			stmt.close();
-			ConnectionManager.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

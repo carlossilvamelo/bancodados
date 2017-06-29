@@ -110,7 +110,51 @@ public class TrabalhoDao {
 
 		trabalho.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trabalho));
 		trabalho.setParticipantes(this.procurarDiscentesPorTrabalho(trabalho));
+		try {
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return trabalho;
+	}
+	
+	public Trabalho buscarTrabalhoPorId(int id) {
+		Trabalho trabalho = null;
 
+		String sql = "select * from trabalho where id_tra = ?";
+
+		PreparedStatement stmt;
+		try {
+			stmt = ConnectionManager.getConnection().prepareStatement(sql);
+			stmt.setInt(1, id);
+
+			// executa
+			stmt.execute();
+
+			ResultSet resultSet = stmt.getResultSet();
+			while (resultSet.next()) {
+				trabalho = new Trabalho();
+				trabalho.setIdTrabalho(resultSet.getInt("id_tra"));
+				trabalho.setTitulo(resultSet.getString("titulo_tra"));
+				trabalho.setResumo(resultSet.getString("resumo_tra"));
+				trabalho.setStatus(StatusTrabalho.getStatusByNome(resultSet.getString("status_tra")));
+				trabalho.setCurtidas(resultSet.getInt("numero_curtidas_tra"));
+			}
+
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		trabalho.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trabalho));
+		trabalho.setParticipantes(this.procurarDiscentesPorTrabalho(trabalho));
+		try {
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return trabalho;
 	}
 
@@ -277,13 +321,19 @@ public class TrabalhoDao {
 			 * trab_encontrado.setCurtidas(resultSet1.getInt(
 			 * "numero_curtidas_tra")); break; } }
 			 */
-			ConnectionManager.closeConnection();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		for(Trabalho trab : trabalhosEncontrados){
 			trab.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trab));
-			trab.setParticipantes(this.procurarDiscentesPorTrabalho(trab));
+			trab.setParticipantes(this.procurarDiscentesPorTrabalho(trabalho));
+		}
+		try {
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return trabalhosEncontrados;
 	}
@@ -311,6 +361,7 @@ public class TrabalhoDao {
 				discentesEncontrados.add(discente);
 			}
 			stmt.close();
+			ConnectionManager.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -350,6 +401,12 @@ public class TrabalhoDao {
 		for(Trabalho trab : trabs_encontrados){
 			trab.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trab));
 			trab.setParticipantes(this.procurarDiscentesPorTrabalho(trab));
+		}
+		try {
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return trabs_encontrados;
 	}
