@@ -109,6 +109,7 @@ public class TrabalhoDao {
 		}
 
 		trabalho.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trabalho));
+		trabalho.setParticipantes(this.procurarDiscentesPorTrabalho(trabalho));
 
 		return trabalho;
 	}
@@ -280,6 +281,7 @@ public class TrabalhoDao {
 		}
 		for(Trabalho trab : trabalhosEncontrados){
 			trab.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trab));
+			trab.setParticipantes(this.procurarDiscentesPorTrabalho(trab));
 		}
 		return trabalhosEncontrados;
 	}
@@ -345,6 +347,7 @@ public class TrabalhoDao {
 		}
 		for(Trabalho trab : trabs_encontrados){
 			trab.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trab));
+			trab.setParticipantes(this.procurarDiscentesPorTrabalho(trab));
 		}
 		return trabs_encontrados;
 	}
