@@ -2,7 +2,7 @@ package com.bancodados.dominio;
 
 public enum StatusTrabalho {
 	EM_ANDAMENTO(0, "em andamento"),
-	CONLCUIDO(1, "concluido");
+	CONCLUIDO(1, "concluido");
 	
 	private int valor;
 	private String nome;

@@ -31,7 +31,6 @@ public class TrabalhoDao {
 			System.out.println("Trabalho inserido!");
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -53,15 +52,35 @@ public class TrabalhoDao {
 
 			while (resultSet.next()) {
 				trabalho.setIdTrabalho(resultSet.getInt("id_tra"));
+				break;
 			}
 
 			System.out.println("id de trabalho atualizado!");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		// operação 3
+		String inserirPalavrasChave = "INSERT INTO palavra_chave (id_trabalho_pal, palavra_pal) VALUES (?,?);";
+		try {
+			for(String palavra : trabalho.getPalavrasChave()){
+			stmt = ConnectionManager.getConnection().prepareStatement(inserirPalavrasChave);
+
+			stmt.setInt(1, trabalho.getIdTrabalho());
+			stmt.setString(2, palavra);
+			stmt.execute();
+			stmt.close();
+
+			System.out.println("palavra-chave inserida na tabela palavra_chave!");
+			}
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+				
+		
+		// operação 4
 		String inserirParticipante = "insert into participante_trabalho (id_discente_par, id_trabalho_par)"
 				+ "values(?,?) ";
 		try {
@@ -75,9 +94,10 @@ public class TrabalhoDao {
 			System.out.println("usuário inserido na tabela participante_trabalho!");
 			ConnectionManager.closeConnection();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 
 	}
 
@@ -104,12 +124,31 @@ public class TrabalhoDao {
 			}
 
 			stmt.close();
-			ConnectionManager.closeConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		String buscarPalavras = "select * from palavra_chave where id_trabalho_pal = ?;";
+		try {
+			stmt = ConnectionManager.getConnection().prepareStatement(buscarPalavras);
+			stmt.setInt(1, trabalho.getIdTrabalho());
 
+			// executa
+			stmt.execute();
+
+			ResultSet resultSet = stmt.getResultSet();
+			while (resultSet.next()) {
+				trabalho.getPalavrasChave().add(resultSet.getString("palavra_pal"));
+			}
+
+			stmt.close();
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
 		return trabalho;
 	}
 
@@ -135,7 +174,6 @@ public class TrabalhoDao {
 			System.out.println("Trabalho atualizado!");
 			ConnectionManager.closeConnection();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
