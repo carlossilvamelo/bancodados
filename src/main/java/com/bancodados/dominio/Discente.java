@@ -19,10 +19,7 @@ public class Discente extends Usuario{
 		// TODO Auto-generated constructor stub
 	}
 	
-	
 	//getters and setters
-	
-
 	public String getReputacao() {
 		return reputacao;
 	}
@@ -30,11 +27,9 @@ public class Discente extends Usuario{
 		return matricula;
 	}
 
-
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
-
 
 	public void setReputacao(String reputacao) {
 		this.reputacao = reputacao;
@@ -47,7 +42,5 @@ public class Discente extends Usuario{
 	public void setIdTrabalho(Integer idTrabalho) {
 		this.idTrabalho = idTrabalho;
 	}
-	
-	
 	
 }

@@ -137,26 +137,48 @@ public class TrabalhoDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		// operação 2
-				String inserirParticipantes = "UPDATE participante_trabalho SET id_discente_par = ? WHERE id_tra = ?;";
-				try {
-					stmt = ConnectionManager.getConnection().prepareStatement(inserirUsuario);
 
-					stmt.setString(1, trabalho.getTitulo());
-					stmt.setString(2, trabalho.getStatus().toString());
-					stmt.setInt(3, trabalho.getCurtidas());
-					stmt.setString(4, trabalho.getResumo());
-					stmt.setInt(5, trabalho.getIdTrabalho());
-					stmt.execute();
-					stmt.close();
+		for (Discente participante : trabalho.getParticipantes()) {
+			// operação 2
+			String inserirParticipantes = "INSERT INTO participante_trabalho VALUES (?,?) ON DUPLICATE KEY UPDATE;";
+			try {
+				stmt = ConnectionManager.getConnection().prepareStatement(inserirParticipantes);
 
-					System.out.println("Trabalho atualizado!");
-					ConnectionManager.closeConnection();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				stmt.setInt(1, participante.getId());
+				stmt.setInt(2, trabalho.getIdTrabalho());
+				stmt.execute();
+				stmt.close();
+
+				System.out.println("Trabalho atualizado!");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		try
+
+		{
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void inserirParticipante(Trabalho trabalho, Discente discente) {
+		PreparedStatement stmt = null;
+		// operação 1
+		String inserirParticipantes = "INSERT INTO participante_trabalho VALUES (?,?) ON DUPLICATE KEY UPDATE;";
+		try {
+			stmt = ConnectionManager.getConnection().prepareStatement(inserirParticipantes);
+
+			stmt.setInt(1, discente.getId());
+			stmt.setInt(2, trabalho.getIdTrabalho());
+			stmt.execute();
+			stmt.close();
+
+			System.out.println("Participante inserido!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
