@@ -10,6 +10,8 @@ public class Trabalho {
 	private String titulo;
 	private String resumo;
 	private Integer curtidas;
+	private StatusTrabalho status;
+	
 	public Integer getIdTrabalho() {
 		return idTrabalho;
 	}
@@ -34,11 +36,11 @@ public class Trabalho {
 	public void setCurtidas(Integer curtidas) {
 		this.curtidas = curtidas;
 	}
-	
-	
-	
-	
-	
-	
+	public StatusTrabalho getStatus() {
+		return status;
+	}
+	public void setStatus(StatusTrabalho status) {
+		this.status = status;
+	}
 	
 }
