@@ -268,6 +268,25 @@ public class TrabalhoDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public void removerDiscenteTrabalho(int id_discente, int id_trabalho){
+		PreparedStatement stmt = null;
+		// operação 1
+		String inserirParticipantes = "DELETE FROM participante_trabalho WHERE id_discente_par = ? and id_trabalho_par?;";
+		try {
+			stmt = ConnectionManager.getConnection().prepareStatement(inserirParticipantes);
+
+			stmt.setInt(1, id_discente);
+			stmt.setInt(2, id_trabalho);
+			stmt.execute();
+			stmt.close();
+
+			System.out.println("Participante removido!");
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public ArrayList<Trabalho> procurarTrabalhosPorDiscente(Discente discente) {
 
