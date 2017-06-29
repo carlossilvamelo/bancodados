@@ -3,14 +3,14 @@ package com.bancodados.DAOs;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
+import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.StatusTrabalho;
 import com.bancodados.dominio.Trabalho;
 
 public class TrabalhoDao {
 
-	public void inserirTrabalho(Trabalho trabalho) {
+	public void inserirTrabalho(Trabalho trabalho, Discente discente) {
 
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
@@ -26,16 +26,14 @@ public class TrabalhoDao {
 			stmt.setString(4, trabalho.getResumo());
 			stmt.execute();
 			stmt.close();
-			
-			
 
 			System.out.println("Trabalho inserido!");
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		// operação 2
 		String buscarId = "select * from trabalho where titulo_tra = ? and status_tra = ? and numero_curtidas_tra = ? and"
 				+ " resumo_tra = ?";
@@ -49,20 +47,37 @@ public class TrabalhoDao {
 			stmt.setString(4, trabalho.getResumo());
 			stmt.execute();
 			stmt.close();
-			
+
 			resultSet = stmt.getResultSet();
-			
-			while(resultSet.next()){
+
+			while (resultSet.next()) {
 				trabalho.setIdTrabalho(resultSet.getInt("id_tra"));
 			}
 
 			System.out.println("id de trabalho atualizado!");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// operação 3
+		String inserirParticipante = "insert into participante_trabalho (id_discente_par, id_trabalho_par)"
+				+ "values(?,?) ";
+		try {
+			stmt = ConnectionManager.getConnection().prepareStatement(inserirTrabalho);
+
+			stmt.setInt(1, discente.getId());
+			stmt.setInt(2, trabalho.getIdTrabalho());
+			stmt.execute();
+			stmt.close();
+
+			System.out.println("usuário inserido na tabela participante_trabalho!");
 			ConnectionManager.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public Trabalho buscarTrabalhoPorTitulo(String titulo) {
@@ -104,8 +119,7 @@ public class TrabalhoDao {
 		PreparedStatement stmt = null;
 		// operação 1
 		String inserirUsuario = "UPDATE trabalho SET titulo_tra = ? and status_tra = ? and numero_curtidas_tra = ? and"
-				+ " resumo_tra = ?"
-				+ "WHERE id_tra = ?;";
+				+ " resumo_tra = ?" + "WHERE id_tra = ?;";
 		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(inserirUsuario);
 
@@ -114,7 +128,7 @@ public class TrabalhoDao {
 			stmt.setInt(3, trabalho.getCurtidas());
 			stmt.setString(4, trabalho.getResumo());
 			stmt.setInt(5, trabalho.getIdTrabalho());
-						stmt.execute();
+			stmt.execute();
 			stmt.close();
 
 			System.out.println("Trabalho atualizado!");
@@ -123,7 +137,26 @@ public class TrabalhoDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+		
+		// operação 2
+				String inserirParticipantes = "UPDATE participante_trabalho SET id_discente_par = ? WHERE id_tra = ?;";
+				try {
+					stmt = ConnectionManager.getConnection().prepareStatement(inserirUsuario);
 
+					stmt.setString(1, trabalho.getTitulo());
+					stmt.setString(2, trabalho.getStatus().toString());
+					stmt.setInt(3, trabalho.getCurtidas());
+					stmt.setString(4, trabalho.getResumo());
+					stmt.setInt(5, trabalho.getIdTrabalho());
+					stmt.execute();
+					stmt.close();
+
+					System.out.println("Trabalho atualizado!");
+					ConnectionManager.closeConnection();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	}
 
 }

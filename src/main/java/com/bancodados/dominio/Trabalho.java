@@ -1,6 +1,6 @@
 package com.bancodados.dominio;
 
-import java.util.List;
+import java.util.ArrayList;
 
 
 public class Trabalho {
@@ -11,6 +11,8 @@ public class Trabalho {
 	private String resumo;
 	private Integer curtidas;
 	private StatusTrabalho status;
+	
+	private ArrayList<Discente> participantes;
 	
 	public Integer getIdTrabalho() {
 		return idTrabalho;
@@ -41,6 +43,12 @@ public class Trabalho {
 	}
 	public void setStatus(StatusTrabalho status) {
 		this.status = status;
+	}
+	public ArrayList<Discente> getParticipantes() {
+		return participantes;
+	}
+	public void setParticipantes(ArrayList<Discente> participantes) {
+		this.participantes = participantes;
 	}
 	
 }
