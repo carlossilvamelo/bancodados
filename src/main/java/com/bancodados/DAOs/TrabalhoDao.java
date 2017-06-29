@@ -30,60 +30,42 @@ public class TrabalhoDao {
 
 			System.out.println("Trabalho inserido!");
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			// operação 2
+			String buscarId = "select id_tra from trabalho where titulo_tra = ?;";
 
-		// operação 2
-		String buscarId = "select * from trabalho where titulo_tra = ? and status_tra = ? and numero_curtidas_tra = ? and"
-				+ " resumo_tra = ?";
-
-		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(buscarId);
 
 			stmt.setString(1, trabalho.getTitulo());
-			stmt.setString(2, trabalho.getStatus().toString());
-			stmt.setInt(3, trabalho.getCurtidas());
-			stmt.setString(4, trabalho.getResumo());
 			stmt.execute();
-			stmt.close();
+			
 
 			resultSet = stmt.getResultSet();
-
+			
 			while (resultSet.next()) {
 				trabalho.setIdTrabalho(resultSet.getInt("id_tra"));
 				break;
 			}
-
-			System.out.println("id de trabalho atualizado!");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		// operação 3
-		String inserirPalavrasChave = "INSERT INTO palavra_chave (id_trabalho_pal, palavra_pal) VALUES (?,?);";
-		try {
-			for(String palavra : trabalho.getPalavrasChave()){
-			stmt = ConnectionManager.getConnection().prepareStatement(inserirPalavrasChave);
-
-			stmt.setInt(1, trabalho.getIdTrabalho());
-			stmt.setString(2, palavra);
-			stmt.execute();
 			stmt.close();
+			System.out.println("id de trabalho atualizado!");
 
-			System.out.println("palavra-chave inserida na tabela palavra_chave!");
+			// operação 3
+			String inserirPalavrasChave = "INSERT INTO palavra_chave (id_trabalho_pal, palavra_pal) VALUES (?,?);";
+
+			for (String palavra : trabalho.getPalavrasChave()) {
+				stmt = ConnectionManager.getConnection().prepareStatement(inserirPalavrasChave);
+
+				stmt.setInt(1, trabalho.getIdTrabalho());
+				stmt.setString(2, palavra);
+				stmt.execute();
+				stmt.close();
+
+				System.out.println("palavra-chave inserida na tabela palavra_chave!");
 			}
-			
-		} catch (SQLException e) {
-		
-			e.printStackTrace();
-		}
-				
-		
-		// operação 4
-		String inserirParticipante = "insert into participante_trabalho (id_discente_par, id_trabalho_par)"
-				+ "values(?,?) ";
-		try {
+
+			// operação 4
+			String inserirParticipante = "insert into participante_trabalho (id_discente_par, id_trabalho_par)"
+					+ "values(?,?) ";
+
 			stmt = ConnectionManager.getConnection().prepareStatement(inserirParticipante);
 
 			stmt.setInt(1, discente.getId());
@@ -96,8 +78,6 @@ public class TrabalhoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
 
 	}
 
@@ -124,10 +104,10 @@ public class TrabalhoDao {
 			}
 
 			stmt.close();
-			} catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		String buscarPalavras = "select * from palavra_chave where id_trabalho_pal = ?;";
 		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(buscarPalavras);
@@ -146,9 +126,7 @@ public class TrabalhoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		return trabalho;
 	}
 
@@ -193,6 +171,23 @@ public class TrabalhoDao {
 				e.printStackTrace();
 			}
 		}
+
+		for (String palavra : trabalho.getPalavrasChave()) {
+			// operação 3
+			String inserirPalavras = "INSERT INTO palavra_chave (id_trabalho_pal, palavra_pal) VALUES (?,?) ON DUPLICATE KEY UPDATE;";
+			try {
+				stmt = ConnectionManager.getConnection().prepareStatement(inserirPalavras);
+
+				stmt.setInt(1, trabalho.getIdTrabalho());
+				stmt.setString(2, palavra);
+				stmt.execute();
+				stmt.close();
+
+				System.out.println("Trabalho atualizado!");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		try
 
 		{
@@ -221,26 +216,25 @@ public class TrabalhoDao {
 		}
 	}
 
-	public ArrayList<Trabalho> procurarTrabalhosPorDiscente(Discente discente){
-		
+	public ArrayList<Trabalho> procurarTrabalhosPorDiscente(Discente discente) {
+
 		ArrayList<Trabalho> trabalhosEncontrados = new ArrayList<Trabalho>();
 		Trabalho trabalho = null;
-		//operação1
+		// operação1
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
 		String procurarIdTrabalhos = "SELECT (id_tra, titulo_tra, resumo_tra, status_tra, numero_curtidas_tra) FROM trabalho"
 				+ "INNER JOIN(SELECT id_trabalho_par FROM participante_trabalho WHERE id_discente_par = ?) "
 				+ "ON id_tra = id_trabalho_par;";
-		try{
+		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(procurarIdTrabalhos);
-			
+
 			stmt.setInt(1, discente.getId());
 			stmt.execute();
-			stmt.close();
-			
+
 			resultSet = stmt.getResultSet();
-			
-			while(resultSet.next()){
+
+			while (resultSet.next()) {
 				trabalho = new Trabalho();
 				trabalho.setIdTrabalho(resultSet.getInt("id_tra"));
 				trabalho.setTitulo(resultSet.getString("titulo_tra"));
@@ -249,74 +243,71 @@ public class TrabalhoDao {
 				trabalho.setCurtidas(resultSet.getInt("numero_curtidas_tra"));
 				trabalhosEncontrados.add(trabalho);
 			}
+			stmt.close();
 			ConnectionManager.closeConnection();
-			/* 
-			PreparedStatement stmt1 = null;
-			ResultSet resultSet1 = null;
-			//operação 2
-			String procurarTrabalhos = "SELECT * FROM trabalho WHERE id_tra = ?;";
-			for(Trabalho trab_encontrado : trabalhosEncontrados){
-				stmt1 = ConnectionManager.getConnection().prepareStatement(procurarTrabalhos);
-				
-				stmt1.setInt(1, trab_encontrado.getIdTrabalho());
-				
-				stmt1.execute();
-				stmt1.close();
-				
-				resultSet1 = stmt1.getResultSet();
-				while(resultSet1.next()){
-					trab_encontrado.setTitulo(resultSet1.getString("titulo_tra"));
-					trab_encontrado.setResumo(resultSet1.getString("resumo_tra"));
-					trab_encontrado.setStatus(StatusTrabalho.getStatusByNome(resultSet1.getString("status_tra")));
-					trab_encontrado.setCurtidas(resultSet1.getInt("numero_curtidas_tra"));
-					break;
-				}
-			}
-			*/
+			/*
+			 * PreparedStatement stmt1 = null; ResultSet resultSet1 = null;
+			 * //operação 2 String procurarTrabalhos =
+			 * "SELECT * FROM trabalho WHERE id_tra = ?;"; for(Trabalho
+			 * trab_encontrado : trabalhosEncontrados){ stmt1 =
+			 * ConnectionManager.getConnection().prepareStatement(
+			 * procurarTrabalhos);
+			 * 
+			 * stmt1.setInt(1, trab_encontrado.getIdTrabalho());
+			 * 
+			 * stmt1.execute(); stmt1.close();
+			 * 
+			 * resultSet1 = stmt1.getResultSet(); while(resultSet1.next()){
+			 * trab_encontrado.setTitulo(resultSet1.getString("titulo_tra"));
+			 * trab_encontrado.setResumo(resultSet1.getString("resumo_tra"));
+			 * trab_encontrado.setStatus(StatusTrabalho.getStatusByNome(
+			 * resultSet1.getString("status_tra")));
+			 * trab_encontrado.setCurtidas(resultSet1.getInt(
+			 * "numero_curtidas_tra")); break; } }
+			 */
 			ConnectionManager.closeConnection();
-		} catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return trabalhosEncontrados;
 	}
-	
-	public ArrayList<Discente> procurarDiscentesPorTrabalho(Trabalho trabalho){
+
+	public ArrayList<Discente> procurarDiscentesPorTrabalho(Trabalho trabalho) {
 		ArrayList<Discente> discentesEncontrados = new ArrayList<Discente>();
 		Discente discente = null;
 		DiscenteDao discentedao = new DiscenteDao();
-		//operação1
+		// operação1
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
 		int id;
 		String procurarIdDiscentes = "SELECT id_discente_par from participante_trabalho where id_trabalho_par = ?;";
-		try{
+		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(procurarIdDiscentes);
-			
+
 			stmt.setInt(1, trabalho.getIdTrabalho());
 			stmt.execute();
-			stmt.close();
-			
+
 			resultSet = stmt.getResultSet();
-			
-			while(resultSet.next()){
+
+			while (resultSet.next()) {
 				id = resultSet.getInt("id_discente_par");
 				discente = discentedao.buscarDiscentePorId(id);
 				discentesEncontrados.add(discente);
 			}
-			
+			stmt.close();
 			ConnectionManager.closeConnection();
-		} catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return discentesEncontrados;
 	}
-	
-	public ArrayList<Trabalho> procurarQuantidade(int quantidade){
+
+	public ArrayList<Trabalho> procurarQuantidade(int quantidade) {
 		ArrayList<Trabalho> trabs_encontrados = new ArrayList<Trabalho>();
 		Trabalho trabAtual = null;
-		//operação1
+		// operação1
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
 		String procurarTrabalhosQuant = "SELECT * FROM trabalho LIMIT ?";
@@ -324,11 +315,11 @@ public class TrabalhoDao {
 			stmt = ConnectionManager.getConnection().prepareStatement(procurarTrabalhosQuant);
 			stmt.setInt(1, quantidade);
 			stmt.execute();
-			stmt.close();
-		
-			resultSet = stmt.getResultSet();
 			
-			while(resultSet.next()){
+
+			resultSet = stmt.getResultSet();
+
+			while (resultSet.next()) {
 				trabAtual = new Trabalho();
 				trabAtual.setIdTrabalho(resultSet.getInt("id_tra"));
 				trabAtual.setTitulo(resultSet.getString("titulo_tra"));
@@ -337,12 +328,12 @@ public class TrabalhoDao {
 				trabAtual.setCurtidas(resultSet.getInt("numero_curtidas_tra"));
 				trabs_encontrados.add(trabAtual);
 			}
-
+			stmt.close();
 			ConnectionManager.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return trabs_encontrados;
 	}
 }

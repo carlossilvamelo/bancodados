@@ -12,7 +12,7 @@ public class Trabalho {
 	private Integer curtidas = 0;
 	private StatusTrabalho status = StatusTrabalho.EM_ANDAMENTO;
 	
-	private ArrayList<String> palavrasChave;
+	private ArrayList<String> palavrasChave = new ArrayList<String>();
 
 	private ArrayList<Discente> participantes = new ArrayList<Discente>();
 
