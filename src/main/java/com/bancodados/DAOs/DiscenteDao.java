@@ -159,6 +159,52 @@ public class DiscenteDao {
 		return discente;
 	}
 	
+	public Discente buscarDiscentePorId(int id){
+		Discente discente = null;
+	
+		String sql = "select * from view_discente where id_usu = ?";
+		
+
+		PreparedStatement stmt;
+		try {
+			stmt = ConnectionManager.getConnection().prepareStatement(sql);
+			stmt.setInt(1, id);
+
+			// executa
+			stmt.execute();
+			
+			ResultSet resultSet =  stmt.getResultSet();
+			while(resultSet.next()){
+				discente = new Discente();
+				discente.setId(resultSet.getInt("id_usu"));
+				discente.setLogin(resultSet.getString("login_usu"));
+				discente.setCpf(resultSet.getString("cpf_usu"));
+				discente.setEmail(resultSet.getString("email_usu"));
+				discente.getEndereco().setCep(resultSet.getString("cep_usu"));
+				discente.setTipo(resultSet.getString("tipo_usu"));
+				discente.getEndereco().setRua(resultSet.getString("rua_end"));
+				discente.getEndereco().setNumero(resultSet.getInt("numero_end"));
+				discente.setSenha(resultSet.getString("senha_ide"));
+				discente.getEndereco().setEstado(resultSet.getString("estado_com"));
+				discente.setCurriculo(resultSet.getString("curriculo_inf"));
+				discente.setDataNascimento(resultSet.getDate("data_nascimento_inf"));
+				discente.setNome(resultSet.getString("nome_inf"));
+				discente.setMatricula(resultSet.getString("matricula_dis"));
+				discente.setReputacao(resultSet.getString("reputacao_dis"));
+				
+			}
+			
+
+			stmt.close();
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return discente;
+	}
 	
 	public void atualizarDiscente(Discente discente){
 		

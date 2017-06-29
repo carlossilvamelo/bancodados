@@ -244,6 +244,57 @@ public class TrabalhoDao {
 	}
 	
 	public ArrayList<Discente> procurarDiscentesPorTrabalho(Trabalho trabalho){
+		ArrayList<Discente> discentesEncontrados = new ArrayList<Discente>();
+		Discente discente = null;
+		DiscenteDao discentedao = new DiscenteDao();
+		//operação1
+		PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		int id;
+		String procurarIdDiscentes = "SELECT id_discente_par from participante_trabalho where id_trabalho_par = ?;";
+		try{
+			stmt = ConnectionManager.getConnection().prepareStatement(procurarIdDiscentes);
+			
+			stmt.setInt(1, trabalho.getIdTrabalho());
+			stmt.execute();
+			stmt.close();
+			
+			resultSet = stmt.getResultSet();
+			
+			while(resultSet.next()){
+				id = resultSet.getInt("id_discente_par");
+				discente = discentedao.buscarDiscentePorId(id);
+				discentesEncontrados.add(discente);
+			}
+			ConnectionManager.closeConnection();
+			/* 
+			PreparedStatement stmt1 = null;
+			ResultSet resultSet1 = null;
+			//operação 2
+			String procurarTrabalhos = "SELECT * FROM trabalho WHERE id_tra = ?;";
+			for(Trabalho trab_encontrado : trabalhosEncontrados){
+				stmt1 = ConnectionManager.getConnection().prepareStatement(procurarTrabalhos);
+				
+				stmt1.setInt(1, trab_encontrado.getIdTrabalho());
+				
+				stmt1.execute();
+				stmt1.close();
+				
+				resultSet1 = stmt1.getResultSet();
+				while(resultSet1.next()){
+					trab_encontrado.setTitulo(resultSet1.getString("titulo_tra"));
+					trab_encontrado.setResumo(resultSet1.getString("resumo_tra"));
+					trab_encontrado.setStatus(StatusTrabalho.getStatusByNome(resultSet1.getString("status_tra")));
+					trab_encontrado.setCurtidas(resultSet1.getInt("numero_curtidas_tra"));
+					break;
+				}
+			}
+			*/
+			ConnectionManager.closeConnection();
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
 		
+		return discentesEncontrados;
 	}
 }
