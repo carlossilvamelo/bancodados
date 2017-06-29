@@ -9,10 +9,10 @@ public class Trabalho {
 	private Integer idTrabalho;
 	private String titulo;
 	private String resumo;
-	private Integer curtidas;
-	private StatusTrabalho status;
+	private Integer curtidas = 0;
+	private StatusTrabalho status = StatusTrabalho.EM_ANDAMENTO;
 	
-	private ArrayList<Discente> participantes;
+	private ArrayList<Discente> participantes = new ArrayList<Discente>();
 	
 	public Integer getIdTrabalho() {
 		return idTrabalho;
