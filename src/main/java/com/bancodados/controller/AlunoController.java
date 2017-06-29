@@ -2,6 +2,7 @@ package com.bancodados.controller;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 
 import javax.servlet.http.HttpSession;
@@ -367,7 +368,7 @@ public class AlunoController {
 
 	}
 	@GetMapping("/attSobreNome")
-	public ModelAndView atualizarSObreNome(String sobreNome, HttpSession sessao){
+	public ModelAndView atualizarSobreNome(String sobreNome, HttpSession sessao){
 
 		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
 		Discente discente = (Discente) sessao.getAttribute("discente");
@@ -409,6 +410,30 @@ public class AlunoController {
 		return mv;
 
 	}
+	
+	@GetMapping("/attDataNascimento")
+	public ModelAndView atualizarNascimento(String dataNascimento, HttpSession sessao){
+		ModelAndView mv = new ModelAndView("/layout-aluno/perfil-aluno");
+
+		String[] datas = dataNascimento.split("-");
+		int ano = Integer.parseInt(datas[0]);
+		int mes = Integer.parseInt(datas[1]);
+		int dia = Integer.parseInt(datas[2]);
+		Calendar cal = Calendar.getInstance();
+		cal.set(cal.YEAR, ano);
+		cal.set(cal.MONTH, mes - 1);
+		cal.set(cal.DAY_OF_MONTH, dia);
+		Date nascimento = new Date(cal.getTimeInMillis());
+		
+		Discente discente = (Discente) sessao.getAttribute("discente");
+		discente.setDataNascimento(nascimento);
+		DiscenteDao discenteDao = new DiscenteDao();
+		discenteDao.atualizarDiscente(discente);
+		
+		System.out.println(dataNascimento);
+		return mv;
+	}
+	
 	@GetMapping("/attCep")
 	public ModelAndView atualizarCep(String cep, HttpSession sessao){
 
