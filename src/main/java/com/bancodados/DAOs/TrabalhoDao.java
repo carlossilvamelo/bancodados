@@ -108,6 +108,15 @@ public class TrabalhoDao {
 			e.printStackTrace();
 		}
 
+		trabalho.setPalavrasChave(this.buscarPalavrasChavePorTrabalho(trabalho));
+
+		return trabalho;
+	}
+
+	public ArrayList<String> buscarPalavrasChavePorTrabalho(Trabalho trabalho){
+		
+		ArrayList<String> palavras = new ArrayList<String>();
+		PreparedStatement stmt = null;
 		String buscarPalavras = "select * from palavra_chave where id_trabalho_pal = ?;";
 		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(buscarPalavras);
@@ -126,10 +135,9 @@ public class TrabalhoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		return trabalho;
+		return palavras;
 	}
-
+	
 	public void atualizarTrabalho(Trabalho trabalho) {
 
 		// operação 0
@@ -224,8 +232,8 @@ public class TrabalhoDao {
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
 		String procurarIdTrabalhos = "SELECT (id_tra, titulo_tra, resumo_tra, status_tra, numero_curtidas_tra) FROM trabalho"
-				+ "INNER JOIN(SELECT id_trabalho_par FROM participante_trabalho WHERE id_discente_par = ?) "
-				+ "ON id_tra = id_trabalho_par;";
+				+ "INNER JOIN(SELECT id_trabalho_par FROM participante_trabalho WHERE id_discente_par = ?) as part_trab_id "
+				+ "ON id_tra = part_trab_id.id_trabalho_par;";
 		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(procurarIdTrabalhos);
 
