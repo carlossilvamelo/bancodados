@@ -232,10 +232,12 @@ public class TrabalhoDao {
 		// operação1
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
+
 		String procurarIdTrabalhos = "SELECT * "
 				+ "FROM trabalho as trab "
 				+ "INNER JOIN (SELECT id_trabalho_par FROM participante_trabalho WHERE id_discente_par = ? ) as trab_id "
 				+ "ON trab.id_tra = trab_id.id_trabalho_par;";
+
 		try {
 			stmt = ConnectionManager.getConnection().prepareStatement(procurarIdTrabalhos);
 
