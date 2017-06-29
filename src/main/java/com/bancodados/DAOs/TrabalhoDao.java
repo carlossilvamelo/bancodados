@@ -65,7 +65,7 @@ public class TrabalhoDao {
 		String inserirParticipante = "insert into participante_trabalho (id_discente_par, id_trabalho_par)"
 				+ "values(?,?) ";
 		try {
-			stmt = ConnectionManager.getConnection().prepareStatement(inserirTrabalho);
+			stmt = ConnectionManager.getConnection().prepareStatement(inserirParticipante);
 
 			stmt.setInt(1, discente.getId());
 			stmt.setInt(2, trabalho.getIdTrabalho());
@@ -266,35 +266,45 @@ public class TrabalhoDao {
 				discente = discentedao.buscarDiscentePorId(id);
 				discentesEncontrados.add(discente);
 			}
-			ConnectionManager.closeConnection();
-			/* 
-			PreparedStatement stmt1 = null;
-			ResultSet resultSet1 = null;
-			//operação 2
-			String procurarTrabalhos = "SELECT * FROM trabalho WHERE id_tra = ?;";
-			for(Trabalho trab_encontrado : trabalhosEncontrados){
-				stmt1 = ConnectionManager.getConnection().prepareStatement(procurarTrabalhos);
-				
-				stmt1.setInt(1, trab_encontrado.getIdTrabalho());
-				
-				stmt1.execute();
-				stmt1.close();
-				
-				resultSet1 = stmt1.getResultSet();
-				while(resultSet1.next()){
-					trab_encontrado.setTitulo(resultSet1.getString("titulo_tra"));
-					trab_encontrado.setResumo(resultSet1.getString("resumo_tra"));
-					trab_encontrado.setStatus(StatusTrabalho.getStatusByNome(resultSet1.getString("status_tra")));
-					trab_encontrado.setCurtidas(resultSet1.getInt("numero_curtidas_tra"));
-					break;
-				}
-			}
-			*/
+			
 			ConnectionManager.closeConnection();
 		} catch(SQLException e){
 			e.printStackTrace();
 		}
 		
 		return discentesEncontrados;
+	}
+	
+	public ArrayList<Trabalho> procurarQuantidade(int quantidade){
+		ArrayList<Trabalho> trabs_encontrados = new ArrayList<Trabalho>();
+		Trabalho trabAtual = null;
+		//operação1
+		PreparedStatement stmt = null;
+		ResultSet resultSet = null;
+		String procurarTrabalhosQuant = "SELECT * FROM trabalho LIMIT ?";
+		try {
+			stmt = ConnectionManager.getConnection().prepareStatement(procurarTrabalhosQuant);
+			stmt.setInt(1, quantidade);
+			stmt.execute();
+			stmt.close();
+		
+			resultSet = stmt.getResultSet();
+			
+			while(resultSet.next()){
+				trabAtual = new Trabalho();
+				trabAtual.setIdTrabalho(resultSet.getInt("id_tra"));
+				trabAtual.setTitulo(resultSet.getString("titulo_tra"));
+				trabAtual.setResumo(resultSet.getString("resumo_tra"));
+				trabAtual.setStatus(StatusTrabalho.getStatusByNome(resultSet.getString("status_tra")));
+				trabAtual.setCurtidas(resultSet.getInt("numero_curtidas_tra"));
+				trabs_encontrados.add(trabAtual);
+			}
+
+			ConnectionManager.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return trabs_encontrados;
 	}
 }
