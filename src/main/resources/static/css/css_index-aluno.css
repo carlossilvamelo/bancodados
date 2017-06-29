@@ -48,15 +48,23 @@ div#divConteudo{
     text-align: right;
 }
 #caixaDeChats{
-    display: none;
+    
     margin-left: 800px;
     height: 200px;
 }
 .caixaTextChat{
+	display: block;
     padding: 2px;
     height: 500px;
     overflow:auto;
+
 }
+.janelaChat{
+	margin-left: 59%;
+	
+	
+}
+
 div#divLadoDireito{
 
     display: block;

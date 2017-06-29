@@ -42,8 +42,11 @@
 
                 <div class="buscarContatoProf col-md-12">
 
-                    <input type="text" placeholder="filtrar" />
-                    <a href="" type="button" class="  btn botaoProfessor navbar-btn">Filtrar</a>
+                    <form th:action="@{/layout-professor/filtrarContatos}" method="get">
+
+						<input name="filtro" type="text" placeholder="filtrar por nome" />
+						<button class="btn btn-primary " type="submit">filtrar</button>
+					</form>
                 </div>
 
             </div>
@@ -51,85 +54,50 @@
             <br/>
             <table class="listaContatosProf col-md-12">
 
-                <tr>
-                    <td>
-                        <label for="">Login:</label>
-                        <span>chsm</span><br/>
-                        <label for="">Nome:</label>
-                        <span>carlos henrique</span><br/>
-                        <label for="">Email:</label>
-                        <span>carlossilvameloo@gmail.com</span>
+               <tr th:if="${c != null}" th:each="c,iter: ${contatos}">
+					<td><label>Login:</label> <span th:text="${c.login}">chsm</span><br />
+						<label>Nome:</label> <span th:text="${c.nome}">carlos
+							henrique</span><br /> <label>Email:</label> <span th:text="${c.email}">carlossilvameloo@gmail.com</span>
+					</td>
 
-                    </td>
-                    <td>
-                        <a href="" type="button" class="gerenciar btn btn-danger navbar-btn">Excluir</a>
-                    </td>
+					<td><a href="#" type="button"
+						class="gerenciar btn btn-danger navbar-btn"
+						th:href="@{/layout-professor/excluirContato(cpfContato=${c.cpf})}">Excluir</a>
+					</td>
 
-                </tr>
-                <tr>
-                    <td>
-                        <label for="">Login:</label>
-                        <span>chsm</span><br/>
-                        <label for="">Nome:</label>
-                        <span>carlos henrique</span><br/>
-                        <label for="">Email:</label>
-                        <span>carlossilvameloo@gmail.com</span>
-
-                    </td>
-                    <td>
-                        <a href="#" type="button" class="gerenciar btn btn-danger navbar-btn">Excluir</a>
-                    </td>
-
-                </tr>
+				</tr>
             </table>
         </div>
 
         <div class=" divBuscarContatosProf col-md-5">
             <div class="menuListaTrabalhos">
 
-                <div class="buscarContatoProf col-md-12">
+				<div class="buscarContato col-md-12">
+					<form th:action="@{/layout-professor/filtrarUsuarios}" method="get">
 
-                    <input type="text" placeholder="Buscar novo contato por email" />
-                    <a href="" type="button" class=" btn botaoProfessor navbar-btn">Buscar</a>
+						<input name="filtro" type="text" placeholder="filtrar por nome" />
+						<button class="btn btn-primary " type="submit">filtrar</button>
+					</form>
+				</div>
 
-                </div>
+			</div>
 
-            </div>
+			<br />
+			<table class="listaContatos col-md-12">
 
-            <br/>
-            <table class="listaContatosProf col-md-12">
+				<tr th:if="${u != null}" th:each="u,iter: ${usuarios}">
+					<td><label for="">Login:</label> <span th:text="${u.login}">chsm</span><br />
+						<label for="">Nome:</label> <span th:text="${u.nome}">carlos
+							henrique</span><br /> <label for="">Email:</label> <span
+						th:text="${u.email}">carlossilvameloo@gmail.com</span></td>
+					<td><a href="" type="button"
+						class="gerenciar btn btn-primary navbar-btn"
+						th:href="@{/layout-professor/addContato(cpfContato=${u.cpf})}">Adicionar</a>
+					</td>
 
-                <tr>
-                    <td>
-                        <label for="">Login:</label>
-                        <span>chsm</span><br/>
-                        <label for="">Nome:</label>
-                        <span>carlos henrique</span><br/>
-                        <label for="">Email:</label>
-                        <span>carlossilvameloo@gmail.com</span>
+				</tr>
 
-                    </td>
-                    <td>
-                        <a href="" type="button" class="gerenciar btn botaoProfessor navbar-btn">Adicionar</a>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <label for="">Login:</label>
-                        <span>chsm</span><br/>
-                        <label for="">Nome:</label>
-                        <span>carlos henrique</span><br/>
-                        <label for="">Email:</label>
-                        <span>carlossilvameloo@gmail.com</span>
-
-                    </td>
-                    <td>
-                        <a href="" type="button" class="gerenciar btn botaoProfessor navbar-btn">Adicionar</a>
-                    </td>
-
-                </tr>
-            </table>
+			</table>
         </div>
       </section>
 

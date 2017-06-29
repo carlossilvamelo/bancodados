@@ -1,185 +1,178 @@
 <!DOCTYPE html>
-<html lang="pt-br"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout-aluno/header-aluno">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta name="description" content="identificação"/>
-    <meta name="author" content=""/>
-    <link rel="icon" href="../imagens/favicon/favicon.ico"/>
-    <title>postAcad</title>
+<meta name="description" content="identificação" />
+<meta name="author" content="" />
+<link rel="icon" href="../imagens/favicon/favicon.ico" />
+<title>postAcad</title>
 
-    <link href="../css-bootstrap/bootstrap.css" rel="stylesheet"/>
-    <link href="../css/global.css" rel="stylesheet"/>
-    <link href="../css/css_index-aluno.css" rel="stylesheet"/>
-    <link href="../css/css_barra-navegacao-aluno.css" rel="stylesheet"/>
-    <link href="../css-bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
-    <link href="../css-bootstrap/signin.css" rel="stylesheet"/>
-    <script src="../js-bootstrap/bootstrap.js"></script>
-    <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
-    <script src="../js/global.js"></script>
+<link href="../css-bootstrap/bootstrap.css" rel="stylesheet" />
+<link href="../css/global.css" rel="stylesheet" />
+<link href="../css/css_index-aluno.css" rel="stylesheet" />
+<link href="../css/css_barra-navegacao-aluno.css" rel="stylesheet" />
+<link href="../css-bootstrap/ie10-viewport-bug-workaround.css"
+	rel="stylesheet" />
+<link href="../css-bootstrap/signin.css" rel="stylesheet" />
+<script src="../js-bootstrap/bootstrap.js"></script>
+<script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
+<script src="../js/global.js"></script>
 
-    
+
 
 </head>
-<body >
+<body>
 
 
 
-     <section layout:fragment="conteudo">
-     
-        <div id="divConteudo" class="container-fluid col-sm-push-1 col-md-7 ">
+	<section layout:fragment="conteudo">
 
-            <table class="timeLine">
-                <tr th:if="${lista != null}" th:each="lista,iter: ${trabalhos}">
-                <td >
-                
-                    <h2 th:text="${lista.titulo}">Titulo</h2>
-                    <p th:text="${lista.resumo}" >resumo.</p>
+		<div id="divConteudo" class="container-fluid col-sm-push-1 col-md-7 ">
 
-					
-                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon-thumbs-up"> Curtir</a>
+			<table class="timeLine">
+				<tr th:if="${lista != null}" th:each="lista,iter: ${trabalhos}">
+					<td>
 
-                    <a href="#" type="button" class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment" th:onclick="'fecharAbrirChat(\'divComentarios'+${iter.index}+'\');'"> Comentar</a>
+						<h2 th:text="${lista.titulo}">Titulo</h2>
+						<p th:text="${lista.resumo}">resumo.</p> <a href="#" type="button"
+						class="btn botaoCurtirComentar glyphicon glyphicon-thumbs-up">
+							Curtir</a> <a href="#" type="button"
+						class="btn botaoCurtirComentar glyphicon glyphicon glyphicon-comment"
+						th:onclick="'fecharAbrirChat(\'divComentarios'+${iter.index}+'\');'">
+							Comentar</a> <a th:href="@{/layout-aluno/visualizarTrabalho}"
+						type="button" class="botaoVisualizar btn btn-primary navbar-btn">Visualizar</a>
+						<br />
+						<div th:id="'divComentarios' + ${iter.index}"
+							class="divComentarios">
+							<div class="col-md-12 ">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<span class="glyphicon glyphicon-comment"></span> Comentários
+									</div>
+									<div>
+										<ul class="chat caixaComentarios">
 
-                    <a th:href="@{/layout-aluno/visualizarTrabalho}" type="button" class="botaoVisualizar btn btn-primary navbar-btn">Visualizar</a>
-                    <br/>
-                    <div th:id="'divComentarios' + ${iter.index}" class="divComentarios">
-                        <div  class="col-md-12 ">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <span class="glyphicon glyphicon-comment"></span> Comentários
-                                </div>
-                                <div >
-                                    <ul class="chat caixaComentarios">
-
-                                        <li class="chatTextLeft ">
-                                            <span>Nome:</span>
-                                            <p>Que legal o trabalho de vocês!</p>
-                                        </li>
+											<li class="chatTextLeft "><span>Nome:</span>
+												<p>Que legal o trabalho de vocês!</p></li>
 
 
-                                    </ul>
-                                </div>
+										</ul>
+									</div>
 
-                                <div class="panel-footer">
-                                    <div class="input-group">
-                                        <input  type="text" class="form-control input-sm" placeholder="Mensagem.." />
-                                        <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" >
-                                Send</button>
-                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
+									<div class="panel-footer">
+										<div class="input-group">
+											<input type="text" class="form-control input-sm"
+												placeholder="Mensagem.." /> <span class="input-group-btn">
+												<button class="btn btn-warning btn-sm">Send</button>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
 
-            </tr>
-
-
-            </table>
+				</tr>
 
 
-        </div>
+			</table>
 
 
-        <div id="divLadoDireito" class="col-md-3">
-
-         <div class="panel panel-primary">
-
-             <div class="panel-heading" style="background-color: var(--alunoAzul);">
-                 <span class="glyphicon glyphicon-user"></span> contatos
-
-             </div>
-
-            <div class="listaContatos">
-                <table >
-                    <tr class="">
-                        <td><h4>contato 1</h4>
-                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
-                        </td>
-
-                    </tr>
-
-                    <tr class="">
-                        <td><h4>contato 2</h4>
-                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td><h4>contato 2</h4>
-                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td><h4>contato 2</h4>
-                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td><h4>contato 2</h4>
-                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td><h4>contato 2</h4>
-                            <a  type="button" class="btn btn-default navbar-btn" onclick="fecharAbrirChat('caixaDeChats')">Conversar</a>
-                        </td>
-                    </tr>
+		</div>
 
 
+		<div id="divLadoDireito" class="col-md-3">
 
-                </table>
+			<div class="panel panel-primary">
 
-            </div>
+				<div class="panel-heading"
+					style="background-color: var(--alunoAzul);">
+					<span class="glyphicon glyphicon-user"></span> contatos
 
-          </div>
-        </div>
+				</div>
+
+				<div class="listaContatos">
+					<table>
+						<tr th:if="${c != null}" th:each="c,iter: ${contatos}">
+							<td>
+								<h4 th:text="${c.nome}"></h4> <a type="button"
+								class="btn btn-default navbar-btn"
+								th:href="@{~/layout-aluno/conversar(cpfDestinatario=${c.cpf})}"
+								th:onclick="'fecharAbrirChat(\'caixaDeChats'+${iter.index}+'\');'">Conversar</a>
+
+								<div th:id="'caixaDeChats' + ${iter.index}"
+									class="col-md-5 navbar-fixed-bottom janelaChat">
+									<div class="panel panel-primary">
+										<div class="panel-heading">
+											<span class="glyphicon glyphicon-comment"></span> Chat <span
+												th:onclick="'fecharAbrirChat(\'caixaDeChats'+${iter.index}+'\');'"
+												style="float: right" class=" glyphicon glyphicon-remove"></span>
+										</div>
+										<div class="caixaTextChat">
+											<ul class="chat" th:if="${msg != null}"
+												th:each="msg,iter: ${mensagens}">
+
+												<li class="chatTextLeft"
+													th:if="${msg.idRemetente == session.discente.id}">
+													<p th:text="${msg.conteudo}">Vamos marcar uma reunião?</p>
+												</li>
+												
+												<li class="chatTextRight"
+													th:if="${msg.idRemetente != session.discente.id}">
+													<p th:text="${msg.conteudo}">Vamos marcar uma reunião?</p>
+												</li>
+
+											</ul>
+											
+										</div>
+
+										<div class="panel-footer">
+											<div class="input-group">
+
+												<form
+													th:action="@{~/layout-aluno/enviarMensagem(cpfDestinatario=${c.cpf})}"
+													method="get">
+													
+														<input style="display:none;" th:value="${cpfDestinatario}" id="btn-input" type="text" name="destinatario"
+														class="form-control input-sm"  />
+													<input id="btn-input" type="text" name="mensagem"
+														class="form-control input-sm" placeholder="Mensagem.." />
+													<span class="input-group-btn">
+														<button  class="btn btn-warning btn-sm" id="btn-chat">
+															Enviar</button>
+															
+															</span>
+												</form>
+
+												
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</td>
+
+						</tr>
+
+					</table>
+
+				</div>
+
+			</div>
+		</div>
 
 
 
 
 
-                <div id="caixaDeChats" class="col-md-5 navbar-fixed-top ">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <span class="glyphicon glyphicon-comment"></span> Chat
-                            <span onclick="fecharAbrirChat('caixaDeChats')" style="float: right" class=" glyphicon glyphicon-remove"></span>
-                        </div>
-                        <div class="caixaTextChat">
-                            <ul class="chat">
 
-
-                                <li class="chatTextLeft">
-                                        <p>Vamos marcar uma reunião?</p>
-                                </li>
-                                <li class="chatTextRight">
-                                    <p>Vamos!</p>
-                                </li>
-
-
-                            </ul>
-                        </div>
-
-                        <div class="panel-footer">
-                            <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Mensagem.." />
-                                <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-chat">
-                                Send</button>
-                        </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-     </section>
+	</section>
 
 
 </body>
