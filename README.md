@@ -15,6 +15,10 @@
 
 ## Compilação e execução
 
+Clone o projeto do git na branch integração.
+
+Utilizar a plataforma IDE Eclipse e o marvem para executar a aplicação. 
+
 ## Autores:
 
 Adelino Afonso Fernandes Avelino
@@ -29,5 +33,5 @@ Yuri Reinaldo da Silva
 
 ## Disponível em:
 
-[Projeto Gerenciador de Processos Android](https://github.com/carlossilvamelo/bancodados/tree/integracao)
+[PostAcad](https://github.com/carlossilvamelo/bancodados/tree/integracao)
 
