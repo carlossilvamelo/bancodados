@@ -24,7 +24,7 @@ public class TrabalhoController {
 
 	
 	@GetMapping("/novoTrabalho")
-	public ModelAndView novoTrabalho(HttpSession session, String titulo, String resumo){
+	public ModelAndView novoTrabalho(HttpSession session, String titulo, String resumo, String palavraChave){
 		
 		ContatosDao contatosDao = new ContatosDao();
 		TrabalhoDao trabalhoDao = new TrabalhoDao();
@@ -37,6 +37,14 @@ public class TrabalhoController {
 		
 		trabalho.setTitulo(titulo);
 		trabalho.setResumo(resumo);
+		String[] listaPalavras = palavraChave.trim().split(";");
+		
+		for(String palavra : listaPalavras){
+			trabalho.adicionarPalavraChave(palavra);
+			System.out.println("A palavra-chave é: " +  palavra);
+		}
+		
+		
 		trabalhoDao.inserirTrabalho(trabalho, discente);
 		
 		mv.addObject("contatos", contatos);

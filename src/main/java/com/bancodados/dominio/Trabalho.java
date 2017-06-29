@@ -12,7 +12,10 @@ public class Trabalho {
 	private Integer curtidas = 0;
 	private StatusTrabalho status = StatusTrabalho.EM_ANDAMENTO;
 	
+	private ArrayList<String> palavrasChave = new ArrayList<String>();
+
 	private ArrayList<Discente> participantes = new ArrayList<Discente>();
+
 	
 	public Integer getIdTrabalho() {
 		return idTrabalho;
@@ -58,5 +61,14 @@ public class Trabalho {
 	public void removerParticipante(Discente discente){
 		this.participantes.remove(discente);
 	}
+	public ArrayList<String> getPalavrasChave() {
+		return palavrasChave;
+	}
+	public void setPalavrasChave(ArrayList<String> palavrasChave) {
+		this.palavrasChave = palavrasChave;
+	}
 	
+	public void adicionarPalavraChave(String palavra){
+		this.palavrasChave.add(palavra);
+	}
 }
