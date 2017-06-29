@@ -1,30 +1,35 @@
 <!DOCTYPE html>
-<html lang="pt-br"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout-aluno/header-aluno">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta name="description" content="identificação"/>
-    <meta name="author" content=""/>
-    <link rel="icon" href="../imagens/favicon/favicon.ico"/>
-    <title>postAcad</title>
+<meta name="description" content="identificação" />
+<meta name="author" content="" />
+<link rel="icon" href="../imagens/favicon/favicon.ico" />
+<title>postAcad</title>
 
-    <link href="../css-bootstrap/bootstrap.css" rel="stylesheet"/>
-    <link href="../css/global.css" rel="stylesheet"/>
-    <link href="../css/css_trabalhos-aluno.css" rel="stylesheet"/>
-    <link href="../css/css_barra-navegacao-aluno.css" rel="stylesheet"/>
-    <link href="../css-bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
-    <link href="../css-bootstrap/signin.css" rel="stylesheet"/>
-    <script src="../js-bootstrap/bootstrap.js"></script>
-    <script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
-    <script src="../js/global.js" type="text/javascript"></script>
+<link href="../css-bootstrap/bootstrap.css" rel="stylesheet" />
+<link href="../css/global.css" rel="stylesheet" />
+<link href="../css/css_trabalhos-aluno.css" rel="stylesheet" />
+<link href="../css/css_barra-navegacao-aluno.css" rel="stylesheet" />
+<link href="../css-bootstrap/ie10-viewport-bug-workaround.css"
+	rel="stylesheet" />
+<link href="../css-bootstrap/signin.css" rel="stylesheet" />
+<script src="../js-bootstrap/bootstrap.js"></script>
+<script src="../js-bootstrap/ie-emulation-modes-warning.js"></script>
+<script src="../js/global.js" type="text/javascript"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-   
 
 
 </head>
@@ -33,43 +38,85 @@
 
 
 	<section layout:fragment="conteudo">
-	
-	
-<div id="" class="divListaTrabalhos col-sm-push-1 col-md-10">
-    <h1>Meus trabalhos</h1>
-
-    <div class="menuListaTrabalhos">
-        <a href="#" type="button" class="criarNovoTrabalho btn btn-primary navbar-btn">Criar novo trabalho</a>
-        <div class="buscarTrabalho">
-
-            <input type="text" placeholder="Titulo/palavra chave" />
-            <a href="#" type="button" class="  btn btn-primary navbar-btn">Buscar</a>
-        </div>
-
-    </div>
 
 
+		<div id="" class="divListaTrabalhos col-sm-push-1 col-md-10">
+			<h1>Meus trabalhos</h1>
+
+			<div class="menuListaTrabalhos">
+				<!-- Trigger the modal with a button -->
+				<button type="button" class="btn btn-info btn-lg"
+					data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+				<!-- Modal -->
+				<div id="myModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Novo trabalho</h4>
+							</div>
+							<div class="modal-body">
+							
+							
+								<form class="formCadastro form-signin" method="get"
+									th:action="@{/../trabalho/novoTrabalho}">
+									
+
+									<input name="titulo" type="text" id="inputTitulo"
+										placeholder="titulo" class="form-control itensForm" /> 
+										<input
+										name="resumo" type="text" id="inputResumo"
+										placeholder="resumo" class="form-control itensForm" /> 
+										
+						
+
+									<button class="btn btn-lg btn-primary btn-block" type="submit">Criar
+										trabalho</button>
+
+								</form>
 
 
-    <br/>
-    <table class="meusTrabalhos">
-        <tr>
-            <td>
-                <h2>Titulo</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="buscarTrabalho">
+
+					<input type="text" placeholder="Titulo/palavra chave" /> <a
+						href="#" type="button" class="  btn btn-primary navbar-btn">Buscar</a>
+				</div>
+
+			</div>
 
 
-                <a href="#" type="button" class="gerenciar btn btn-primary navbar-btn">Gerenciar</a>
-                <br/>
 
-            </td>
-        </tr>
-    </table>
-</div>
-	
-	
+
+			<br />
+			<table class="meusTrabalhos">
+				<tr>
+					<td>
+						<h2>Titulo</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+							sed do eiusmod tempor incididunt ut labore et dolore magna
+							aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+							ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <a
+						href="#" type="button"
+						class="gerenciar btn btn-primary navbar-btn">Gerenciar</a> <br />
+
+					</td>
+				</tr>
+			</table>
+		</div>
+
+
 	</section>
 
 
