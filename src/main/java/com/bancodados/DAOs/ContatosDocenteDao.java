@@ -5,15 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.springframework.web.servlet.ResourceServlet;
-
 import com.bancodados.dominio.Discente;
+import com.bancodados.dominio.Docente;
 import com.bancodados.dominio.Usuario;
 
-public class ContatosDiscenteDao {
+public class ContatosDocenteDao {
 
-
-	public void inserirContato(Discente discenteA, Discente discenteB){
+	
+	public void inserirContato(Docente docenteA, Docente discenteB){
 
 		PreparedStatement stmt = null;
 		// operação 1
@@ -24,7 +23,7 @@ public class ContatosDiscenteDao {
 
 			stmt = ConnectionManager.getConnection().prepareStatement(inserirContato);
 
-			stmt.setString(1, discenteA.getCpf());
+			stmt.setString(1, docenteA.getCpf());
 			stmt.setString(2, discenteB.getCpf());
 			stmt.execute();
 			stmt.close();
@@ -34,7 +33,7 @@ public class ContatosDiscenteDao {
 
 			stmt = ConnectionManager.getConnection().prepareStatement(inserirContato);
 			stmt.setString(1, discenteB.getCpf());
-			stmt.setString(2, discenteA.getCpf());
+			stmt.setString(2, docenteA.getCpf());
 
 			stmt.execute();
 			stmt.close();
@@ -55,7 +54,7 @@ public class ContatosDiscenteDao {
 	
 	
 	
-	public void excluirContato(Discente discenteA, Discente discenteB){
+	public void excluirContato(Usuario discenteA, Usuario discenteB){
 
 		PreparedStatement stmt = null;
 		// operação 1
@@ -89,8 +88,12 @@ public class ContatosDiscenteDao {
 		}
 
 	}
+	
+	
+	
+	
 
-	public ArrayList<Usuario> buscarContatos(Discente discente){
+	public ArrayList<Usuario> buscarContatos(Usuario discente){
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
 		Usuario usuario = null;
@@ -175,8 +178,4 @@ public class ContatosDiscenteDao {
 		return contatos;
 
 	}
-
-
-
-
 }

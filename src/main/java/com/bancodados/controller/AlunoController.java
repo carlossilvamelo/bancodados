@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bancodados.DAOs.ContatosDiscenteDao;
+import com.bancodados.DAOs.ContatosDao;
 import com.bancodados.DAOs.DiscenteDao;
 import com.bancodados.DAOs.DocenteDao;
+import com.bancodados.DAOs.MensagemDao;
 import com.bancodados.DAOs.UsuarioDao;
 import com.bancodados.dominio.Discente;
 import com.bancodados.dominio.Docente;
+import com.bancodados.dominio.Mensagem;
 import com.bancodados.dominio.Trabalho;
 import com.bancodados.dominio.Usuario;
 
@@ -55,7 +57,7 @@ public class AlunoController {
 	public ModelAndView inicioAluno(HttpSession session){
 
 		Discente discente = (Discente) session.getAttribute("discente");
-		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
+		ContatosDao contatosDao = new ContatosDao();
 		ModelAndView mv = new ModelAndView("/layout-aluno/index-aluno");
 		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
 		mv.addObject("contatos", contatos);
@@ -73,7 +75,7 @@ public class AlunoController {
 	@GetMapping("/filtrarUsuarios")
 	public ModelAndView filtrarUsuarios(HttpSession session, String filtro){
 		Discente discente = (Discente) session.getAttribute("discente");
-		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
+		ContatosDao contatosDao = new ContatosDao();
 		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
 		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
 		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
@@ -97,10 +99,90 @@ public class AlunoController {
 
 	}
 
+	@GetMapping("/conversar")
+	public ModelAndView conversar(HttpSession session, String cpfDestinatario){
+		Discente remetente = (Discente) session.getAttribute("discente");
+		ContatosDao contatosDao = new ContatosDao();
+		DiscenteDao discenteDao = new DiscenteDao();
+		DocenteDao docenteDao = new DocenteDao();
+		UsuarioDao usuarioDao = new UsuarioDao();
+		ModelAndView mv = null;
+		if(usuarioDao.verificarTipoUsuarioPorCpf(cpfDestinatario).equals("dis")){
+			Usuario destinatario = discenteDao.buscarDiscentePorCpf(cpfDestinatario);
+			MensagemDao mensagemDao = new MensagemDao();
+			 mv = new ModelAndView("/layout-aluno/index-aluno");
+			ArrayList<Usuario> contatos = contatosDao.buscarContatos(remetente);
+			mv.addObject("contatos", contatos);
+
+			ArrayList<Mensagem> mensagens = mensagemDao.buscarMensagens(remetente, destinatario);
+			mv.addObject("mensagens", mensagens);
+			mv.addObject("cpfDestinatario", cpfDestinatario);
+		}else{
+			Usuario destinatario = docenteDao.buscarDocentePorCpf(cpfDestinatario);
+			System.out.println(destinatario);
+			MensagemDao mensagemDao = new MensagemDao();
+			mv = new ModelAndView("/layout-aluno/index-aluno");
+			ArrayList<Usuario> contatos = contatosDao.buscarContatos(remetente);
+			mv.addObject("contatos", contatos);
+
+			ArrayList<Mensagem> mensagens = mensagemDao.buscarMensagens(remetente, destinatario);
+			mv.addObject("mensagens", mensagens);
+			mv.addObject("cpfDestinatario", cpfDestinatario);
+		}
+
+		return mv;
+
+	}
+
+
+	@GetMapping("/enviarMensagem")
+	public ModelAndView enviarMensagem(HttpSession session, String destinatario
+			, String mensagem){
+		MensagemDao mensagemDao = new MensagemDao();
+		DiscenteDao discenteDao = new DiscenteDao();
+		UsuarioDao usuarioDao = new UsuarioDao();
+		DocenteDao docenteDao = new DocenteDao();
+		ModelAndView mv = null;
+		if(usuarioDao.verificarTipoUsuarioPorCpf(destinatario).equals("dis")){
+			Discente Discentedestinatario = discenteDao.buscarDiscentePorCpf(destinatario);
+			Discente remetente = (Discente) session.getAttribute("discente");
+			ContatosDao contatosDao = new ContatosDao();
+
+			mensagemDao.enviarMensagem(remetente, Discentedestinatario, mensagem);
+
+			 mv = new ModelAndView("/layout-aluno/index-aluno");
+			System.out.println(remetente.getCpf()+" -- "+destinatario+" :"+mensagem);
+			ArrayList<Usuario> contatos = contatosDao.buscarContatos(remetente);
+			mv.addObject("contatos", contatos);
+
+			ArrayList<Mensagem> mensagens = mensagemDao.buscarMensagens(remetente, Discentedestinatario);
+			mv.addObject("mensagens", mensagens);
+		}else{
+			Usuario Discentedestinatario = docenteDao.buscarDocentePorCpf(destinatario);
+			Usuario remetente = (Discente) session.getAttribute("discente");
+			ContatosDao contatosDao = new ContatosDao();
+
+			mensagemDao.enviarMensagem(remetente, Discentedestinatario, mensagem);
+
+			 mv = new ModelAndView("/layout-aluno/index-aluno");
+			System.out.println(remetente.getCpf()+" -- "+destinatario+" :"+mensagem);
+			ArrayList<Usuario> contatos = contatosDao.buscarContatos(remetente);
+			mv.addObject("contatos", contatos);
+
+			ArrayList<Mensagem> mensagens = mensagemDao.buscarMensagens(remetente, Discentedestinatario);
+			mv.addObject("mensagens", mensagens);
+		}
+		
+
+		return mv;
+
+	}
+
+
 	@GetMapping("/filtrarContatos")
 	public ModelAndView filtrarContatos(HttpSession session, String filtro){
 		Discente discente = (Discente) session.getAttribute("discente");
-		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
+		ContatosDao contatosDao = new ContatosDao();
 		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
 		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
 		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discente);
@@ -140,7 +222,7 @@ public class AlunoController {
 
 	@GetMapping("/gerenciar-contatos")
 	public ModelAndView gerenciarContatos(HttpSession session){
-		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
+		ContatosDao contatosDao = new ContatosDao();
 		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
 		Discente discente = (Discente) session.getAttribute("discente");
 		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
@@ -154,19 +236,39 @@ public class AlunoController {
 	@GetMapping("/addContato")
 	public ModelAndView addContato(HttpSession session, String cpfContato){
 
-		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
+		ContatosDao contatosDao = new ContatosDao();
 		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
-		Discente discenteA = (Discente) session.getAttribute("discente");
+		Usuario usuario = (Usuario) session.getAttribute("discente");
 
-		Discente discenteB = new Discente();
-		discenteB.setCpf(cpfContato);
+		if(usuario.getTipo().equals("dis")){
+			Discente discenteA = (Discente) session.getAttribute("discente");
 
-		contatosDao.inserirContato(discenteA, discenteB);
+			Discente discenteB = new Discente();
+			discenteB.setCpf(cpfContato);
 
-		ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
-		ArrayList<Usuario> contatos = contatosDao.buscarContatos(discenteA);
-		mv.addObject("contatos", contatos);
-		mv.addObject("usuarios", usuarios);
+			contatosDao.inserirContato(discenteA, discenteB);
+
+			ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
+			ArrayList<Usuario> contatos = contatosDao.buscarContatos(discenteA);
+			mv.addObject("contatos", contatos);
+			mv.addObject("usuarios", usuarios);
+
+		}else{
+			Docente docenteA = (Docente) session.getAttribute("discente");
+
+			Docente docenteB = new Docente();
+			docenteB.setCpf(cpfContato);
+
+			contatosDao.inserirContato(docenteA, docenteB);
+
+			ArrayList<Usuario> usuarios = contatosDao.buscarTodosUsuarios();
+			ArrayList<Usuario> contatos = contatosDao.buscarContatos(docenteA);
+			mv.addObject("contatos", contatos);
+			mv.addObject("usuarios", usuarios);
+
+		}
+
+
 		return mv;
 
 	}
@@ -174,7 +276,7 @@ public class AlunoController {
 	@GetMapping("/excluirContato")
 	public ModelAndView excluirContato(HttpSession session, String cpfContato){
 
-		ContatosDiscenteDao contatosDao = new ContatosDiscenteDao();
+		ContatosDao contatosDao = new ContatosDao();
 		ModelAndView mv = new ModelAndView("/layout-aluno/gerenciar-contatos");
 		Discente discenteA = (Discente) session.getAttribute("discente");
 
