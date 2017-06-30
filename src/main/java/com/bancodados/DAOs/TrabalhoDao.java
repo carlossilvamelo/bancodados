@@ -113,7 +113,6 @@ public class TrabalhoDao {
 		try {
 			ConnectionManager.closeConnection();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return trabalho;
@@ -152,7 +151,6 @@ public class TrabalhoDao {
 		try {
 			ConnectionManager.closeConnection();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return trabalho;
@@ -351,7 +349,6 @@ public class TrabalhoDao {
 		try {
 			ConnectionManager.closeConnection();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return trabalhosEncontrados;
@@ -424,7 +421,6 @@ public class TrabalhoDao {
 		try {
 			ConnectionManager.closeConnection();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return trabs_encontrados;

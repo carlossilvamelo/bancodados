@@ -1,12 +1,18 @@
 package com.bancodados.dominio;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Atividade {
 
 	private Integer IdAtividade;
-	private Integer idParticipante;
+	private Integer idTrabalho;
 	private Date prazo;
+	private StatusAtividade status = StatusAtividade.EM_ANDAMENTO;
+	private String descricao;
+	private String observacao;
+	private ArrayList<Discente> participantes = new ArrayList<Discente>();
+	
 	public Integer getIdAtividade() {
 		return IdAtividade;
 	}
@@ -15,32 +21,26 @@ public class Atividade {
 		IdAtividade = idAtividade;
 	}
 
-	public Integer getIdParticipante() {
-		return idParticipante;
+	public Integer getIdTrabalho() {
+		return idTrabalho;
 	}
 
-	public void setIdParticipante(Integer idParticipante) {
-		this.idParticipante = idParticipante;
+	public void setIdTrabalho(Integer idParticipante) {
+		this.idTrabalho = idParticipante;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setStatus(int status) {
+		this.status = StatusAtividade.getStatusByValor(status);
 	}
-	private Integer status; // vira um Enum
-	private String descricao;
-	private String observacao;
-	
-	
 	
 	public Atividade(Date prazo, int status, String descricao, String observacao) {
 		this.prazo = prazo;
-		this.status = status;
+		this.status = StatusAtividade.getStatusByValor(status);
 		this.descricao = descricao;
 		this.observacao = observacao;
 	}
 	
 	public Atividade() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	//getters and setters
@@ -50,12 +50,6 @@ public class Atividade {
 	}
 	public void setPrazo(Date date) {
 		this.prazo = date;
-	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
 	}
 	public String getDescricao() {
 		return descricao;
@@ -69,8 +63,30 @@ public class Atividade {
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
+
+	public StatusAtividade getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusAtividade status) {
+		this.status = status;
+	}
+
+	public ArrayList<Discente> getParticipantes() {
+		return participantes;
+	}
+
+	public void setParticipantes(ArrayList<Discente> participantes) {
+		this.participantes = participantes;
+	}
 	
+	public void adicionarParticipante(Discente dis){
+		this.participantes.add(dis);
+	}
 	
+	public void removerParticipante(Discente dis){
+		this.participantes.remove(dis);
+	}
 	
 	
 }
